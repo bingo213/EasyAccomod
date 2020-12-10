@@ -6,7 +6,7 @@ function RentalUnit() {
   const [heartState, setHeartState] = useState(false);
 
   return (
-    <div className="rentalContainer">
+    <div className="RentalUnit">
       <div className="image">
         <img src={roomImg} alt="Room Image" />
         <div className="cost">2.5 triệu<p className="small"> /tháng</p></div>

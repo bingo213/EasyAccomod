@@ -1,4 +1,4 @@
-header {
+.NavBar {
   background: linear-gradient(0deg, #00000082, #00000082),
     url('../img/couch-scaled_optimized.jpg');
   height: 45rem;
@@ -7,19 +7,19 @@ header {
   background-size: cover;
 }
 
-.logo {
+.NavBar .logo {
   position: absolute;
   top: 1.8rem;
   left: 6rem;
   color: white;
 }
 
-.small-nav, .large-nav{
+.NavBar .small-nav, .large-nav{
   position: fixed;
   z-index: 10;
 }
 
-.large-nav ul {
+.NavBar .large-nav ul {
   width: 95vw;
   padding-top: 1rem;
   display: flex;
@@ -27,15 +27,15 @@ header {
   margin-right: 6rem;
 }
 
-.large-nav ul li {
+.NavBar .large-nav ul li {
   padding: 1rem;
   margin-right: 2rem;
   color: #e9e9e9;
 }
-.large-nav ul a{
+.NavBar .large-nav ul a{
   position: relative;
 }
-.large-nav ul a::before {
+.NavBar .large-nav ul a::before {
   content: '';
   width: 0rem;
   border-top: 3px solid transparent;
@@ -44,28 +44,28 @@ header {
   margin-left: -10%;
   transition: width 0.4s;
 }
-.large-nav ul a:hover::before {
+.NavBar .large-nav ul a:hover::before {
   width: 120%;
   border-top: 3px solid #b881fc;
 }
 
-.small-nav, .scrolled {
+.NavBar .small-nav, .scrolled {
   background-color: #282d33;
   width: 100%;
   height: 5.6rem;
 }
 
-.scrolled, .large-nav{
+.NavBar .scrolled, .large-nav{
   height: 5.6rem;
   transition: background-color 0.5s;
 }
 
-.small-nav .logo {
+.NavBar .small-nav .logo {
   width: 90vw;
   text-align: center;
 }
 
-.small-nav .nav-container .button {
+.NavBar .small-nav .nav-container .button {
   position: relative;
   flex-direction: column;
   justify-content: center;
@@ -77,7 +77,7 @@ header {
   left: 1rem;
   padding: 0.5rem;
 }
-.small-nav .nav-container .icon-bar {
+.NavBar .small-nav .nav-container .icon-bar {
   display: block;
   width: 100%;
   height: 0.19rem;
@@ -86,25 +86,25 @@ header {
   margin-bottom: 0.31rem;
 }
 
-.nav-container:focus-within .button {
+.NavBar .nav-container:focus-within .button {
   pointer-events: none;
 }
 
-.small-nav .nav-container:focus-within .icon-bar:nth-of-type(1) {
+.NavBar .small-nav .nav-container:focus-within .icon-bar:nth-of-type(1) {
   transform: translate3d(0, 0.5rem, 0) rotate(45deg);
 }
-.small-nav .nav-container:focus-within .icon-bar:nth-of-type(2) {
+.NavBar .small-nav .nav-container:focus-within .icon-bar:nth-of-type(2) {
   opacity: 0;
 }
-.small-nav .nav-container:focus-within .icon-bar:nth-of-type(3) {
+.NavBar .small-nav .nav-container:focus-within .icon-bar:nth-of-type(3) {
   transform: translate3d(0, -0.5rem, 0) rotate(-45deg);
 }
 
-.small-nav .nav-container .button:hover .icon-bar {
+.NavBar .small-nav .nav-container .button:hover .icon-bar {
   background-color: #b881fc;
 }
 
-.small-nav .nav-container .nav-content {
+.NavBar .small-nav .nav-container .nav-content {
   margin-top: 5.6rem;
   width: 90%;
   max-width: 18.75rem;
@@ -118,22 +118,22 @@ header {
   transition: 0.3s;
 }
 
-.small-nav .nav-container:focus-within .nav-content {
+.NavBar .small-nav .nav-container:focus-within .nav-content {
   transform: none;
 }
 
-.small-nav .nav-container .nav-content ul {
+.NavBar .small-nav .nav-container .nav-content ul {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.small-nav .nav-container .nav-content ul li {
+.NavBar .small-nav .nav-container .nav-content ul li {
   padding: 0.75rem 0rem 0.75rem 2rem;
   border-bottom: 1px solid #b295d43d;
 }
 
-.small-nav .nav-container .nav-content ul li::before{
+.NavBar .small-nav .nav-container .nav-content ul li::before{
     content: '';
     height: 0rem;
     border-left: 0.3rem solid transparent;
@@ -143,12 +143,12 @@ header {
     transition: height 0.4s;
 }
 
-.small-nav .nav-container .nav-content ul li:hover::before{
+.NavBar .small-nav .nav-container .nav-content ul li:hover::before{
     height: 3.75rem;
     border-left: 0.3rem solid #b881fc;
 }
 
-.small-nav .nav-container .nav-content li a {
+.NavBar .small-nav .nav-container .nav-content li a {
   color: white;
   padding: 0.6rem 0.31rem;
   display: block;

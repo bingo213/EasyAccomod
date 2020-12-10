@@ -1,4 +1,4 @@
-.rentalContainer {
+.RentalUnit {
   display: inline-block;
   width: 24rem;
   height: 30rem;
@@ -79,7 +79,7 @@ img {
   color: #b881fcb2;
 }
 
-.rentalContainer:hover .title {
+.RentalUnit:hover .title {
   color: #b881fc;
 }
 
@@ -113,7 +113,7 @@ img {
 }
 
 @media (max-width: 692px){
-  .rentalContainer{
+  .RentalUnit{
     width: 32rem;
   }
 }

@@ -6,7 +6,7 @@ function SearchBar() {
     const {register, handleSubmit} = useForm()
     const onSubmit = data => console.log(data);
     return (
-        <div className="search">
+        <div className="SearchBar">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input type="text" placeholder="Thành phố" name="city" ref={register} />
           <input type="text" placeholder="Quận/Huyện" name="district" ref={register} />

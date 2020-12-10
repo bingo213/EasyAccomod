@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import '../../assets/css/navBar.css'
+import Account from '../login/Account'
 
 function NavBar() {
   function myFunction(x) {
@@ -34,8 +35,10 @@ function NavBar() {
     x.addListener(myFunction) // Attach listener function on state changes
   }, []);
 
+  const [logIn, setLogIn] = useState(true)
+
   return (
-    <header>
+    <div className="NavBar">
       <div id="nav" className="large-nav small-nav">
         <div className="logo">LOGO</div>
         <div className="nav-container">
@@ -55,17 +58,21 @@ function NavBar() {
               <li>
                 <a href="">Liên hệ</a>
               </li>
-              <li>
-                <a href="">Đăng nhập</a>
-              </li>
-              <li>
-                <a href="">Đăng ký</a>
-              </li>
+              {logIn && <Account />
+              //  <Ú>
+              //    <li>
+              //     <a href="">Đăng nhập</a>
+              //   </li>
+              //   <li>
+              //     <a href="">Đăng ký</a>
+              //   </li>
+              //  </Ú>
+            }
             </ul>
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 

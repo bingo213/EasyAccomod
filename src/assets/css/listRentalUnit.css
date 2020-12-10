@@ -4,20 +4,20 @@
     align-items: center;
 }
 
-.container{
+.ListRentalUnit .container{
     width: 78rem;
     display: block;
     flex-wrap: wrap;
 }
 
 @media (max-width: 1265px){
-    .container{
+    .ListRentalUnit .container{
         width: 52rem;
     }
  }
 
  @media (max-width: 692px){
-    .container{
+    .ListRentalUnit .container{
         width: 32rem;
     }
  }

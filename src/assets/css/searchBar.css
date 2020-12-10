@@ -1,4 +1,4 @@
-.search {
+.SearchBar{
   position: relative;
   top: -10rem;
   display: flex;
@@ -7,10 +7,10 @@
   /* flex-wrap: wrap; */
 }
 
-.search input,
+.SearchBar input,
 #cost,
 #area,
-button {
+.SearchBar button {
   padding: 0.8rem;
   padding-left: 1.5rem;
   margin-right: 0.8rem;
@@ -19,11 +19,11 @@ button {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.search input {
+.SearchBar input {
   width: 15rem;
 }
 
-button {
+.SearchBar button {
   width: 8rem;
   padding-left: 0;
   margin-right: 0;
@@ -33,43 +33,43 @@ button {
   cursor: pointer;
 }
 
-button:hover{
+.SearchBar button:hover{
     background-color: #8d62c2;
 }
 
-option {
+.SearchBar option {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 @media (max-width: 900px) {
-    .search input,
+    .SearchBar input,
     #cost,
     #area,
-    button{
+    .SearchBar button{
     display: block;
     width: 90vw;
     margin: auto 0;
     margin-bottom: 1rem;
   }
-  input{
+  .SearchBar input{
     box-sizing: border-box;
   }
 
-  .search {
+  .SearchBar {
     flex-direction: column;
     top: 2rem;
   }
 }
 
 @media (max-width: 940px){
-  button{
+  .SearchBar button{
     margin: 0.8rem auto;
     display: block;
   }
 }
 
 @media (max-width: 900px){
-  button{
+  .SearchBar button{
     margin-bottom: 4rem;
   }
 }
