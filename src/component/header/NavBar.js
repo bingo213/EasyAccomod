@@ -58,7 +58,7 @@ function NavBar() {
               <li>
                 <a href="">Liên hệ</a>
               </li>
-              {logIn && <Account />
+              {logIn && <li><Account /></li>
               //  <Ú>
               //    <li>
               //     <a href="">Đăng nhập</a>

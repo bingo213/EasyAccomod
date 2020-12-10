@@ -24,11 +24,12 @@
   padding-top: 1rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-right: 6rem;
 }
 
 .NavBar .large-nav ul li {
-  padding: 1rem;
+  padding: 0rem 1rem;
   margin-right: 2rem;
   color: #e9e9e9;
 }

@@ -13,8 +13,8 @@ function RentalUnit() {
       </div>
       <div className="description">
         <div className="title">Modern Villa with Pool</div>
-        <div className="area"><i class="far fa-home"></i>Area: 20m²</div>
-        <div className="address"><i class="fas fa-map-marker-alt"></i>Cau Giay District, Ha Noi</div>
+        <div className="area"><i className="far fa-home"></i>Area: 20m²</div>
+        <div className="address"><i className="fas fa-map-marker-alt"></i>Cau Giay District, Ha Noi</div>
         <div className="additionInfo">
           Phòng đẹp , tủ bếp mới , mọi người có nhu cầu gọi mình nhé , phòng có
           hạn ạ !

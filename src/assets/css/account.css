@@ -1,0 +1,63 @@
+.Account {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* margin-left: 5rem; */
+}
+
+.Account img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.Account .userName {
+  padding: 0.5rem;
+  color: #e9e9e9;
+}
+
+.Account i {
+  margin-left: 0.5rem;
+}
+
+.Account #item {
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 4rem;
+  left: -2rem;
+  padding: 0;
+  background-color: #d2d9e2;
+}
+
+.Account #item li {
+  width: 10rem;
+  padding: 1rem 0.8rem;
+  margin: 0;
+  color: #6e727a;
+  border: 1px solid #ffffff73;
+}
+
+.Account #item li:hover {
+  background-color: #b881fc;
+  color: #e9e9e9;
+}
+.Account #item a::before,
+.Account #item li::before {
+  border: none;
+  width: 0;
+}
+
+.Account .fas {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.NavBar .small-nav .Account #item,
+.NavBar .small-nav .Account #item a,
+.NavBar .small-nav .Account #item li {
+  width: 90%;
+  left: 1rem;
+  height: auto;
+}
