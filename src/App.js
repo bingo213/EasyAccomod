@@ -1,6 +1,6 @@
 import './App.css';
+import ListRentalUnit from './component/header/ListRentalUnit';
 import NavBar from './component/header/NavBar';
-import RentalUnit from './component/header/RentalUnit';
 import SearchBar from './component/header/SearchBar';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <NavBar />
       <SearchBar />
-      <RentalUnit />
+      <ListRentalUnit />
     </div>
   );
 }

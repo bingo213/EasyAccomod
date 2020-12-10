@@ -1,9 +1,9 @@
 .rentalContainer {
-  margin: auto;
+  display: inline-block;
   width: 24rem;
   height: 30rem;
-  margin-top: 3rem;
-  margin-bottom: 60px;
+  margin: 1rem;
+  margin-bottom: 2.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -112,8 +112,9 @@ img {
   transition: 0.3s;
 }
 
-@media (min-width: 900px) {
-  .rentalContainer {
-    margin-top: 0rem;
+@media (max-width: 692px){
+  .rentalContainer{
+    width: 32rem;
   }
 }
+

@@ -48,7 +48,6 @@ option {
     button{
     display: block;
     width: 90vw;
-    /* box-sizing: border-box; */
     margin: auto 0;
     margin-bottom: 1rem;
   }
@@ -66,5 +65,11 @@ option {
   button{
     margin: 0.8rem auto;
     display: block;
+  }
+}
+
+@media (max-width: 900px){
+  button{
+    margin-bottom: 4rem;
   }
 }

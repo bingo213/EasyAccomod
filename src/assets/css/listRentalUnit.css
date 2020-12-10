@@ -1,0 +1,23 @@
+.ListRentalUnit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 78rem;
+    display: block;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1265px){
+    .container{
+        width: 52rem;
+    }
+ }
+
+ @media (max-width: 692px){
+    .container{
+        width: 32rem;
+    }
+ }
