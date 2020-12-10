@@ -1,0 +1,54 @@
+.Footer{
+    background-color: #7a5f9c62;
+    padding: 2rem 1rem;
+}
+
+.Footer .col-container{
+    display: flex;
+}
+
+.Footer h3{
+    padding-bottom: 0.5rem;
+}
+
+.Footer .logo{
+    flex: 1;
+}
+
+.Footer .visit-contact{
+    display: flex;
+    flex: 4;
+}
+
+.Footer .visit-contact span{
+    color: #5f23a8;
+    font-weight: bold;
+}
+
+.Footer .col{
+    flex: 1;
+}
+
+.Footer .follow{
+    margin-top: 2rem;
+    text-align: center;
+    height: 4rem;
+}
+
+.Footer .icon .fab {
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+.Footer .icon a{
+    margin: 0 2rem;
+}
+
+.Footer .icon a:hover .fab{
+    color: #6426af;
+}
+
+.Footer .copyright{
+    text-align: center;
+    margin-top: 2rem;
+}

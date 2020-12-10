@@ -35,7 +35,7 @@ function NavBar() {
     x.addListener(myFunction) // Attach listener function on state changes
   }, []);
 
-  const [logIn, setLogIn] = useState(true)
+  const [logIn, setLogIn] = useState(false)
 
   return (
     <div className="NavBar">
@@ -53,20 +53,20 @@ function NavBar() {
                 <a href="">Trang chủ</a>
               </li>
               <li>
-                <a href="">Thông tin</a>
-              </li>
-              <li>
                 <a href="">Liên hệ</a>
               </li>
-              {logIn && <li><Account /></li>
-              //  <Ú>
-              //    <li>
-              //     <a href="">Đăng nhập</a>
-              //   </li>
-              //   <li>
-              //     <a href="">Đăng ký</a>
-              //   </li>
-              //  </Ú>
+              <li>
+                <a href="">Về chúng tôi</a>
+              </li>
+              {logIn ? <li><Account /></li> :
+                <>
+                   <li>
+                    <a href="">Đăng nhập</a>
+                  </li>
+                  <li>
+                    <a href="">Đăng ký</a>
+                  </li>
+                </>
             }
             </ul>
           </div>
