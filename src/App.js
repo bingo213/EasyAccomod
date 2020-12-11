@@ -6,6 +6,7 @@ import SearchBar from './component/header/SearchBar';
 import Footer from './component/Footer';
 import { useEffect, useState } from 'react';
 import Pagination from './component/Pagination';
+import LoginOrRegister from './component/login/LoginOrRegister';
 
 function App() {
   const [rentalUnit, setRentalUnit] = useState([])
@@ -32,14 +33,15 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar />
       <SearchBar />
       <ListRentalUnit currentRentals={currentRentals} loading={loading}/>
       <Pagination 
       rentalUnitPerPage={rentalUnitPerPage}
       totalRentalUnit = {rentalUnit.length}
       paginate={paginate}/>
-      <Footer />
+      <Footer /> */}
+      <LoginOrRegister />
     </div>
   );
 }
