@@ -1,7 +1,7 @@
 .RentalUnit {
   display: inline-block;
   width: 24rem;
-  height: 30rem;
+  height: 37rem;
   margin: 1rem;
   margin-bottom: 2.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -57,30 +57,50 @@
 
 .RentalUnit .description {
   padding: 1rem;
-  height: 11rem;
+  height: 18rem;
   position: relative;
 }
 
 .RentalUnit .title {
+  height: 5rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: #494949;
   transition: 0.3s;
   margin-bottom: 0.5rem;
-}
-
-.RentalUnit .address {
-  margin: 0.3rem 0rem;
-}
-
-.RentalUnit .fa-map-marker-alt,
-.RentalUnit .fa-home {
-  width: 1.8rem;
-  color: #b881fcb2;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .RentalUnit:hover .title {
   color: #b881fc;
+}
+
+.RentalUnit .address {
+  margin: 0.6rem 0rem;
+  height: 2.3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.RentalUnit .additionInfo{
+  height: 4.7rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.RentalUnit .fa-map-marker-alt,
+.RentalUnit .fa-home, .RentalUnit .fa-file-invoice{
+  width: 1.8rem;
+  color: #b881fcb2;
 }
 
 .RentalUnit .icon {
@@ -112,9 +132,8 @@
   transition: 0.3s;
 }
 
-@media (max-width: 692px){
-  .RentalUnit{
+@media (max-width: 692px) {
+  .RentalUnit {
     width: 32rem;
   }
 }
-
