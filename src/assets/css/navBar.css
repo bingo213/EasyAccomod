@@ -9,9 +9,8 @@
 
 .NavBar .logo {
   position: absolute;
-  top: 1.8rem;
+  top: 1.1rem;
   left: 6rem;
-  color: white;
 }
 
 .NavBar .small-nav, .large-nav{

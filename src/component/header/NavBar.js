@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../assets/css/navBar.css';
 import Account from '../login_register/Account';
+import Logo from '../Logo';
 
 function NavBar() {
   const [logIn, setLogIn] = useState(false);
@@ -47,7 +48,7 @@ function NavBar() {
   return (
     <div className="NavBar">
       <div id="nav" className={nav + " " + scroll}>
-        <div className="logo">LOGO</div>
+        <div className="logo"><Logo /></div>
         <div className="nav-container">
           <div className="button" tabIndex="0">
             <span className="icon-bar"></span>
