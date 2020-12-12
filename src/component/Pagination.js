@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import '../assets/css/pagination.css';
 
 function Pagination({ rentalUnitPerPage, totalRentalUnit, paginate }) {

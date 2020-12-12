@@ -1,11 +1,10 @@
-.NavBar {
+/* .NavBar {
   background: linear-gradient(0deg, #00000082, #00000082),
     url('../img/couch-scaled_optimized.jpg');
   height: 45rem;
   max-height: 100vh;
-  /* width: 100vw; */
   background-size: cover;
-}
+} */
 
 .NavBar .logo {
   position: absolute;
