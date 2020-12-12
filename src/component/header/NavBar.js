@@ -1,45 +1,52 @@
-import React, { useState,useEffect } from 'react'
-import '../../assets/css/navBar.css'
-import Account from '../login/Account'
+import React, { useState, useEffect } from 'react';
+import '../../assets/css/navBar.css';
+import Account from '../login_register/Account';
 
 function NavBar() {
-  function myFunction(x) {
-    if (x.matches) {
-      // If media query matches
-      document.getElementById('nav').classList.remove('large-nav')
-      document.getElementById('nav').classList.add('small-nav')
+  const [logIn, setLogIn] = useState(false);
+  const [nav, setNav] = useState(() => {
+    if (window.innerWidth < 900) {
+      return 'small-nav';
     } else {
-      document.getElementById('nav').classList.add('large-nav')
-      document.getElementById('nav').classList.remove('small-nav')
+      return 'large-nav';
     }
-  }
+  });
 
-  const handleScroll = () => {
-    var navbar = document.getElementById('nav')
-    window.onscroll = function () {
-      if (
-        document.body.scrollTop >= 200 ||
-        document.documentElement.scrollTop >= 200
-      ) {
-        navbar.classList.add('scrolled')
-      } else {
-        navbar.classList.remove('scrolled')
-      }
+  const [scroll, setScroll] = useState(()=>{
+    if(window.pageYOffset >= 200){
+      return 'scrolled';
     }
-  }
+    else{
+      return '';
+    }
+  });
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll) //Handle scroll
-    var x = window.matchMedia('(max-width: 900px)')
-    myFunction(x) // Call listener function at run time
-    x.addListener(myFunction) // Attach listener function on state changes
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 900) {
+        setNav('small-nav');
+      } else {
+        setNav('large-nav');
+      }
+    });
   }, []);
 
-  const [logIn, setLogIn] = useState(false)
+  const handleScroll = () => {
+    if(window.pageYOffset >= 200){
+      setScroll('scrolled');
+    }
+    else{
+      setScroll('');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="NavBar">
-      <div id="nav" className="large-nav small-nav">
+      <div id="nav" className={nav + " " + scroll}>
         <div className="logo">LOGO</div>
         <div className="nav-container">
           <div className="button" tabIndex="0">
@@ -58,16 +65,20 @@ function NavBar() {
               <li>
                 <a href="">Về chúng tôi</a>
               </li>
-              {logIn ? <li><Account /></li> :
+              {logIn ? (
+                <li>
+                  <Account />
+                </li>
+              ) : (
                 <>
-                   <li>
+                  <li>
                     <a href="">Đăng nhập</a>
                   </li>
                   <li>
                     <a href="">Đăng ký</a>
                   </li>
                 </>
-            }
+              )}
             </ul>
           </div>
         </div>
