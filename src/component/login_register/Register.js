@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Register({ fields }) {
+function Register({ fields,button, text, type }) {
   return (
     <div>
       <form action="">
@@ -12,9 +12,9 @@ function Register({ fields }) {
         ))}
 
         <div className="bottom">
-          <button>Đăng ký</button>
+          <button>{button}</button>
           <span className="text">
-            Bạn đã có tài khoản? <a href="">Login</a>
+            {text}<a href="">{type}</a>
           </span>
         </div>
       </form>

@@ -13,6 +13,10 @@
     width: 3rem;
 }
 
+.Pagination .click{
+    background-color: red;
+}
+
 .Pagination li{
     margin: 0.2rem;
     text-align: center;

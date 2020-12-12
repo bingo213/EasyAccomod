@@ -12,6 +12,7 @@ function LoginOrRegister() {
 
   return (
     <div className="LoginOrRegister">
+      <div className="logoTop"><Logo /></div>
       <div className="decorator">
         <div className="image">
           <img src={formImage} alt="" />
@@ -19,8 +20,8 @@ function LoginOrRegister() {
         </div>
       </div>
       {/* <OwnerRegister /> */}
-      <RenterRegister />
-      {/* <Login /> */}
+      {/* <RenterRegister /> */}
+      <Login />
     </div>
   );
 }

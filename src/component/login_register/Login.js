@@ -1,28 +1,22 @@
-import React from 'react'
+import React from 'react';
+import Register from './Register';
 
 function Login() {
-    return (
-        <div>
-             <div className="Login">
-        <form action="">
-          <div className="row">
-            <label>Email</label>
-            <input type="text" />
-          </div>
-          <div className="row">
-            <label>Password</label>
-            <input type="password" />
-          </div>
-          <div className="bottom">
-            <button>Đăng nhập</button>
-            <span className="text">
-              Bạn chưa có tài khoản? <a href="">Đăng ký</a>
-            </span>
-          </div>
-        </form>
+  const fields = [
+    { key: 1, label: 'Email', type: 'email', name: 'email' },
+    { key: 2, label: 'Mật khẩu', type: 'password', name: 'password' },
+  ];
+
+  return (
+      <div className="Login">
+       <Register
+        fields={fields}
+        button="Đăng nhập"
+        text="Bạn chưa có tài khoản? "
+        type="Đăng ký"
+      />
       </div>
-        </div>
-    )
+  );
 }
 
-export default Login
+export default Login;

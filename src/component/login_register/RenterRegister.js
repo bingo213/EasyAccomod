@@ -1,34 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Register from './Register';
 
 function RenterRegister() {
-    return (
-        <div className="RenterRegister">
-        <form action="">
-          <div className="row">
-            <label>Họ tên</label>
-            <input type="text" />
-          </div>
-          <div className="row">
-            <label>Email</label>
-            <input type="text" />
-          </div>
-          <div className="row">
-            <label>Username</label>
-            <input type="text" />
-          </div>
-          <div className="row">
-            <label>Password</label>
-            <input type="password" />
-          </div>
-          <div className="bottom">
-            <button>Đăng ký</button>
-            <span className="text">
-              Bạn đã có tài khoản? <a href="">Đăng nhập</a>
-            </span>
-          </div>
-        </form>
-      </div>
-    )
+  const fields = [
+    { key: 1, label: 'Họ tên', type: 'text', name: 'name' },
+    { key: 2, label: 'Email', type: 'email', name: 'email' },
+    { key: 3, label: 'Username', type: 'text', name: 'username' },
+    { key: 4, label: 'Mật khẩu', type: 'password', name: 'password' },
+  ];
+  return (
+    <div className="RenterRegister">
+      <Register
+        fields={fields}
+        button="Đăng ký"
+        text="Bạn đã có tài khoản? "
+        type="Đăng nhập"
+      />
+    </div>
+  );
 }
 
-export default RenterRegister
+export default RenterRegister;

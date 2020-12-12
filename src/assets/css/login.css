@@ -4,6 +4,10 @@
   overflow-x: hidden;
 }
 
+.LoginOrRegister .logoTop{
+  display: none;
+}
+
 .LoginOrRegister .decorator {
   width: 50vw;
   margin-right: 3rem;
@@ -35,7 +39,7 @@
 .LoginOrRegister .image .logo {
   position: absolute;
   top: 5rem;
-  left: 40%;
+  left: 35%;
 }
 
 .LoginOrRegister img {
@@ -102,13 +106,14 @@
 }
 
 .LoginOrRegister span {
-  margin-left: 3rem;
   font-family: 'Roboto Condensed', sans-serif;
+  margin-left: 3rem;
   font-size: 1.2rem;
 }
 
 .LoginOrRegister span a {
   text-decoration: underline;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #6c29be;
 }
 
@@ -116,18 +121,35 @@
   .LoginOrRegister {
     display: block;
   }
+
+  .LoginOrRegister .logoTop{
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    top: 1rem;
+    left: 45%;
+  }
+  .LoginOrRegister .logoTop::after{
+    content: '';
+    width: 100vw;
+    height: 5rem;
+    background-color: #6c4b97;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
   .LoginOrRegister .decorator {
     display: none;
   }
   .LoginOrRegister .OwnerRegister,
   .LoginOrRegister .RenterRegister,
-  .LoginOrRegister .Login
-  {
-    /* justify-content: center; */
-    /* margin: auto; */
+  .LoginOrRegister .Login {
     display: flex;
     justify-content: center;
-    margin-top: 3.5rem;
+    margin-top: 10rem;
     flex: 1;
   }
 
@@ -138,14 +160,14 @@
   }
 }
 
-@media (max-width: 880px){
-    .LoginOrRegister .bottom{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .LoginOrRegister span{
-        margin: 0;
-        margin-top: 1.5rem;
-    }
+@media (max-width: 850px) {
+  .LoginOrRegister .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .LoginOrRegister span {
+    margin: 0;
+    margin-top: 1.5rem;
+  }
 }

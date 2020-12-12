@@ -18,7 +18,8 @@ function Logo() {
   const text = {
     paddingLeft: "0.3rem",
     fontFamily:"Langar, cursive",
-    color: "#e9e9e9"
+    color: "#e9e9e9",
+    textAlign: "left"
   };
 
   return (

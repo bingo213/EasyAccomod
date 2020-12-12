@@ -33,15 +33,15 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar />
       <SearchBar />
       <ListRentalUnit currentRentals={currentRentals} loading={loading}/>
       <Pagination 
       rentalUnitPerPage={rentalUnitPerPage}
       totalRentalUnit = {rentalUnit.length}
       paginate={paginate}/>
-      <Footer />
-      {/* <LoginOrRegister /> */}
+      <Footer /> */}
+      <LoginOrRegister />
     </div>
   );
 }
