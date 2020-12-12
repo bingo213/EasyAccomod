@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import '../../assets/css/login.css';
 import formImage from '../../assets/img/formImage.jpg';
 import OwnerRegister from './OwnerRegister';
+import RenterRegister from './RenterRegister';
+import Login from './Login';
+import Logo from '../Logo';
 
 function LoginOrRegister() {
   const { register, handleSubmit } = useForm();
@@ -12,10 +15,12 @@ function LoginOrRegister() {
       <div className="decorator">
         <div className="image">
           <img src={formImage} alt="" />
-          <div className="logo">LOGO</div>
+          <div className="logo"><Logo /></div>
         </div>
       </div>
-      <OwnerRegister />
+      {/* <OwnerRegister /> */}
+      <RenterRegister />
+      {/* <Login /> */}
     </div>
   );
 }
