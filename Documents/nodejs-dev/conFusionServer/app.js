@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser');
 
 const Dishes = require('./models/dishes');
 
@@ -32,28 +33,42 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser('qrasdf-sdfa-ereg'));
 
 function auth(req, res, next){
-  console.log(req.headers);
-  var authHeader = req.headers.authorization;
-  if(!authHeader){
-    var err = new Error('you are not authenticated!');
-    res.setHeader('WWW-Authenticate', 'Basic');
-    next(err);
-    return;
-  }
-  var auth = new Buffer.from(authHeader.split(' ')[1], 'base64')
-    .toString().split(':');
-    var user = auth[0];
-    var pass = auth[1];
-    if(user == 'admin' && pass == 'password'){
-      next();
-    }else{
+  if(!req.signedCookies.user){
+    var authHeader = req.headers.authorization;
+    if(!authHeader){
       var err = new Error('you are not authenticated!');
       res.setHeader('WWW-Authenticate', 'Basic');
       next(err);
       return;
     }
+    var auth = new Buffer.from(authHeader.split(' ')[1], 'base64')
+      .toString().split(':');
+      var user = auth[0];
+      var pass = auth[1];
+      if(user == 'admin' && pass == 'password'){
+        res.cookie('user','admin',{signed: true});
+        next();
+      }else{
+        var err = new Error('you are not authenticated!');
+        res.setHeader('WWW-Authenticate', 'Basic');
+        next(err);
+        return;
+      }
+  }
+ else{
+   if(req.signCookies === 'admin'){
+     next();
+   } else {
+     var err = new Error('You are not authenticated!');
+     err.status = 401;
+     next(err);
+   }
+ }
+  
+  
 }
 app.use(auth);
 
