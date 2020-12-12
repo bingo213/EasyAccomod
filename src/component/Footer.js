@@ -1,11 +1,12 @@
 import React from 'react';
 import '../assets/css/footer.css';
+import Logo from './Logo';
 
 function Footer() {
   return (
     <div className="Footer">
       <div className="col-container">
-        <div className="logo">LOGO</div>
+        <div className="logo"><Logo /></div>
         <div className="visit-contact">
           <div className="col">
             <h3>Văn phòng</h3>
