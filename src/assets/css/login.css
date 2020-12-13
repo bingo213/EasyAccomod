@@ -4,7 +4,7 @@
   overflow-x: hidden;
 }
 
-.LoginOrRegister .logoTop{
+.LoginOrRegister .logoTop {
   display: none;
 }
 
@@ -117,12 +117,40 @@
   color: #6c29be;
 }
 
+.LoginOrRegister .chooseTypeAccount h3,
+.LoginOrRegister .chooseTypeAccount a {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.LoginOrRegister .chooseTypeAccount h3 {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.LoginOrRegister .chooseTypeAccount a {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: block;
+  text-decoration: underline;
+  color: #9a47ff;
+}
+
+.LoginOrRegister .chooseTypeAccount a .fas {
+  color: #b881fc91;
+  font-size: 1.8rem;
+  padding-right: 1rem;
+}
+
+.LoginOrRegister .chooseTypeAccount a:hover {
+  color: #52238b;
+}
+
 @media (max-width: 700px) {
   .LoginOrRegister {
     display: block;
   }
 
-  .LoginOrRegister .logoTop{
+  .LoginOrRegister .logoTop {
     display: block;
     width: 3rem;
     height: 3rem;
@@ -130,7 +158,7 @@
     top: 1rem;
     left: 45%;
   }
-  .LoginOrRegister .logoTop::after{
+  .LoginOrRegister .logoTop::after {
     content: '';
     width: 100vw;
     height: 5rem;
@@ -146,11 +174,17 @@
   }
   .LoginOrRegister .OwnerRegister,
   .LoginOrRegister .RenterRegister,
-  .LoginOrRegister .Login {
+  .LoginOrRegister .Login,
+  .LoginOrRegister .chooseTypeAccount {
     display: flex;
     justify-content: center;
     margin-top: 10rem;
     flex: 1;
+  }
+
+  .LoginOrRegister .chooseTypeAccount {
+    flex-direction: column;
+    align-items: center;
   }
 
   .LoginOrRegister input,

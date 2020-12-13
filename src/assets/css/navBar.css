@@ -1,15 +1,11 @@
-/* .NavBar {
-  background: linear-gradient(0deg, #00000082, #00000082),
-    url('../img/couch-scaled_optimized.jpg');
-  height: 45rem;
-  max-height: 100vh;
-  background-size: cover;
-} */
-
 .NavBar .logo {
   position: absolute;
   top: 1.1rem;
   left: 6rem;
+}
+
+.NavBar .large-nav{
+  background-color: #282d33a4;
 }
 
 .NavBar .small-nav, .large-nav{
@@ -49,7 +45,7 @@
 }
 
 .NavBar .small-nav, .scrolled {
-  background-color: #282d33;
+  background-color: #282d33 !important;
   width: 100%;
   height: 5.6rem;
 }

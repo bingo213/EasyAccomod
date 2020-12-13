@@ -1,10 +1,11 @@
-import {BrowserRouter as Router,  Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router,  Switch, Route} from 'react-router-dom';
 
 import './App.css';
 
 import LoginOrRegister from './component/login_register/LoginOrRegister';
 import Home from './component/home/Home';
 import NotFound from './component/NotFound';
+import DetailRentalUnit from './component/detail_rental_unit/DetailRentalUnit';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/detail" component={DetailRentalUnit} />
           <Route exact path="/login">
             <LoginOrRegister type="login" />
           </Route>

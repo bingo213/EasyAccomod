@@ -1,0 +1,61 @@
+.ImageSliderCarousel {
+    width: 90vw;
+    height: 90vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ImageSliderCarousel .image {
+  display: block;
+  padding: 2rem 0rem;
+  border-radius: 0.5rem;
+  max-height: 80vh;
+  max-width: 85vw;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.ImageSliderCarousel .leftArrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90vh;
+  font-size: 3rem;
+  cursor: pointer;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.ImageSliderCarousel .rightArrow {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  height: 90vh;
+  font-size: 3rem;
+  cursor: pointer;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.ImageSliderCarousel .rightArrow:hover,
+.ImageSliderCarousel .leftArrow:hover {
+  background-color: #b881fc5e;
+  transition: 0.4s;
+}
+
+.ImageSliderCarousel .slide img {
+  opacity: 0;
+  transition: 0.7s;
+}
+
+.ImageSliderCarousel .slide.active img {
+  opacity: 1;
+}

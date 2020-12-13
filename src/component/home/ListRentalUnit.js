@@ -11,7 +11,11 @@ function ListRentalUnit({ currentRentals, loading }) {
         <div className="container">
           {
             currentRentals.map(rentalUnit => (
-              <RentalUnit key={rentalUnit.id} title={rentalUnit.title} description={rentalUnit.body}/>
+              <RentalUnit 
+              key={rentalUnit.id} 
+              title={rentalUnit.title} 
+              description={rentalUnit.body}
+              />
             ))
           }
         </div>

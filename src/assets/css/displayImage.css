@@ -1,0 +1,69 @@
+.DisplayImage {
+  display: flex;
+  justify-content: center;
+  padding-top: 7rem;
+}
+.DisplayImage .imgContainer {
+  width: 90vw;
+  max-width: 70rem;
+  height: 35rem;
+  /* background-color: yellow; */
+  position: relative;
+}
+
+.DisplayImage .imgContainer img:nth-child(1) {
+  position: absolute;
+  width: 49%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 3%;
+  border-bottom-left-radius: 3%;
+  transition: 0.3s;
+}
+
+.DisplayImage .imgContainer img:nth-child(2) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  object-fit: cover;
+  width: 50%;
+  height: 49%;
+  border-top-right-radius: 3%;
+  transition: 0.3s;
+}
+
+.DisplayImage .imgContainer img:nth-child(3) {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  width: 50%;
+  height: 50%;
+  border-bottom-right-radius: 3%;
+  background-color: red;
+  transition: 0.3s;
+}
+
+.DisplayImage .imgContainer img:hover{
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.DisplayImage .imgContainer button {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  z-index: 3;
+  border: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  transition: 0.3s;
+}
+
+.DisplayImage .imgContainer button:hover{
+    background-color: #b881fc;
+    color: white;
+    transition: 0.3s;
+}

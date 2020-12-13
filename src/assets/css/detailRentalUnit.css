@@ -1,0 +1,23 @@
+.modal {
+  background-color: white;
+  width: 90vw;
+  height: 90vh;
+  position: relative;
+}
+
+.modal .fa-times-square {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  background-color: white;
+  cursor: pointer;
+  color: #a0a0a0;
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.modal .fa-times-square:hover{
+    color: #b881fc;
+}

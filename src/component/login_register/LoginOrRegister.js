@@ -1,5 +1,4 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import '../../assets/css/login.css';
@@ -11,8 +10,6 @@ import Login from './Login';
 import Logo from '../Logo';
 
 function LoginOrRegister({ type }) {
-  const { register, handleSubmit } = useForm();
-
   return (
     <div className="LoginOrRegister">
       <div className="logoTop">
@@ -28,11 +25,11 @@ function LoginOrRegister({ type }) {
       </div>
       {type === 'login' && <Login />}
       {type === 'register' && (
-        <div>
-          <h3>Chọn loại tài khoản</h3>
-          <Link to="/owner_register">Tài khoản chủ trọ</Link>
+        <div className="chooseTypeAccount">
+          <h3>Chọn loại tài khoản:</h3>
+          <Link to="/owner_register"><i class="fas fa-home-lg-alt"></i>Tài khoản chủ trọ</Link>
           <br />
-          <Link to="/renter_register">Tài khoản thuê trọ</Link>
+          <Link to="/renter_register"><i className="fas fa-user-alt"></i>Tài khoản thuê trọ</Link>
         </div>
       )}
       {type === 'owner_register' && <OwnerRegister />}
