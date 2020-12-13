@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../assets/css/navBar.css';
 
-import Account from './login_register/Account';
+import Account from './account/Account';
 import Logo from './Logo';
 
 function NavBar() {
