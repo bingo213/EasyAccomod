@@ -21,7 +21,6 @@ function Home() {
         setRentalUnit(res.data);
         setLoading(false);
       };
-  
       fetchRentalUnitData();
     }, []);
   

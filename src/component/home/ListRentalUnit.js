@@ -1,6 +1,7 @@
 import React from 'react';
 import RentalUnit from './RentalUnit';
 import '../../assets/css/listRentalUnit.css';
+import { Link } from 'react-router-dom';
 
 function ListRentalUnit({ currentRentals, loading }) {
   if (loading) {
@@ -9,15 +10,14 @@ function ListRentalUnit({ currentRentals, loading }) {
     return (
       <div className="ListRentalUnit" id="ListRentalUnit">
         <div className="container">
-          {
-            currentRentals.map(rentalUnit => (
-              <RentalUnit 
-              key={rentalUnit.id} 
-              title={rentalUnit.title} 
-              description={rentalUnit.body}
+          {currentRentals.map(rentalUnit => (
+            <Link to={`/detail/${rentalUnit.id}`} key={rentalUnit.id}>
+              <RentalUnit
+                title={rentalUnit.title}
+                description={rentalUnit.body}
               />
-            ))
-          }
+            </Link>
+          ))}
         </div>
       </div>
     );
