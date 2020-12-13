@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../assets/css/login.css';
-import formImage from '../../assets/img/formImage.jpg';
+import 'assets/css/login.css';
+import formImage from 'assets/img/formImage.jpg';
 
 import OwnerRegister from './OwnerRegister';
 import RenterRegister from './RenterRegister';
 import Login from './Login';
-import Logo from '../Logo';
+import Logo from 'component/Logo';
 
 function LoginOrRegister({ type }) {
   return (

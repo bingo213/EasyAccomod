@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import '../assets/css/navBar.css';
+import 'assets/css/navBar.css';
 
 import Account from './account/Account';
 import Logo from './Logo';

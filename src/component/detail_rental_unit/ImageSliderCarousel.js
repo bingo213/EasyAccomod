@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import '../../assets/css/imageSlider.css';
+import 'assets/css/imageSlider.css';
 
 function ImageSliderCarousel({ slides }) {
   const [current, setCurrent] = useState(0);

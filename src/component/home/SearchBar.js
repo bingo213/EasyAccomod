@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import '../../assets/css/searchBar.css';
+import 'assets/css/searchBar.css';
 
 function SearchBar() {
   const { register, handleSubmit } = useForm();

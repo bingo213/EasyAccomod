@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../../assets/css/rentalUnit.css';
-import roomImg from '../../assets/img/blue-400x314.jpg';
+import 'assets/css/rentalUnit.css';
+import roomImg from 'assets/img/blue-400x314.jpg';
 
 function RentalUnit(props) {
   const [heartState, setHeartState] = useState(false);

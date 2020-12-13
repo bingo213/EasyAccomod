@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../assets/css/account.css';
-import girlImg from '../../assets/img/girl.jpg';
+import girlImg from 'assets/img/girl.jpg';
 
 function Account() {
     const [toggle, setToggle] = useState(false)

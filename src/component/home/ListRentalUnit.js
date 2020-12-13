@@ -1,6 +1,6 @@
 import React from 'react';
 import RentalUnit from './RentalUnit';
-import '../../assets/css/listRentalUnit.css';
+import 'assets/css/listRentalUnit.css';
 import { Link } from 'react-router-dom';
 
 function ListRentalUnit({ currentRentals, loading }) {

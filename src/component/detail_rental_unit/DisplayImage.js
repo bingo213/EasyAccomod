@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../assets/css/displayImage.css';
+import 'assets/css/displayImage.css';
 
 function DisplayImage({ images, handleClickImage }) {
   return (

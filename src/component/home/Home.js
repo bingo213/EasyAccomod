@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import '../../assets/css/home.css';
+import 'assets/css/home.css';
 
-import NavBar from '../NavBar';
+import NavBar from 'component/NavBar';
 import SearchBar from './SearchBar';
 import ListRentalUnit from './ListRentalUnit';
-import Pagination from '../Pagination';
-import Footer from '../Footer';
+import Pagination from 'component/Pagination';
+import Footer from 'component/Footer';
 
 function Home() {
     const [rentalUnit, setRentalUnit] = useState([])
