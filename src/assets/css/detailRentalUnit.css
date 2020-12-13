@@ -21,3 +21,14 @@
 .modal .fa-times-square:hover{
     color: #b881fc;
 }
+.DetailRentalUnit .main{
+    width: 90vw;
+    max-width: 70rem;
+    margin: auto;
+    color: #333333;
+}
+.DetailRentalUnit .title{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+}

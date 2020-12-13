@@ -103,34 +103,34 @@
   color: #b881fcb2;
 }
 
-.RentalUnit .icon {
-  width: calc(100% - 2rem);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin: 1rem 0rem;
-  position: absolute;
-  bottom: 0;
-}
 
 .RentalUnit .comment {
+  position: absolute;
   color: #666666;
   font-style: italic;
+  bottom: 1rem;
 }
 
-.RentalUnit .fa-heart {
+.RentalUnit .heart{
+  position: relative;
+  left: 20rem;
+  bottom: 3.5rem;
+}
+
+/* .RentalUnit .fa-heart {
   font-size: 2rem;
-  /* color: #fc332d; */
   color: #b881fc;
   padding: 0.4rem;
   border-radius: 50%;
   transition: 0.3s;
+  position: relative;
+  z-index: 10;
 }
 
 .RentalUnit .fa-heart:hover {
   background-color: #b881fc63;
   transition: 0.3s;
-}
+} */
 
 @media (max-width: 692px) {
   .RentalUnit {

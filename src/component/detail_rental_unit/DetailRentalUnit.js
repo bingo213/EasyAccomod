@@ -14,6 +14,9 @@ import ImageSliderCarousel from './ImageSliderCarousel';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
+  // const product = this.props.products.find((p) => {
+  //   return p.id === id;
+  // });
   const slides = [image1, image2, image3, image4, image5];
   const [modalIsOpden, setModelIsOpen] = useState(false);
 
@@ -50,7 +53,13 @@ function DetailRentalUnit() {
           <ImageSliderCarousel slides={slides} />
         </div>
       </Modal>
-      <DisplayImage images={slides} handleClickImage={handleClickImage}/>
+      <div className="main">
+        <DisplayImage images={slides} handleClickImage={handleClickImage}/>
+        <div className="title">Modern Villa with Pool <i className="far fa-heart"></i></div>
+        <div className="description">
+          <h3>Thông tin mô tả</h3>
+        </div>
+      </div>
     </div>
   );
 }

@@ -10,13 +10,11 @@ function ListRentalUnit({ currentRentals, loading }) {
     return (
       <div className="ListRentalUnit" id="ListRentalUnit">
         <div className="container">
-          {currentRentals.map(rentalUnit => (
-            <Link to={`/detail/${rentalUnit.id}`} key={rentalUnit.id}>
-              <RentalUnit
-                title={rentalUnit.title}
-                description={rentalUnit.body}
-              />
-            </Link>
+          {currentRentals.map(unit => (
+            <RentalUnit
+              key={unit.id}
+              rentalUnit={unit}
+            />
           ))}
         </div>
       </div>
