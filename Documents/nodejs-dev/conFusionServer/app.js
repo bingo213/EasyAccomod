@@ -3,10 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
+var passport = require('passport');
+var authenticate = require('./authenticate');
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var dishRouter = require('./routes/dishRouter');
+var promoRouter = require('./routes/promoRouter');
+var leaderRouter = require('./routes/leaderRouter');
+
+const mongoose = require('mongoose');
 
 const Dishes = require('./models/dishes');
 
@@ -15,14 +23,7 @@ const connect = mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParse
 
 connect.then((db) => {
   console.log('Connected to server');
-
 }, (error) => { console.log(console.error) });
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var dishRouter = require('./routes/dishRouter');
-var promoRouter = require('./routes/promoRouter');
-var leaderRouter = require('./routes/leaderRouter');
 
 var app = express();
 
@@ -33,9 +34,8 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use(cookieParser('qrasdf-sdfa-ereg'));
+
+
 app.use(session({
   name: 'session-id',
   secret: 'cypher-ex',
@@ -44,45 +44,24 @@ app.use(session({
   store: new FileStore()
 }));
 
-function auth(req, res, next) {
-  if (!req.session.user) {
-    var authHeader = req.headers.authorization;
-    if (!authHeader) {
-      var err = new Error('you are not authenticated!');
-      res.setHeader('WWW-Authenticate', 'Basic');
-      next(err);
-      return;
-    }
-    var auth = new Buffer.from(authHeader.split(' ')[1], 'base64')
-      .toString().split(':');
-    var user = auth[0];
-    var pass = auth[1];
-    if (user == 'admin' && pass == 'password') {
-      res.session.user = 'admin';
-      next();
-    } else {
-      var err = new Error('you are not authenticated!');
-      res.setHeader('WWW-Authenticate', 'Basic');
-      next(err);
-      return;
-    }
-  }
-  else {
-    if (req.session.user === 'admin') {
-      console.log('req.session: ', req.session)
-      next();
-    } else {
-      var err = new Error('You are not authenticated!');
-      err.status = 401;
-      next(err);
-    }
-  }
-
-}
-app.use(auth);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+function auth(req, res, next) {
+  if (!req.user) {
+    var err = new Error('You are not authenticated!');
+    err.status = 403;
+    return next(err);
+  }
+  else {
+    next();
+  }
+}
+app.use(auth);
+
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
