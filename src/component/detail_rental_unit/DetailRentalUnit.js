@@ -65,6 +65,24 @@ function DetailRentalUnit() {
             <Like />
           </div>
         </div>
+        <div className="date-report">
+          <div className="dateContainer">
+            <div className="date">
+              <span>Ngày đăng</span>
+              <br />
+              14/12/2020
+            </div>
+            <div className="date">
+              <span>Ngày hết hạn</span>
+              <br />
+              21/12/2020
+            </div>
+          </div>
+          <div className="report">
+            Báo cáo
+            <i className="far fa-exclamation-triangle"></i>
+          </div>
+        </div>
         <div className="description">
           <h3>Thông tin mô tả</h3>
         </div>

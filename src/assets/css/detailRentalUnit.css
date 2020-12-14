@@ -18,21 +18,57 @@
   height: 2.7rem;
 }
 
-.modal .fa-times-square:hover{
-    color: #b881fc;
+.modal .fa-times-square:hover {
+  color: #b881fc;
 }
-.DetailRentalUnit .main{
-    width: 90vw;
-    max-width: 70rem;
-    margin: auto;
-    color: #333333;
+.DetailRentalUnit .main {
+  width: 90vw;
+  max-width: 70rem;
+  margin: auto;
+  color: #333333;
 }
-.DetailRentalUnit .title{
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 2rem;
+.DetailRentalUnit .title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
 }
 
-.DetailRentalUnit .heartIcon{
+.DetailRentalUnit .heartIcon {
   float: right;
+}
+
+.DetailRentalUnit .date-report {
+  color: #4d4d4d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0.1rem solid rgb(209, 209, 209);
+  border-bottom: 0.1rem solid rgb(209, 209, 209);
+  margin-top: 1rem;
+  padding: 1rem 0rem;
+}
+
+.DetailRentalUnit .dateContainer {
+  display: flex;
+}
+
+.DetailRentalUnit .dateContainer .date{
+  padding-right: 3rem;
+}
+
+.DetailRentalUnit .dateContainer span {
+  color: #666c75;
+}
+.DetailRentalUnit .report{
+  display: flex;
+  align-items: center;
+}
+.DetailRentalUnit .report .fa-exclamation-triangle {
+  display: block;
+  font-size: 2.2rem;
+  float: right;
+}
+
+.DetailRentalUnit .description h3 {
+  margin-top: 1rem;
 }

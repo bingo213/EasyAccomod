@@ -56,7 +56,7 @@
 }
 
 .NavBar .small-nav .logo {
-  width: 90vw;
+  width: calc(100% - 11rem);
   text-align: center;
 }
 
