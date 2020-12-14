@@ -27,15 +27,13 @@ function LoginOrRegister({ type }) {
       {type === 'register' && (
         <div className="chooseTypeAccount">
           <h3>Chọn loại tài khoản:</h3>
-          <Link to="/owner_register"><i class="fas fa-home-lg-alt"></i>Tài khoản chủ trọ</Link>
+          <Link to="/owner_register"><i className="fas fa-home-lg-alt"></i>Tài khoản chủ trọ</Link>
           <br />
           <Link to="/renter_register"><i className="fas fa-user-alt"></i>Tài khoản thuê trọ</Link>
         </div>
       )}
       {type === 'owner_register' && <OwnerRegister />}
       {type === 'renter_register' && <RenterRegister />}
-      {/* <OwnerRegister /> */}
-      {/* <RenterRegister /> */}
     </div>
   );
 }

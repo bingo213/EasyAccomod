@@ -4,6 +4,7 @@ import 'assets/css/navBar.css';
 
 import Account from './account/Account';
 import Logo from './Logo';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const [logIn, setLogIn] = useState(false);
@@ -61,13 +62,13 @@ function NavBar() {
           <div className="nav-content" tabIndex="0">
             <ul>
               <li>
-                <a href="">Trang chủ</a>
+                <Link to='/'>Trang chủ</Link>
               </li>
               <li>
-                <a href="">Liên hệ</a>
+                <Link to='/'>Liên hệ</Link>
               </li>
               <li>
-                <a href="">Về chúng tôi</a>
+                <Link to='/'>Về chúng tôi</Link>
               </li>
               {logIn ? (
                 <li>
@@ -76,10 +77,10 @@ function NavBar() {
               ) : (
                 <>
                   <li>
-                    <a href="">Đăng nhập</a>
+                    <Link to='/login'>Đăng nhập</Link>
                   </li>
                   <li>
-                    <a href="">Đăng ký</a>
+                    <Link to='/register'>Đăng ký</Link>
                   </li>
                 </>
               )}
