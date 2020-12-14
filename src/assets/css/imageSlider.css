@@ -1,6 +1,7 @@
 .ImageSliderCarousel {
     width: 90vw;
     height: 90vh;
+    max-width: 60rem;
   position: relative;
   display: flex;
   justify-content: center;
@@ -10,7 +11,7 @@
   display: block;
   padding: 2rem 0rem;
   border-radius: 0.5rem;
-  max-height: 80vh;
+  max-height: 85vh;
   max-width: 85vw;
   overflow: hidden;
   object-fit: cover;
@@ -28,6 +29,7 @@
   justify-content: center;
   align-items: center;
   transition: 0.4s;
+  color: #c4c4c4;
 }
 
 .ImageSliderCarousel .rightArrow {
@@ -43,12 +45,14 @@
   justify-content: center;
   align-items: center;
   transition: 0.4s;
+  color: #c4c4c4;
 }
 
 .ImageSliderCarousel .rightArrow:hover,
 .ImageSliderCarousel .leftArrow:hover {
-  background-color: #b881fc5e;
+  background-color: #d7b6ff46;
   transition: 0.4s;
+  color: #464646;
 }
 
 .ImageSliderCarousel .slide img {

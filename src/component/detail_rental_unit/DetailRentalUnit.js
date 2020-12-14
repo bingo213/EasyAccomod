@@ -12,6 +12,7 @@ import NavBar from 'component/NavBar';
 import DisplayImage from './DisplayImage';
 import ImageSliderCarousel from './ImageSliderCarousel';
 import Like from 'component/favourite/Like';
+import Footer from 'component/Footer';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -19,17 +20,17 @@ function DetailRentalUnit() {
   //   return p.id === id;
   // });
   const slides = [image1, image2, image3, image4, image5];
-  const [modalIsOpden, setModelIsOpen] = useState(false);
+  const [imageModalIsOpden, setImageModelIsOpen] = useState(false);
 
   const handleClickImage = () => {
-    setModelIsOpen(true);
+    setImageModelIsOpen(true);
   };
   return (
     <div className="DetailRentalUnit">
       <NavBar />
       <Modal
-        isOpen={modalIsOpden}
-        onRequestClose={() => setModelIsOpen(false)}
+        isOpen={imageModalIsOpden}
+        onRequestClose={() => setImageModelIsOpen(false)}
         style={{
           overlay: {
             backgroundColor: '#262525ad',
@@ -42,7 +43,7 @@ function DetailRentalUnit() {
           },
           content: {
             width: '90vw',
-            maxWidth: '75rem',
+            maxWidth: '60rem',
             maxHeight: '100vh',
             margin: 'auto',
           },
@@ -50,8 +51,8 @@ function DetailRentalUnit() {
         className="modal"
       >
         <i
-          className="fas fa-times-square"
-          onClick={() => setModelIsOpen(false)}
+          className="fal fa-times"
+          onClick={() => setImageModelIsOpen(false)}
         ></i>
         <div className="slideContent">
           <ImageSliderCarousel slides={slides} />
@@ -60,7 +61,7 @@ function DetailRentalUnit() {
       <div className="main">
         <DisplayImage images={slides} handleClickImage={handleClickImage} />
         <div className="title">
-          Modern Villa with Pool{' '}
+          Modern Villa with Pool
           <div className="heartIcon">
             <Like />
           </div>
@@ -87,6 +88,7 @@ function DetailRentalUnit() {
           <h3>Thông tin mô tả</h3>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

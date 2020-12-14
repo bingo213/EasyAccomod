@@ -5,21 +5,24 @@
   position: relative;
 }
 
-.modal .fa-times-square {
+.modal .fa-times {
   position: absolute;
   z-index: 10;
   top: 0;
   right: 0;
   font-size: 3rem;
-  background-color: white;
+  background-color: #dbdbdb;
   cursor: pointer;
   color: #a0a0a0;
-  width: 2.7rem;
-  height: 2.7rem;
+  color: rgb(155, 155, 155);
+  padding: 0 0.5rem;
+  transition: 0.3s;
 }
 
-.modal .fa-times-square:hover {
-  color: #b881fc;
+.modal .fa-times:hover {
+  color: white;
+  background-color: rgba(236, 4, 4, 0.623);
+  transition: 0.3s;
 }
 .DetailRentalUnit .main {
   width: 90vw;
@@ -62,6 +65,11 @@
 .DetailRentalUnit .report{
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.DetailRentalUnit .report:hover{
+  color: rgb(204, 167, 4);
 }
 .DetailRentalUnit .report .fa-exclamation-triangle {
   display: block;
