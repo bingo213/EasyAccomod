@@ -1,3 +1,5 @@
+@import 'config.css';
+
 .Account {
   display: flex;
   align-items: center;
@@ -40,7 +42,7 @@
 }
 
 .Account #item li:hover {
-  background-color: #b881fc;
+  background-color: var(--main-color);
   color: #e9e9e9;
 }
 .Account #item a::before,

@@ -1,8 +1,10 @@
+@import 'config.css';
+
 .Like {
-    width: 2rem;
-    height: 2rem;
+  width: 2rem;
+  height: 2rem;
   font-size: 2rem;
-  color: #b881fc;
+  color: var(--main-color);
   padding: 0.4rem;
   border-radius: 50%;
   transition: 0.3s;

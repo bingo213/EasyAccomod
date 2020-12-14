@@ -1,3 +1,5 @@
+@import 'config.css';
+
 .NavBar .logo {
   position: absolute;
   top: 1.1rem;
@@ -5,7 +7,7 @@
 }
 
 .NavBar .large-nav{
-  background-color: #282d33a4;
+  background-color:var(--navbar-light-bgcolor);
 }
 
 .NavBar .small-nav, .large-nav{
@@ -41,17 +43,17 @@
 }
 .NavBar .large-nav ul a:hover::before {
   width: 120%;
-  border-top: 3px solid #b881fc;
+  border-top: 3px solid var(--main-color);
 }
 
 .NavBar .small-nav, .scrolled {
-  background-color: #282d33 !important;
+  background-color: var(--navbar-dark-bgcolor) !important;
   width: 100%;
-  height: 5.6rem;
+  height: var(--navbar-height);
 }
 
 .NavBar .scrolled, .large-nav{
-  height: 5.6rem;
+  height: var(--navbar-height);
   transition: background-color 0.5s;
 }
 
@@ -96,17 +98,17 @@
 }
 
 .NavBar .small-nav .nav-container .button:hover .icon-bar {
-  background-color: #b881fc;
+  background-color: var(--main-color);
 }
 
 .NavBar .small-nav .nav-container .nav-content {
-  margin-top: 5.6rem;
+  margin-top: var(--navbar-height);
   width: 90%;
   max-width: 18.75rem;
   position: fixed;
   top: 0;
   left: 0;
-  height: calc(100% - 5.6rem);
+  height: calc(100% - var(--navbar-height));
   height: 100%;
   background-color: #1a2635;
   transform: translateX(-101%);
@@ -140,7 +142,7 @@
 
 .NavBar .small-nav .nav-container .nav-content ul li:hover::before{
     height: 3.75rem;
-    border-left: 0.3rem solid #b881fc;
+    border-left: 0.3rem solid var(--main-color);
 }
 
 .NavBar .small-nav .nav-container .nav-content li a {

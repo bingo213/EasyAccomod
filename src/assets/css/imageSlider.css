@@ -1,7 +1,9 @@
+@import 'config.css';
+
 .ImageSliderCarousel {
-    width: 90vw;
-    height: 90vh;
-    max-width: 60rem;
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-width: var(--image-slider-max-width);
   position: relative;
   display: flex;
   justify-content: center;
@@ -11,8 +13,8 @@
   display: block;
   padding: 2rem 0rem;
   border-radius: 0.5rem;
-  max-height: 85vh;
-  max-width: 85vw;
+  max-height: var(--image-inner-carousel-max-height);
+  max-width: var(--image-inner-carousel-max-width);
   overflow: hidden;
   object-fit: cover;
 }
@@ -21,7 +23,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 90vh;
+  height: var(--modal-height);
   font-size: 3rem;
   cursor: pointer;
   width: 5rem;
@@ -37,7 +39,7 @@
   z-index: 1;
   top: 0;
   right: 0;
-  height: 90vh;
+  height: var(--modal-height);
   font-size: 3rem;
   cursor: pointer;
   width: 5rem;

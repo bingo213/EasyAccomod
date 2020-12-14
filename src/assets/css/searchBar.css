@@ -1,10 +1,11 @@
+@import 'config.css';
+
 .SearchBar{
   position: relative;
   top: -10rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-wrap: wrap; */
 }
 
 .SearchBar input,
@@ -16,7 +17,7 @@
   margin-right: 0.8rem;
   border-radius: 0.2rem;
   border: 1px solid #d1d1d1;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
 }
 
 .SearchBar input {
@@ -27,7 +28,7 @@
   width: 8rem;
   padding-left: 0;
   margin-right: 0;
-  background-color: #b881fc;
+  background-color: var(--main-color);
   color: white;
   transition: 0.3s;
   cursor: pointer;
@@ -38,7 +39,7 @@
 }
 
 .SearchBar option {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
 }
 
 @media (max-width: 900px) {

@@ -1,3 +1,5 @@
+@import 'config.css';
+
 .Pagination{
     display: flex;
     justify-content: center;
@@ -22,7 +24,7 @@
     text-align: center;
     border-radius: 0.2rem;
     padding: 0.6rem 0rem;
-    background-color: #b881fc;
+    background-color: var(--main-color);
     transition: 0.2s;
 }
 

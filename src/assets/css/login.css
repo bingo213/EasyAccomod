@@ -1,3 +1,5 @@
+@import 'config.css';
+
 .LoginOrRegister {
   display: flex;
   align-items: center;
@@ -57,7 +59,7 @@
   top: 0;
   width: 30%;
   height: 100%;
-  background-color: #b881fc;
+  background-color: var(--main-color);
 }
 
 .LoginOrRegister .OwnerRegister,
@@ -74,7 +76,7 @@
   display: block;
   margin-bottom: 0.3rem;
   font-size: 1.2rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
 }
 
 .LoginOrRegister input {
@@ -83,19 +85,19 @@
   height: 1.5rem;
   outline: none;
   font-size: 1.1rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
   border: none;
   border-bottom: 1px solid #cfcfcf;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
 }
 
 .LoginOrRegister button {
   width: 10rem;
   height: 3rem;
-  background-color: #b881fc;
+  background-color: var(--main-color);
   border: none;
   color: white;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
   font-size: 1.2rem;
   border-radius: 0.2rem;
   cursor: pointer;
@@ -106,20 +108,20 @@
 }
 
 .LoginOrRegister span {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
   margin-left: 3rem;
   font-size: 1.2rem;
 }
 
 .LoginOrRegister span a {
   text-decoration: underline;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
   color: #6c29be;
 }
 
 .LoginOrRegister .chooseTypeAccount h3,
 .LoginOrRegister .chooseTypeAccount a {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--second-font-family);
 }
 
 .LoginOrRegister .chooseTypeAccount h3 {

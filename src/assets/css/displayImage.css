@@ -4,10 +4,10 @@
   padding-top: 7rem;
 }
 .DisplayImage .imgContainer {
-  width: 90vw;
-  max-width: 70rem;
-  height: 35rem;
-  background-color: #b881fc;
+  width: var(--display-image-width);
+  max-width: var(--display-image-max-width);
+  height: var(--display-image-height);
+  background-color: var(--main-color);
   position: relative;
   border-radius: 3%;
 }
@@ -67,7 +67,7 @@
 }
 
 .DisplayImage .imgContainer button:hover{
-    background-color: #b881fc;
+    background-color: var(--main-color);
     color: white;
     transition: 0.3s;
 }
