@@ -7,14 +7,16 @@
   width: 90vw;
   max-width: 70rem;
   height: 35rem;
-  /* background-color: yellow; */
+  background-color: #b881fc;
   position: relative;
+  border-radius: 3%;
 }
 
 .DisplayImage .imgContainer img:nth-child(1) {
   position: absolute;
   width: 49%;
   height: 100%;
+  border-right: 0.5rem solid white;
   object-fit: cover;
   border-top-left-radius: 3%;
   border-bottom-left-radius: 3%;
@@ -28,6 +30,8 @@
   object-fit: cover;
   width: 50%;
   height: 49%;
+  border-left: 0.5rem solid white;
+  border-bottom: 0.5rem solid white;
   border-top-right-radius: 3%;
   transition: 0.3s;
 }
@@ -39,8 +43,8 @@
   object-fit: cover;
   width: 50%;
   height: 50%;
+  border-left: 0.5rem solid white;
   border-bottom-right-radius: 3%;
-  background-color: red;
   transition: 0.3s;
 }
 

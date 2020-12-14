@@ -11,6 +11,7 @@ import image5 from 'assets/img/5.jpg';
 import NavBar from 'component/NavBar';
 import DisplayImage from './DisplayImage';
 import ImageSliderCarousel from './ImageSliderCarousel';
+import Like from 'component/favourite/Like';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -20,9 +21,9 @@ function DetailRentalUnit() {
   const slides = [image1, image2, image3, image4, image5];
   const [modalIsOpden, setModelIsOpen] = useState(false);
 
-  const handleClickImage = () =>{
+  const handleClickImage = () => {
     setModelIsOpen(true);
-  }
+  };
   return (
     <div className="DetailRentalUnit">
       <NavBar />
@@ -37,7 +38,7 @@ function DetailRentalUnit() {
             height: '100vh',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           },
           content: {
             width: '90vw',
@@ -48,14 +49,22 @@ function DetailRentalUnit() {
         }}
         className="modal"
       >
-      <i className="fas fa-times-square" onClick={()=>setModelIsOpen(false)}></i>
+        <i
+          className="fas fa-times-square"
+          onClick={() => setModelIsOpen(false)}
+        ></i>
         <div className="slideContent">
           <ImageSliderCarousel slides={slides} />
         </div>
       </Modal>
       <div className="main">
-        <DisplayImage images={slides} handleClickImage={handleClickImage}/>
-        <div className="title">Modern Villa with Pool <i className="far fa-heart"></i></div>
+        <DisplayImage images={slides} handleClickImage={handleClickImage} />
+        <div className="title">
+          Modern Villa with Pool{' '}
+          <div className="heartIcon">
+            <Like />
+          </div>
+        </div>
         <div className="description">
           <h3>Thông tin mô tả</h3>
         </div>
