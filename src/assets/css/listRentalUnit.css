@@ -18,6 +18,12 @@
 
  @media (max-width: 692px){
     .ListRentalUnit .container{
-        width: 32rem;
+        width: 34rem;
+    }
+ }
+
+ @media (max-width: 440px){
+    .ListRentalUnit .container{
+        width: 22rem;
     }
  }

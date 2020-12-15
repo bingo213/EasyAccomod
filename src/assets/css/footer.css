@@ -54,3 +54,17 @@
     text-align: center;
     margin-top: 2rem;
 }
+
+@media (max-width: 500px){
+    .Footer .visit-contact{
+        display: block;
+        text-align: center;
+        margin: 0;
+    }
+    .Footer .col{
+        padding-top: 1rem;
+    }
+    .Footer .col-container{
+        display: block;
+    }
+}

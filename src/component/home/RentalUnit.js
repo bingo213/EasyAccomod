@@ -4,11 +4,10 @@ import roomImg from 'assets/img/blue-400x314.jpg';
 import Like from 'component/favourite/Like';
 import { Link } from 'react-router-dom';
 
-function RentalUnit({rentalUnit}) {
+function RentalUnit({ rentalUnit }) {
   // const [heartState, setHeartState] = useState(false);
   const heart = false;
   const title = rentalUnit.title;
-  const description = rentalUnit.body;
   const id = rentalUnit.id;
   return (
     <div className="RentalUnit">
@@ -23,7 +22,8 @@ function RentalUnit({rentalUnit}) {
           <div className="description">
             <div className="title">{title}</div>
             <div className="area">
-              <i className="far fa-home"></i>Area: 20m²
+              <i className="far fa-home"></i>Chung cư nguyên căn - Diện tích:
+              50m²
             </div>
             <div className="address">
               <i className="fas fa-map-marker-alt"></i>Cau Giay District, Ha Noi
@@ -31,8 +31,14 @@ function RentalUnit({rentalUnit}) {
               jfahfl fa last jfaudf
             </div>
             <div className="additionInfo">
-              <i className="far fa-file-invoice"></i>
-              {description}
+              <div className="area">
+                <i className="fal fa-charging-station"></i>
+                <span>Điện:</span> 2000/kWh
+              </div>
+              <div className="area">
+                <i className="fal fa-hand-holding-water"></i>
+                <span>Nước:</span> 7000/m3
+              </div>
             </div>
             <p className="comment">12 bình luận</p>
           </div>

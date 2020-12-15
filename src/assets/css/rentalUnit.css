@@ -71,6 +71,7 @@
   transition: 0.3s;
   margin-bottom: 0.5rem;
   text-overflow: ellipsis;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -92,16 +93,21 @@
 
 .RentalUnit .additionInfo {
   height: var(--rental-unit-addition-info-height);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
-.RentalUnit .fa-map-marker-alt,
-.RentalUnit .fa-home,
-.RentalUnit .fa-file-invoice {
+.RentalUnit .area {
+  padding: 0.3rem 0rem;
+}
+
+.RentalUnit .additionInfo span {
+  color: #565a61;
+  font-weight: 600;
+  display: inline-block;
+  width: 3rem;
+}
+
+.RentalUnit .description i {
+  font-size: 1.2rem;
   width: 1.8rem;
   color: #b881fcb2;
 }
@@ -122,5 +128,15 @@
 @media (max-width: 692px) {
   .RentalUnit {
     width: 32rem;
+  }
+
+  .RentalUnit .heart {
+    left: 28rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .RentalUnit {
+    width: 20rem;
   }
 }
