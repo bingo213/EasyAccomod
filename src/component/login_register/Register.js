@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-function Register({ fields, button, text, type }) {
+function Register({ fields, button, text, type}) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
@@ -14,12 +14,12 @@ function Register({ fields, button, text, type }) {
         {fields.map(field => (
           <div className="row" key={field.key}>
             <label>{field.label}</label>
-            <input type={field.type} name={field.name} ref={register} />
+            <input type={field.type} name={field.name} ref={register({})} />
           </div>
         ))}
 
         <div className="bottom">
-          <button>{button}</button>
+          <button type="submit">{button}</button>
           <span className="text">
             {text}
             {type === 'Đăng ký' && <Link to="/register">{type}</Link>}
