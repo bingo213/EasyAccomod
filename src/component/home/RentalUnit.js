@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function RentalUnit({rentalUnit}) {
   // const [heartState, setHeartState] = useState(false);
-  const heart = true;
+  const heart = false;
   const title = rentalUnit.title;
   const description = rentalUnit.body;
   const id = rentalUnit.id;
@@ -39,7 +39,7 @@ function RentalUnit({rentalUnit}) {
         </>
       </Link>
       <div className="heart">
-        <Like heartState={heart} />
+        <Like isLike={heart} />
       </div>
     </div>
   );
