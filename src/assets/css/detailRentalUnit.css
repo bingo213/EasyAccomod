@@ -47,8 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 0.1rem solid rgb(209, 209, 209);
-  border-bottom: 0.1rem solid rgb(209, 209, 209);
+  border-top: 1px solid rgb(209, 209, 209);
   margin-top: 1rem;
   padding: 1rem 0rem;
 }
@@ -57,20 +56,21 @@
   display: flex;
 }
 
-.DetailRentalUnit .dateContainer .date{
+.DetailRentalUnit .dateContainer .date {
   padding-right: 3rem;
 }
 
 .DetailRentalUnit .dateContainer span {
   color: #666c75;
+  font-weight: 500;
 }
-.DetailRentalUnit .report{
+.DetailRentalUnit .report {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.DetailRentalUnit .report:hover{
+.DetailRentalUnit .report:hover {
   color: rgb(204, 167, 4);
 }
 .DetailRentalUnit .report .fa-exclamation-triangle {
@@ -80,5 +80,44 @@
 }
 
 .DetailRentalUnit .description h3 {
-  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.DetailRentalUnit .description .generalInfo,
+.DetailRentalUnit .description .roomAddress,
+.DetailRentalUnit .description .roomFeature {
+  padding: 2rem 0rem;
+  border-top: 1px solid rgb(209, 209, 209);
+}
+
+.DetailRentalUnit .description .pad {
+  padding: 1rem 0rem;
+}
+.DetailRentalUnit .description i {
+  margin-right: 1rem;
+  color: var(--main-color);
+  font-size: 1.2rem;
+}
+
+.DetailRentalUnit .description .generalInfo span,
+.DetailRentalUnit .description .roomAddress span,
+.DetailRentalUnit .description .roomFeature span {
+  font-weight: 600;
+  color: #606770;
+  display: inline-block;
+  width: 8rem;
+}
+
+.DetailRentalUnit .roomFeature .divTop {
+  display: flex;
+}
+
+.DetailRentalUnit .roomFeature .divTop .col{
+  flex: 1;
+}
+
+@media (max-width: 500px){
+  .DetailRentalUnit .roomFeature .divTop{
+    display: block;
+  }
 }

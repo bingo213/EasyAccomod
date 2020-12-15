@@ -84,8 +84,86 @@ function DetailRentalUnit() {
             <i className="far fa-exclamation-triangle"></i>
           </div>
         </div>
+
         <div className="description">
-          <h3>Thông tin mô tả</h3>
+          <div className="generalInfo pad">
+            <div className="pad">
+              <i className="fal fa-home-alt"></i>Chung cư nguyên căn - Không
+              chung chủ
+            </div>
+            <div className="pad">
+              <i className="fal fa-warehouse-alt"></i>
+              <span>Số lượng phòng:</span> 1
+            </div>
+            <div className="pad">
+              <i className="fal fa-draw-square"></i>
+              <span>Diện tích:</span> 50 m²
+            </div>
+            <div className="pad">
+              <i className="fal fa-usd-circle"></i>
+              <span>Giá:</span> 2.5 triệu/tháng
+            </div>
+          </div>
+          <div className="roomAddress">
+            <h3>Địa chỉ</h3>
+            <div className="pad">
+              <span>Tỉnh/Thành phố:</span> Hà Nội
+            </div>
+            <div className="pad">
+              <span>Quận/Huyện:</span> Cầu Giấy
+            </div>
+            <div className="pad">
+              <span>Xã/Phường:</span> Dịch Vọng
+            </div>
+            <div className="pad">
+              <span>Đường:</span> Xuân Thủy
+            </div>
+            <div className="pad">
+              <span>Số nhà:</span> 213
+            </div>
+          </div>
+          <div className="roomFeature">
+            <h3>Cơ sở vật chất</h3>
+            <div className="divTop">
+              <div className="col">
+                <div className="pad">
+                <i className="fal fa-shower"></i>
+                  <span>Phòng tắm:</span> Khép kín
+                </div>
+                <div className="pad">
+                  <i className="fal fa-columns"></i>
+                  <span>Ban công:</span> có
+                </div>
+                <div className="pad">
+                  <i className="far fa-dewpoint"></i>
+                  <span>Bình nóng lạnh:</span> có
+                </div>
+
+                <div className="pad">
+                <i className="far fa-wind"></i>
+                  <span>Điều hòa:</span> có
+                </div>
+              </div>
+              <div className="col">
+                <div className="pad">
+                  <i className="fal fa-hat-chef"></i>
+                  <span>Bếp:</span> bếp riêng
+                </div>
+
+                <div className="pad">
+                  <i className="fal fa-charging-station"></i>
+                  <span>Điện:</span> 4000/kWh
+                </div>
+                <div className="pad">
+                <i className="fal fa-hand-holding-water"></i>
+                  <span>Nước:</span> 7000/m3
+                </div>
+              </div>
+            </div>
+            <div className="pad">
+              <span>Tiện ích khác:</span> Có tủ lạnh, máy giặt
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
