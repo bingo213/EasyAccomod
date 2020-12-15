@@ -33,7 +33,7 @@ function Home() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
-    <div className="Home">
+    <div className="Home" style={{overflowX: 'hidden'}}>
       <NavBar />
       <div className="homeImage"></div>
       <SearchBar />

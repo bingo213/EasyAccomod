@@ -1,9 +1,10 @@
+import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-function Register({ fields, button, text, type}) {
-  const { register, handleSubmit } = useForm();
+function Register({ fields, button, text, type }) {
+  const { register, handleSubmit, errors, getValues } = useForm();
 
   const onSubmit = data => {
     console.log(data);
@@ -14,7 +15,16 @@ function Register({ fields, button, text, type}) {
         {fields.map(field => (
           <div className="row" key={field.key}>
             <label>{field.label}</label>
-            <input type={field.type} name={field.name} ref={register({})} />
+            <ErrorMessage
+              errors={errors}
+              name={field.name}
+              render={({ message }) => <p className="message">{message}</p>}
+            />
+            <input
+              type={field.type}
+              name={field.name}
+              ref={register(field.registerObj)}
+            />
           </div>
         ))}
 

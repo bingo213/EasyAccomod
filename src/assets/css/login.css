@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   overflow-x: hidden;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow-y: hidden;
+
 }
 
 .LoginOrRegister .logoTop {
@@ -23,7 +27,9 @@
 }
 
 .LoginOrRegister .image {
-  position: relative;
+  position: fixed;
+  top: 2rem;
+  bottom: 2rem;
   overflow: hidden;
   margin-left: 3rem;
 }
@@ -45,8 +51,9 @@
 }
 
 .LoginOrRegister img {
+  height: 100%;
   width: 130%;
-  max-width: 30rem;
+  max-width: 33rem;
   object-fit: cover;
   flex: 1;
 }
@@ -194,6 +201,11 @@
     width: 80vw;
     max-width: unset;
   }
+}
+
+.LoginOrRegister .message{
+  color: red;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 850px) {

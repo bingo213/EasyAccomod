@@ -8,14 +8,14 @@ function Login() {
       label: 'Email',
       type: 'email',
       name: 'email',
-      registerObj: { required: 'Chưa nhập email' },
+      registerObj: { required: 'Bsnj cần nhập email' },
     },
     {
       key: 2,
       label: 'Mật khẩu',
       type: 'password',
       name: 'password',
-      registerObj: { required: 'Chưa nhập mật khẩu' },
+      registerObj: { required: 'Bạn cần nhập mật khẩu' },
     },
   ];
 
