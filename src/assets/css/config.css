@@ -22,6 +22,10 @@
     --modal-width: 90vw;
     --modal-height: 90vh;
 
+    /* Form report config */
+    --form-report-width: 85vw;
+    --form-report-height: 85vh;
+
     /* imageSliderCrousel config */
     --image-slider-max-width: 60rem;
     --image-inner-carousel-max-width: 85vw;

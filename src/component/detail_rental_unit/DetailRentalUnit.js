@@ -13,6 +13,7 @@ import DisplayImage from './DisplayImage';
 import ImageSliderCarousel from './ImageSliderCarousel';
 import Like from 'component/favourite/Like';
 import Footer from 'component/Footer';
+import FormReport from './FormReport';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -21,6 +22,26 @@ function DetailRentalUnit() {
   // });
   const slides = [image1, image2, image3, image4, image5];
   const [imageModalIsOpden, setImageModelIsOpen] = useState(false);
+  const [reportIsOpen, setReportIsOpen] = useState(false);
+
+  const modalStyle = {
+    overlay: {
+      backgroundColor: '#262525ad',
+      zIndex: 10,
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    content: {
+      width: '90vw',
+      maxWidth: '60rem',
+      maxHeight: '100vh',
+      margin: 'auto',
+      borderRadius: '4px'
+    },
+  };
 
   const handleClickImage = () => {
     setImageModelIsOpen(true);
@@ -31,23 +52,7 @@ function DetailRentalUnit() {
       <Modal
         isOpen={imageModalIsOpden}
         onRequestClose={() => setImageModelIsOpen(false)}
-        style={{
-          overlay: {
-            backgroundColor: '#262525ad',
-            zIndex: 10,
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-          content: {
-            width: '90vw',
-            maxWidth: '60rem',
-            maxHeight: '100vh',
-            margin: 'auto',
-          },
-        }}
+        style={modalStyle}
         className="modal"
       >
         <i
@@ -56,6 +61,20 @@ function DetailRentalUnit() {
         ></i>
         <div className="slideContent">
           <ImageSliderCarousel slides={slides} />
+        </div>
+      </Modal>
+      <Modal
+        isOpen={reportIsOpen}
+        onRequestClose={() => setReportIsOpen(false)}
+        style={modalStyle}
+        className="modal"
+      >
+        <i
+          className="fal fa-times"
+          onClick={() => setReportIsOpen(false)}
+        ></i>
+        <div className="reportModal">
+          <FormReport />
         </div>
       </Modal>
       <div className="main">
@@ -67,19 +86,12 @@ function DetailRentalUnit() {
           </div>
         </div>
         <div className="date-report">
-          <div className="dateContainer">
-            <div className="date">
-              <span>Ngày đăng</span>
-              <br />
-              14/12/2020
-            </div>
-            <div className="date">
-              <span>Ngày hết hạn</span>
-              <br />
-              21/12/2020
-            </div>
+          <div className="date">
+            <span>Ngày đăng</span>
+            <br />
+            14/12/2020
           </div>
-          <div className="report">
+          <div className="report" onClick={() => setReportIsOpen(true)}>
             Báo cáo
             <i className="far fa-exclamation-triangle"></i>
           </div>
@@ -127,7 +139,7 @@ function DetailRentalUnit() {
             <div className="divTop">
               <div className="col">
                 <div className="pad">
-                <i className="fal fa-shower"></i>
+                  <i className="fal fa-shower"></i>
                   <span>Phòng tắm:</span> Khép kín
                 </div>
                 <div className="pad">
@@ -140,7 +152,7 @@ function DetailRentalUnit() {
                 </div>
 
                 <div className="pad">
-                <i className="far fa-wind"></i>
+                  <i className="far fa-wind"></i>
                   <span>Điều hòa:</span> có
                 </div>
               </div>
@@ -155,7 +167,7 @@ function DetailRentalUnit() {
                   <span>Điện:</span> 4000/kWh
                 </div>
                 <div className="pad">
-                <i className="fal fa-hand-holding-water"></i>
+                  <i className="fal fa-hand-holding-water"></i>
                   <span>Nước:</span> 7000/m3
                 </div>
               </div>

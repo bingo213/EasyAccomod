@@ -19,6 +19,7 @@
   color: rgb(155, 155, 155);
   padding: 0 0.5rem;
   transition: 0.3s;
+  border-radius: 4px;
 }
 
 .modal .fa-times:hover {
@@ -26,6 +27,7 @@
   background-color: rgba(236, 4, 4, 0.623);
   transition: 0.3s;
 }
+
 .DetailRentalUnit .main {
   width: var(--detail-rental-width);
   max-width: var(--detail-rental-max-width);
@@ -52,15 +54,11 @@
   padding: 1rem 0rem;
 }
 
-.DetailRentalUnit .dateContainer {
-  display: flex;
-}
-
-.DetailRentalUnit .dateContainer .date {
+.DetailRentalUnit .date {
   padding-right: 3rem;
 }
 
-.DetailRentalUnit .dateContainer span {
+.DetailRentalUnit .date-report span {
   color: #666c75;
   font-weight: 500;
 }
@@ -112,12 +110,12 @@
   display: flex;
 }
 
-.DetailRentalUnit .roomFeature .divTop .col{
+.DetailRentalUnit .roomFeature .divTop .col {
   flex: 1;
 }
 
-@media (max-width: 500px){
-  .DetailRentalUnit .roomFeature .divTop{
+@media (max-width: 500px) {
+  .DetailRentalUnit .roomFeature .divTop {
     display: block;
   }
 }

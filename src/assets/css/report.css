@@ -1,0 +1,53 @@
+@import 'config.css';
+.FormReport{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-width: var(--image-slider-max-width);
+}
+.FormReport label {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4b4b4b;
+  padding: 1rem 0 0.5rem 0;
+}
+
+.FormReport .option,
+.FormReport .textArea {
+  width: var(--form-report-width);
+  max-width: 50rem;
+  padding: 0.5rem 0;
+}
+
+.FormReport input {
+  margin-right: 1rem;
+}
+
+.FormReport textarea {
+  width: 94%;
+  height: 14rem;
+  font-size: 1.1rem;
+  padding: 2.5% 2.5%;
+}
+.FormReport .btnCenter{
+  display: flex;
+  justify-content: center;
+}
+.FormReport button {
+  width: 10rem;
+  height: 3rem;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.FormReport button:hover {
+  background-color: #ad6aff;
+}

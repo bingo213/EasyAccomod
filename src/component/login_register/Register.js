@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function Register({ fields, button, text, type }) {
-  const { register, handleSubmit, errors, getValues } = useForm();
+  const { register, handleSubmit, errors} = useForm();
 
   const onSubmit = data => {
     console.log(data);
