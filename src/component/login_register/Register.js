@@ -2,7 +2,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function Register({ fields, button, text, type, url, additionField}) {
   const { register, handleSubmit, errors} = useForm();
@@ -14,8 +14,12 @@ function Register({ fields, button, text, type, url, additionField}) {
   const onSubmit = async (data) => {
     data.user_type = additionField
    await axios.post(url, {...data},{header})
-   .then(data => {
-     console.log(data);
+   .then(res => {
+     if(res.success){
+       if(type === 'Đăng nhập'){
+         <Redirect path='/' />
+       }
+     }
    })
   };
   return (

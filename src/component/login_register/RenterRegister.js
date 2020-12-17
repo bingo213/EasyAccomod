@@ -1,5 +1,6 @@
 import React from 'react';
 import Register from './Register';
+import config from 'config'
 
 function RenterRegister() {
   const fields = [
@@ -74,7 +75,7 @@ function RenterRegister() {
     <div className="RenterRegister">
       <Register
         fields={fields}
-        url='http://localhost:3001/users/signup'
+        url={`${config}/users/signup`}
         additionField='rental'
         button="Đăng ký"
         text="Bạn đã có tài khoản? "
