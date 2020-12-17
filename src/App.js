@@ -6,6 +6,7 @@ import LoginOrRegister from 'component/login_register/LoginOrRegister';
 import Home from 'component/home/Home';
 import NotFound from 'component/NotFound';
 import DetailRentalUnit from 'component/detail_rental_unit/DetailRentalUnit';
+import AdminPage from 'component/admin/AdminPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/renter_register">
             <LoginOrRegister type="renter_register" />
           </Route>
+          <Route exact path="/admin" component={AdminPage} />
           <Route exact path="/404" component={NotFound}/>
           <Route><Redirect to={{pathname: "/404"}}/></Route>
         </Switch>
