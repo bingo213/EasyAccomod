@@ -8,7 +8,7 @@ var User = new Schema({
        required: true
    },
    active:{
-       type: Boolean
+       type: Number
    }
 }, {timestamps: true});
 

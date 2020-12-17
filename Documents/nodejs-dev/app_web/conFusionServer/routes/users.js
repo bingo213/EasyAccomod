@@ -17,7 +17,7 @@ router.post('/signup', function (req, res, next) {
   if (!(user_type == 'owner' || user_type == 'rental')) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.json({ success: false, status: 'Not support type account: ' + user_type });
+    res.json({ success: false, err: 'Not support type account: ' + user_type });
   }
   User.register(new User({ username: req.body.username, user_type: user_type }), req.body.password, (err, user) => {
     if (err) {
@@ -27,8 +27,8 @@ router.post('/signup', function (req, res, next) {
     }
     else {
       if(user_type == 'rental')
-       user.active = true;
-      else user.active = false;
+       user.active = 1;
+      else user.active = 0;
       user.save((err, user) => {
         if (err) {
           res.statusCode = 500;
@@ -45,6 +45,7 @@ router.post('/signup', function (req, res, next) {
     }
   })
 });
+
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
@@ -82,20 +83,20 @@ router.get('/logout', (req, res) => {
   }
 })
 
-router.route('/')
-  .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res) => {
-    User.find({})
-      .then((users) => {
-        res.setStatus = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(users);
-      })
-      .catch((err) => {
-        res.statusCode = 500;
-        res.setHeader('Content-Type', 'application/json');
-        res.json({ err: err });
-      })
-  })
+// router.route('/')
+//   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res) => {
+//     User.find({})
+//       .then((users) => {
+//         res.setStatus = 200;
+//         res.setHeader('Content-Type', 'application/json');
+//         res.json(users);
+//       })
+//       .catch((err) => {
+//         res.statusCode = 500;
+//         res.setHeader('Content-Type', 'application/json');
+//         res.json({ err: err });
+//       })
+//   })
 router.get('/checkJWTToken', (req, res) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (err) return next(err);

@@ -6,39 +6,40 @@ var authenticate = require('../authenticate');
 const Profile = require('../models/profile');
 const User = require('../models/user');
 const { NotExtended } = require('http-errors');
+const Address = require('../models/address');
 
 const profileRouter = express.Router();
 
 profileRouter.use(bodyParser.json());
 
 profileRouter.route('/')
-    .get(authenticate.verifyAdmin, (req, res, next) => {
-        profile.find({})
+    .get(authenticate.verifyUser, (req, res, next) => {
+        profile.find({user: req.user._id})
             .populate('address')
-            .populate('user')
-            .then((profiles) => {
+            .then((profile) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(profiles);
-            })
+                res.json({profile: profile});
+            }, (err) => next(err))
     })
-    .post((req, res, next) => {
-        if (req.body.user == null) {
-            if (req.user._id)
-                req.body.user = req.user._id;
-            else {
-                err = new Error('You not login');
-                err.status = 403;
-                return next(err);
-            }
-        }
+    .post(authenticate.verifyUser, (req, res, next) => {
+        // if (req.body.user == null) {
+        //     if (req.user._id)
+        //         req.body.user = req.user._id;
+        //     else {
+        //         err = new Error('You not login');
+        //         err.status = 403;
+        //         return next(err);
+        //     }
+        // }
         if (req.body != null) {
-            var user = User.findById(req.body.user);
+            req.body.user = req.user._id
+            var user = User.findById(req.user._id);
             if (user.user_type == 'rental')
                 req.body.active = true;
             else if (user.user_type == 'owner')
                 req.body.active = false;
-            req.body.update = false;
+            req.body.update = !req.body.active;
             Profile.create(req.body)
                 .then((profile) => {
                     Profile.findById(profile._id)
@@ -47,7 +48,7 @@ profileRouter.route('/')
                         .then((profile) => {
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'application/json');
-                            res.json(profile);
+                            res.json({profile: profile, success: true});
                         })
                 }, (err) => next(err))
                 .catch((err) => next(err));
@@ -68,12 +69,16 @@ profileRouter.route('/')
     })
 
 
-profileRouter.route(':/profileId')
-    .get((req, res, next) => {
+profileRouter.route('/:profileId')
+    .get(authenticate.verifyUser, (req, res, next) => {
         Profile.findById(req.params.profileId)
             .populate('user')
             .populate('address')
             .then((profile) => {
+                if (!(profile.user.equals(req.user._id)|| req.user.user_type == 'admin')) {
+                    res.statusCode = 404;
+                    res.end('You are not get another profile');
+                }
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(profile);
@@ -95,20 +100,37 @@ profileRouter.route(':/profileId')
                             return next(err);
                         }
                         req.body.user = req.user._id;
-                        Pro.findByIdAndUpdate(req.params.profileId, {
-                            $set: req.body
-                        }, { new: true })
-                            .then((profile) => {
-                                profiles.findById(profile._id)
-                                    .populate('user')
-                                    .then((profile) => {
-                                        res.statusCode = 200;
-                                        res.setHeader('Content-Type', 'application/json');
-                                        res.json(profile);
-                                    })
-                            }, (err) => next(err));
+                        Address.findById(profile.address)
+                        .then((address) => {
+                            address.houseNumber = req.body.houseNumber;
+                            address.street = req.body.street;
+                            address.village = req.body.village;
+                            address.district = req.body.district;
+                            address.provice = req.body.provice;
+
+                            address.save();
+                        });
+                        profile.fullname = req.body.fullname;
+                        profile.phoneNumber = req.body.phoneNumber;
+                        profile.identity = req.body.identity;
+                        if(req.user.user_type == 'owner'){
+                            profile.active = false;
+                            profile.update = true;
+                        }
+                        
+                        else{
+
+                            profile.active = true;
+                            profile.update = true;
+                        } 
+                        profile.save();
+                        
+                        res.statusCode = 200;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.json({success: true, active: profile.active})
+                        
                     }
-                    else{
+                    else {
                         err = new Error('Not allow to update');
                     }
                 }

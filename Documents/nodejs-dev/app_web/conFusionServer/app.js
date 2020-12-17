@@ -9,7 +9,10 @@ var FileStore = require('session-file-store')(session);
 
 var passport = require('passport');
 var authenticate = require('./authenticate');
+var passport = require('passport');
 var config = require('./config');
+
+const User = require('./models/user');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,6 +24,9 @@ var favoriteRouter = require('./routes/favoriteRouter');
 var commentRouter = require('./routes/commentRouter');
 var addressRouter = require('./routes/addressRouter');
 var profileRouter = require('./routes/profileRouter');
+var ownerRouter = require('./routes/ownerRouter');
+var postRouter = require('./routes/postRouter');
+var adminRouter = require('./routes/adminRouter');
 
 
 
@@ -32,7 +38,27 @@ const connect = mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParse
 
 connect.then((db) => {
   console.log('Connected to server');
+  initial();
 }, (error) => { console.log(console.error) });
+
+function initial(){
+  User.countDocuments({ user_type: 'admin' }, function (err, count) {
+    if (err) {
+      console.log(err)
+    }
+    if(count < 1){
+      User.register(new User({ username: 'admin', user_type: 'admin',active: 1 }), 'adminpassword', (err, user) => {
+        if (err) {
+          console.log(err)
+        }
+        else {
+            passport.authenticate('local')(req, res, () => {
+            })
+          };
+        })
+      }
+    })
+};
 
 var app = express();
 
@@ -53,15 +79,15 @@ app.use(session({
   store: new FileStore()
 }));
 
-app.all('*', (req, res, next)  => {
-  if (req.secure){
-    return next();
-  } else{
-    res.redirect(307, 'https://'+req.hostname+':'+app.get(
-      'secPort' )+ req.url
-    );
-  }
-}) 
+// app.all('*', (req, res, next)  => {
+//   if (req.secure){
+//     return next();
+//   } else{
+//     res.redirect(307, 'https://'+req.hostname+':'+app.get(
+//       'secPort' )+ req.url
+//     );
+//   }
+// }) 
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
@@ -76,6 +102,10 @@ app.use('/favorites', favoriteRouter);
 app.use('/comments', commentRouter);
 app.use('/address', addressRouter);
 app.use('/profile', profileRouter);
+app.use('/owner', ownerRouter);
+app.use('/post', postRouter);
+app.use('/admin', adminRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

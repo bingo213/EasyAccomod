@@ -7,9 +7,13 @@ var Profile = new Schema({
         ref: 'User'
     },
     fullname: {
-        type: String
+        type: String,
+        require: true
     },
     phoneNumber: {
+        type: String
+    },
+    identity:{
         type: String
     },
     address: {
