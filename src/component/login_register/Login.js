@@ -23,6 +23,8 @@ function Login() {
     <div className="Login">
       <Register
         fields={fields}
+        url='http://localhost:3001/users/login'
+        additionField="login"
         button="Đăng nhập"
         text="Bạn chưa có tài khoản? "
         type="Đăng ký"

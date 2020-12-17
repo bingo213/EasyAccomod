@@ -1,13 +1,22 @@
 import { ErrorMessage } from '@hookform/error-message';
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-function Register({ fields, button, text, type }) {
+function Register({ fields, button, text, type, url, additionField}) {
   const { register, handleSubmit, errors} = useForm();
 
-  const onSubmit = data => {
-    console.log(data);
+  const header = {
+    'Content-Type': 'application/json',
+   ' Access-Control-Allow-Origin': '*'
+  }
+  const onSubmit = async (data) => {
+    data.user_type = additionField
+   await axios.post(url, {...data},{header})
+   .then(data => {
+     console.log(data);
+   })
   };
   return (
     <div>

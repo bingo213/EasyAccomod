@@ -107,6 +107,8 @@ function OwnerRegister() {
     <div className="OwnerRegister">
       <Register
         fields={fields}
+        url='http://localhost:3001/users/signup'
+        additionField='owner'
         button="Đăng ký"
         text="Bạn đã có tài khoản? "
         type="Đăng nhập"
