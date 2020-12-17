@@ -5,10 +5,10 @@ function Login() {
   const fields = [
     {
       key: 1,
-      label: 'Email',
-      type: 'email',
-      name: 'email',
-      registerObj: { required: 'Bsnj cần nhập email' },
+      label: 'Tên đăng nhập',
+      type: 'text',
+      name: 'username',
+      registerObj: { required: 'Bạn cần nhập username' },
     },
     {
       key: 2,
