@@ -77,6 +77,9 @@ postRouter.route('/')
                                 .populate('owner')
                                 .populate('address')
                                 .then((post) => {
+                                    if(post.active == 0){
+                                    }
+                                    
                                     res.statusCode = 200;
                                     res.setHeader('Constent-Type', 'application/json');
                                     res.json({ success: true, post: post })
