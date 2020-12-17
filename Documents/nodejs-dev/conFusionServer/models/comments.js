@@ -16,9 +16,12 @@ var commentSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    dish: {
+    post: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dish'
+        ref: 'Post'
+    },
+    active: {
+        type: Number
     }
 }, {
     timestamps: true

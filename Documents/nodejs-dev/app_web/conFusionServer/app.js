@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var session = require('express-session');
@@ -31,7 +30,6 @@ var adminRouter = require('./routes/adminRouter');
 
 
 const mongoose = require('mongoose');
-const Dishes = require('./models/dishes');
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });

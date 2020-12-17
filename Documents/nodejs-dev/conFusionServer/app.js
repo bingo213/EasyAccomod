@@ -19,6 +19,12 @@ var leaderRouter = require('./routes/leaderRouter');
 const uploadRouter = require('./routes/uploadRouter');
 var favoriteRouter = require('./routes/favoriteRouter');
 var commentRouter = require('./routes/commentRouter');
+var addressRouter = require('./routes/addressRouter');
+var profileRouter = require('./routes/profileRouter');
+var ownerRouter = require('./routes/ownerRouter');
+var postRouter = require('./routes/postRouter');
+
+
 
 const mongoose = require('mongoose');
 const Dishes = require('./models/dishes');
@@ -49,15 +55,15 @@ app.use(session({
   store: new FileStore()
 }));
 
-app.all('*', (req, res, next)  => {
-  if (req.secure){
-    return next();
-  } else{
-    res.redirect(307, 'https://'+req.hostname+':'+app.get(
-      'secPort' )+ req.url
-    );
-  }
-}) 
+// app.all('*', (req, res, next)  => {
+//   if (req.secure){
+//     return next();
+//   } else{
+//     res.redirect(307, 'https://'+req.hostname+':'+app.get(
+//       'secPort' )+ req.url
+//     );
+//   }
+// }) 
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
@@ -69,7 +75,11 @@ app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
 app.use('/imageUpload', uploadRouter);
 app.use('/favorites', favoriteRouter);
-app.use('/comments', commentRouter)
+app.use('/comments', commentRouter);
+app.use('/address', addressRouter);
+app.use('/profile', profileRouter);
+app.use('/owner', ownerRouter);
+app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

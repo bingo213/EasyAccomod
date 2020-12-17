@@ -27,8 +27,8 @@ router.post('/signup', function (req, res, next) {
     }
     else {
       if(user_type == 'rental')
-       user.active = true;
-      else user.active = false;
+       user.active = 1;
+      else user.active = 0;
       user.save((err, user) => {
         if (err) {
           res.statusCode = 500;
@@ -39,7 +39,7 @@ router.post('/signup', function (req, res, next) {
         passport.authenticate('local')(req, res, () => {
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
-          res.json({ success: true, status: 'Registration Successful!' });
+          res.json({ success: true, status: 'Registration Successful!', user: user });
         })
       });
     }

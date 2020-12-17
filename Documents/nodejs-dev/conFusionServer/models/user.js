@@ -8,9 +8,9 @@ var User = new Schema({
        required: true
    },
    active:{
-       type: Boolean
+       type: Number
    }
-})
+}, {timestamps: true});
 
 User.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', User);
