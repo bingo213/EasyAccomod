@@ -1,16 +1,20 @@
 @import 'config.css';
 
-.SearchBar{
-  position: relative;
-  top: -10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.SearchBar {
+  position: absolute;
+  bottom: 12rem;
+  flex-wrap: wrap;
+  width: calc(100vw -6rem);
+  margin: auto 3rem;
+  text-align: center;
+  background-color: rgba(148, 148, 148, 0.5);
+  padding: 0.5rem;
 }
 
 .SearchBar input,
 #cost,
 #area,
+#type,
 .SearchBar button {
   padding: 0.8rem;
   padding-left: 1.5rem;
@@ -18,6 +22,7 @@
   border-radius: 0.2rem;
   border: 1px solid #d1d1d1;
   font-family: var(--second-font-family);
+  margin-bottom: 0.5rem;
 }
 
 .SearchBar input {
@@ -34,8 +39,8 @@
   cursor: pointer;
 }
 
-.SearchBar button:hover{
-    background-color: #8d62c2;
+.SearchBar button:hover {
+  background-color: #8d62c2;
 }
 
 .SearchBar option {
@@ -43,34 +48,31 @@
 }
 
 @media (max-width: 900px) {
-    .SearchBar input,
-    #cost,
-    #area,
-    .SearchBar button{
+  .SearchBar input,
+  #cost,
+  #area,
+  #type,
+  .SearchBar button {
     display: block;
     width: 90vw;
     margin: auto 0;
     margin-bottom: 1rem;
   }
-  .SearchBar input{
+  .SearchBar input {
     box-sizing: border-box;
   }
 
   .SearchBar {
     flex-direction: column;
     top: 2rem;
+    position: relative;
+    background-color: transparent;
   }
 }
 
-@media (max-width: 940px){
-  .SearchBar button{
-    margin: 0.8rem auto;
+@media (max-width: 940px) {
+  .SearchBar button {
+    margin: auto;
     display: block;
-  }
-}
-
-@media (max-width: 900px){
-  .SearchBar button{
-    margin-bottom: 4rem;
   }
 }

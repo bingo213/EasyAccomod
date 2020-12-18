@@ -14,7 +14,9 @@ import ImageSliderCarousel from './ImageSliderCarousel';
 import Like from 'component/favourite/Like';
 import Footer from 'component/Footer';
 import FormReport from './FormReport';
-import Comment from './Comment';
+import CommentAlreadyExist from './CommentAlreadyExist';
+import Star from 'component/favourite/Star';
+import StarRating from 'component/favourite/StarRating';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -174,12 +176,14 @@ function DetailRentalUnit() {
             </div>
           </div>
         </div>
-        <div className="comment"><h2>Bình luận</h2>
-          <Comment />
-          <Comment />
+        <div className="comment">
+          <h2>Bình luận</h2>
+          <CommentAlreadyExist />
+          <CommentAlreadyExist />
         </div>
       </div>
-
+      <Star starId={5} marked={true}/>
+      <StarRating />
       <Footer />
     </div>
   );

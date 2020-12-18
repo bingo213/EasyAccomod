@@ -19,11 +19,30 @@ function GeneralDetail(props) {
         <h2 className="createPostTitle">Nhập thông tin phòng trọ</h2>
         <label className="createPostLabel">
           <p>Loại phòng</p>
-          <input name="typeRoom" ref={register} />
+          <select name="typeRoom" ref={register}>
+            <option value="t1">Phòng trọ</option>
+            <option value="t2">Chung cư mini</option>
+            <option value="t3">Nhà nguyên căn</option>
+            <option value="t4">Chung cư nguyên căn</option>
+          </select>
         </label>
         <label className="createPostLabel">
           <p>Số lượng phòng</p>
-          <input name="numRoom" ref={register} />
+          {errors.numRoom && (
+            <p className="createPostErrorMessage">{errors.numRoom.message}</p>
+          )}
+          <input
+            name="numRoom"
+            type="number"
+            defaultValue={1}
+            ref={register({
+              required: 'Bạn chưa nhập số lượng phòng',
+              min: {
+                value: 1,
+                message: 'Số lượng phòng ít nhất là 1',
+              },
+            })}
+          />
         </label>
         <label className="createPostLabel">
           <p>Giá</p>
@@ -37,7 +56,11 @@ function GeneralDetail(props) {
           <p>Chung chủ</p>
           <input name="host" ref={register} />
         </label>
-        <div className="createPostContainerButton"><button className="createPostButton" type="submit">Tiếp theo</button></div>
+        <div className="createPostContainerButton">
+          <button className="createPostButton" type="submit">
+            Tiếp theo
+          </button>
+        </div>
       </form>
     </div>
   );

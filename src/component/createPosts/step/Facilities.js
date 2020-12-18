@@ -59,7 +59,10 @@ function Facilities(props) {
               )}
               <input
                 name="electricity"
-                ref={register({ required: 'Bạn cần nhập tiền điện' })}
+                ref={register({
+                  required: 'Bạn cần nhập tiền điện',
+                  min: { value: 1, message: 'Số tiền bạn nhập không hợp lệ' },
+                })}
                 type="number"
                 defaultValue={0}
               />
@@ -72,7 +75,10 @@ function Facilities(props) {
               <input
                 name="water"
                 type="number"
-                ref={register({ required: 'Bạn cần nhập tiền nước' })}
+                ref={register({
+                  required: 'Bạn cần nhập tiền nước',
+                  min: { value: 1, message: 'Số tiền bạn nhập không hợp lệ' },
+                })}
                 defaultValue={0}
               />
             </label>

@@ -8,13 +8,25 @@ function SearchBar() {
   return (
     <div className="SearchBar">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="Thành phố" name="city" ref={register} />
+        <input type="text" placeholder="Tỉnh/Thành phố" name="city" ref={register} />
         <input
           type="text"
           placeholder="Quận/Huyện"
           name="district"
           ref={register}
         />
+        <input
+          type="text"
+          placeholder="Xã/Phường"
+          name="village"
+          ref={register}
+        />
+        <select name="typeRoom" id="type" ref={register}>
+          <option value="t1">Phòng trọ</option>
+          <option value="t2">Chung cư mini</option>
+          <option value="t3">Nhà nguyên căn</option>
+          <option value="t4">Chung cư nguyên căn</option>
+        </select>
         <select name="cost" id="cost" ref={register}>
           <option value="cost1">Dưới 1 triệu</option>
           <option value="cost2">Từ 1 - 1.5 triệu</option>
