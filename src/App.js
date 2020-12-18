@@ -1,4 +1,9 @@
-import {BrowserRouter as Router,  Switch, Route, Redirect} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import './App.css';
 
@@ -8,11 +13,21 @@ import NotFound from 'component/NotFound';
 import DetailRentalUnit from 'component/detail_rental_unit/DetailRentalUnit';
 import AdminPage from 'component/admin/AdminPage';
 import AccountPage from 'component/account/AccountPage';
+import Address from 'component/createPosts/step/Address';
+import GeneralDetail from 'component/createPosts/step/GeneralDetail';
+import Facilities from 'component/createPosts/step/Facilities';
+import UploadImage from 'component/createPosts/step/UploadImage';
+import { createStore, StateMachineProvider } from 'little-state-machine';
+import Submit from 'component/createPosts/step/Submit';
+
+
 
 function App() {
-  return (
+  createStore({
+    data: {},
+  });
+  return (<StateMachineProvider>
     <Router>
-      <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/detail" component={DetailRentalUnit} />
@@ -30,11 +45,37 @@ function App() {
           </Route>
           <Route exact path="/admin" component={AdminPage} />
           <Route exact path="/account" component={AccountPage} />
-          <Route exact path="/404" component={NotFound}/>
-          <Route><Redirect to={{pathname: "/404"}}/></Route>
+          
+      {/* <Router> */}
+        <Route exact path="/create_post" component={Address} />
+        <Route
+          exact
+          path="/create_post/general_detail"
+          component={GeneralDetail}
+        />
+        <Route
+          exact
+          path="/create_post/facilities"
+          component={Facilities}
+        />
+        <Route
+          exact
+          path="/create_post/upload_image"
+          component={UploadImage}
+        />
+        <Route
+          exact
+          path="/create_post/submit"
+          component={Submit}
+        />
+      {/* </Router> */}
+    
+          <Route exact path="/404" component={NotFound} />
+          <Route>
+            <Redirect to={{ pathname: '/404' }} />
+          </Route>
         </Switch>
-      </div>
-    </Router>
+    </Router></StateMachineProvider>
   );
 }
 

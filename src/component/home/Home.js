@@ -9,6 +9,15 @@ import Pagination from 'component/Pagination';
 import Footer from 'component/Footer';
 
 function Home() {
+  const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem('user'));
+  };
+  // const [isLogin, setIsLogin] = useState(() => {
+  //   if(localStorage.getItem('user'))
+  //     return true;
+  //   else return false;
+  // });
+  const isLogin = true;
   const [rentalUnit, setRentalUnit] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,14 +42,11 @@ function Home() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
-    <div className="Home" style={{overflowX: 'hidden'}}>
-      <NavBar />
+    <div className="Home" style={{ overflowX: 'hidden' }}>
+      <NavBar isLogin={isLogin}/>
       <div className="homeImage"></div>
       <SearchBar />
-      <ListRentalUnit
-        currentRentals={currentRentals}
-        loading={loading}
-      />
+      <ListRentalUnit currentRentals={currentRentals} loading={loading} />
       <Pagination
         rentalUnitPerPage={rentalUnitPerPage}
         totalRentalUnit={rentalUnit.length}

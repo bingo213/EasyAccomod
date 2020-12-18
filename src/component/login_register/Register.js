@@ -2,7 +2,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Register({ fields, button, text, type, url, additionField}) {
   const { register, handleSubmit, errors} = useForm();
@@ -11,13 +11,19 @@ function Register({ fields, button, text, type, url, additionField}) {
     'Content-Type': 'application/json',
    ' Access-Control-Allow-Origin': '*'
   }
+
+  const history = useHistory()
   const onSubmit = async (data) => {
     data.user_type = additionField
    await axios.post(url, {...data},{header})
    .then(res => {
-     if(res.success){
+     if(res.data.success){
        if(type === 'Đăng nhập'){
-         <Redirect path='/' />
+        localStorage.setItem('user', JSON.stringify(res.data))
+         history.push('/');
+       }
+       else if(type === 'Đăng ký'){
+        history.push('/login')
        }
      }
    })

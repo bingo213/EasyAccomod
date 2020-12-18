@@ -14,6 +14,7 @@ import ImageSliderCarousel from './ImageSliderCarousel';
 import Like from 'component/favourite/Like';
 import Footer from 'component/Footer';
 import FormReport from './FormReport';
+import Comment from './Comment';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -39,7 +40,7 @@ function DetailRentalUnit() {
       maxWidth: '60rem',
       maxHeight: '100vh',
       margin: 'auto',
-      borderRadius: '4px'
+      borderRadius: '4px',
     },
   };
 
@@ -69,10 +70,7 @@ function DetailRentalUnit() {
         style={modalStyle}
         className="modal"
       >
-        <i
-          className="fal fa-times"
-          onClick={() => setReportIsOpen(false)}
-        ></i>
+        <i className="fal fa-times" onClick={() => setReportIsOpen(false)}></i>
         <div className="reportModal">
           <FormReport />
         </div>
@@ -96,7 +94,6 @@ function DetailRentalUnit() {
             <i className="far fa-exclamation-triangle"></i>
           </div>
         </div>
-
         <div className="description">
           <div className="generalInfo pad">
             <div className="pad">
@@ -177,7 +174,12 @@ function DetailRentalUnit() {
             </div>
           </div>
         </div>
+        <div className="comment"><h2>Bình luận</h2>
+          <Comment />
+          <Comment />
+        </div>
       </div>
+
       <Footer />
     </div>
   );

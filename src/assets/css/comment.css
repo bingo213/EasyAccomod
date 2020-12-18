@@ -1,0 +1,28 @@
+@import 'config.css';
+
+.Comment {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgb(228, 228, 228);
+}
+
+.Comment img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+.Comment .right {
+  padding: 1rem;
+}
+
+.Comment .username {
+  font-size: 1.2rem;
+  color: rgb(77, 77, 77);
+  font-weight: 600;
+}
+
+.Comment .cmt {
+  color: rgb(119, 119, 119);
+}

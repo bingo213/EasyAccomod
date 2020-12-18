@@ -6,8 +6,7 @@ import Account from './account/Account';
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
 
-function NavBar() {
-  const [logIn, setLogIn] = useState(false);
+function NavBar({isLogin}) {
   const [nav, setNav] = useState(() => {
     if (window.innerWidth < 900) {
       return 'small-nav';
@@ -70,7 +69,7 @@ function NavBar() {
               <li>
                 <Link to='/'>Về chúng tôi</Link>
               </li>
-              {logIn ? (
+              {isLogin ? (
                 <li>
                   <Account />
                 </li>
