@@ -21,35 +21,53 @@ function Facilities(props) {
           <div className="createPostRow">
             <label className="createPostLabel2">
               <p>Phòng tắm</p>
-              <input name="bathRoom" ref={register} />
+              <select name="bathRoom" ref={register}>
+                <option value="">Khép kín</option>
+                <option value="">Không khép kín</option>
+              </select>
             </label>
             <label className="createPostLabel2">
               <p>Bếp</p>
-              <input name="kitchen" ref={register} />
+              <select name="kitchen" ref={register}>
+                <option value="k1">Bếp riêng</option>
+                <option value="k2">Bếp chung</option>
+                <option value="k3">Không nấu ăn</option>
+              </select>
             </label>
             <label className="createPostLabel2">
               <p>Điều hòa</p>
-              <input name="airCondition" ref={register} />
+              <select name="airCondition" ref={register}>
+                <option value="true">Có</option>
+                <option value="false">Không</option>
+              </select>
             </label>
           </div>
           <div className="createPostRow">
             <label className="createPostLabel2">
               <p>Ban công</p>
-              <input name="bacony" ref={register} />
+              <select name="bacony" ref={register}>
+                <option value="true">Có</option>
+                <option value="false">Không</option>
+              </select>
             </label>
             <label className="createPostLabel2">
               <p>Điện (đồng/kWh)</p>
+              {errors.electricity && (
+                <p className="createPostErrorMessage">
+                  {errors.electricity.message}
+                </p>
+              )}
               <input
                 name="electricity"
-                ref={register}
+                ref={register({ required: 'Bạn cần nhập tiền điện' })}
                 type="number"
                 defaultValue={0}
               />
             </label>
             <label className="createPostLabel2">
               <p>Nước (đồng/m3)</p>
-              {errors.electricity && (
-                <p className="">{errors.electricity.message}</p>
+              {errors.water && (
+                <p className="createPostErrorMessage">{errors.water.message}</p>
               )}
               <input
                 name="water"
@@ -60,6 +78,13 @@ function Facilities(props) {
             </label>
           </div>
         </div>
+        <label className="createPostLabel labelSelect">
+          <p>Bình nóng lạnh</p>
+          <select name="bacony" ref={register}>
+            <option value="true">Có</option>
+            <option value="false">Không</option>
+          </select>
+        </label>
         <label className="createPostLabel">
           <p>Tiện ích khác</p>
           <textarea name="other" ref={register} />
