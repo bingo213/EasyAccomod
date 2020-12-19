@@ -5,7 +5,7 @@ function Star({ starId, marked }) {
     <span
       star-id={starId}
       role="button"
-      style={{ color: '#ff9933', cursor: 'pointer' }}
+      style={{ color: '#ff9933', cursor: 'pointer', fontSize: '1.3rem'}}
     >{marked ? "\u2605" : "\u2606"}</span>
   );
 }

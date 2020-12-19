@@ -2,7 +2,7 @@
 
 .CommentAlreadyExist {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   border-top: 1px solid rgb(228, 228, 228);
 }
 
@@ -21,6 +21,12 @@
   font-size: 1.2rem;
   color: rgb(77, 77, 77);
   font-weight: 600;
+  padding-right: 3rem;
+}
+
+.CommentAlreadyExist .user-rating{
+  display: flex;
+  padding-bottom: 0.5rem;
 }
 
 .CommentAlreadyExist .cmt {

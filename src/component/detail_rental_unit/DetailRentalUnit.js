@@ -17,6 +17,8 @@ import FormReport from './FormReport';
 import CommentAlreadyExist from './CommentAlreadyExist';
 import Star from 'component/favourite/Star';
 import StarRating from 'component/favourite/StarRating';
+import Comment from './Comment';
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -178,12 +180,12 @@ function DetailRentalUnit() {
         </div>
         <div className="comment">
           <h2>Bình luận</h2>
-          <CommentAlreadyExist />
-          <CommentAlreadyExist />
+          <CommentAlreadyExist rating={5}/>
+          <CommentAlreadyExist rating={4} />
+          <Comment rating={4} />
         </div>
       </div>
-      <Star starId={5} marked={true}/>
-      <StarRating />
+      
       <Footer />
     </div>
   );
