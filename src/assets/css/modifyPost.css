@@ -1,0 +1,67 @@
+.ModifyPost {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+.ModifyPost label {
+  display: block;
+  padding: 1rem;
+}
+
+.ModifyPost .address,
+.ModifyPost .facilities,
+.ModifyPost .general {
+  width: 90vw;
+  max-width: 40rem;
+  margin-top: 4rem;
+  box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.27);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: rgba(255, 255, 255, 0.884);
+  border-radius: 0.7rem;
+}
+
+.ModifyPost .facilities {
+  margin-bottom: 3rem;
+}
+
+.ModifyPost .button {
+  width: 90vw;
+  max-width: 30rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.ModifyPost .button button {
+  width: 10rem;
+  height: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.808);
+  background-color: #b881fc;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.ModifyPost .button button:hover {
+  background-color: #9c5fe6;
+}
+
+.ModifyPost input,
+.ModifyPost select,
+.ModifyPost textarea {
+  width: 90vw;
+  max-width: 30rem;
+  height: 1.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.842);
+}
+
+.ModifyPost textarea {
+  height: 8rem;
+}

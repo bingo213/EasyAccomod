@@ -32,13 +32,20 @@ function Comment({ rating }) {
                 placeholder="Viết bình luận"
                 ref={register({ required: 'Vui lòng thêm bình luận' })}
               ></textarea>
-              <StarRating name="rating" onClick={e => setValue("rating", e.target.hooks.State)}/>
+              {/* <StarRating name="rating"  onClick={e => setValue("rating", e.target.starId)}/>
+              <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
+              <select name="rating" ref={register}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
               <button type="submit">Bình luận</button>
             </form>
           </div>
         </div>
       </div>
-      <Star starId={5} marked={true} />
     </div>
   );
 }

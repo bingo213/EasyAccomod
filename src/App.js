@@ -19,6 +19,7 @@ import Facilities from 'component/createPosts/step/Facilities';
 import UploadImage from 'component/createPosts/step/UploadImage';
 import { createStore, StateMachineProvider } from 'little-state-machine';
 import Submit from 'component/createPosts/step/Submit';
+import ModifyPost from 'component/createPosts/ModifyPost';
 
 
 
@@ -30,7 +31,7 @@ function App() {
     <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/detail" component={DetailRentalUnit} />
+          <Route path="/detail/:id" component={DetailRentalUnit} />
           <Route exact path="/login">
             <LoginOrRegister type="login" />
           </Route>
@@ -48,6 +49,7 @@ function App() {
           
       {/* <Router> */}
         <Route exact path="/create_post" component={Address} />
+        <Route exact path="/modify_post/:id" component={ModifyPost} />
         <Route
           exact
           path="/create_post/general_detail"

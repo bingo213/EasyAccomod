@@ -19,12 +19,15 @@ import Star from 'component/favourite/Star';
 import StarRating from 'component/favourite/StarRating';
 import Comment from './Comment';
 import PlacesAutocomplete from 'react-places-autocomplete';
+import { useParams } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
   // const product = this.props.products.find((p) => {
   //   return p.id === id;
   // });
+  const {id} = useParams();
+
   const slides = [image1, image2, image3, image4, image5];
   const [imageModalIsOpden, setImageModelIsOpen] = useState(false);
   const [reportIsOpen, setReportIsOpen] = useState(false);
@@ -182,7 +185,7 @@ function DetailRentalUnit() {
           <h2>Bình luận</h2>
           <CommentAlreadyExist rating={5}/>
           <CommentAlreadyExist rating={4} />
-          <Comment rating={4} />
+          <Comment />
         </div>
       </div>
       

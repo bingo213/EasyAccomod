@@ -20,6 +20,7 @@ function StarRating() {
       onClick={event => {
         setRating(event.target.getAttribute('star-id'));
         console.log(rating);
+        starId = rating;
       }}
     >
       {Array.from({ length: 5 }, (v, i) => (
