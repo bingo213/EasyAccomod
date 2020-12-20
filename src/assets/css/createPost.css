@@ -11,7 +11,7 @@
 }
 
 .createPostForm {
-  overflow-x: scroll;
+  /* overflow-y: scroll; */
   position: relative;
   background-color: white;
   border-radius: 0.8rem;
@@ -30,13 +30,17 @@
   font-size: 1.8rem;
 }
 
-.createPostLabel {
+.createPostLabel,
+.createPostForm label {
   display: block;
   color: rgb(100, 100, 100);
   padding: 1rem 2rem;
 }
-.createPostLabel input,
-.createPostLabel select {
+.createPostForm label span {
+  display: block;
+}
+.createPostForm input,
+.createPostForm select {
   font-size: 1.1rem;
   width: 100%;
   height: 2.5rem;
@@ -48,11 +52,11 @@
   margin-top: -1.5rem;
 }
 
-.createPostLabel:focus-within {
+.createPostForm label:focus-within {
   color: var(--main-color);
   font-weight: 600;
 }
-.createPostLabel input:focus {
+.createPostForm input:focus, .createPostForm select:focus{
   box-shadow: 0px 0px 6px 1px rgba(184, 129, 252, 0.555);
 }
 
@@ -122,7 +126,7 @@
   transition: 0.2s;
 }
 
-.createPostErrorMessage {
+.createPostErrorMessage, .createPostForm .message {
   color: red;
   font-size: 0.9rem;
 }

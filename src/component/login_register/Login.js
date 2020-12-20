@@ -1,6 +1,5 @@
 import React from 'react';
 import Register from './Register';
-import config from 'config'
 
 function Login() {
   const fields = [
