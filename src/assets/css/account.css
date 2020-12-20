@@ -51,7 +51,7 @@
   width: 0;
 }
 
-.Account .fas {
+.Account .fas, .Account .fal{
   margin-right: 0.5rem;
   font-size: 1.1rem;
 }

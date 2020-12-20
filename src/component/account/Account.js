@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/css/account.css';
 import girlImg from 'assets/img/girl.jpg';
+import axios from 'axios';
 
-function Account() {
-    const [toggle, setToggle] = useState(false)
+function Account({username, role}) {
+    const [toggle, setToggle] = useState(false);
+    const logOut = async () =>{
+      await axios.get('http://localhost:3001/users/logout')
+      .then(response => {
+        if(response.data.success){
+          localStorage.removeItem('user');
+          window.location.reload();
+        }
+      })
+      .catch(err=>console.log(err))
+    }
+    
   return (
     <div className="Account" onClick={()=>setToggle(!toggle)}>
       <img src={girlImg} alt="" />
       <div className="userName">
-        Bingo<i className="fas fa-sort-down"></i>
+        {username}<i className="fas fa-sort-down"></i>
       </div>
       {toggle && <ul id="item">
         <a href=""><li><i className="fas fa-address-card"></i>Hồ sơ</li></a>
         <a href=""><li><i className="fas fa-heart"></i>Yêu thích</li></a>
-        <a href=""><li><i className="fas fa-sign-out"></i>Đăng xuất</li></a>
+        {(role ==='owner') && (<a href="/account"><li><i className="fal fa-newspaper"></i>Bài đăng</li></a>)}
+        <a onClick={logOut}><li><i className="fas fa-sign-out"></i>Đăng xuất</li></a>
       </ul>}
     </div>
   );

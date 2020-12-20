@@ -1,10 +1,11 @@
 import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
+import AutoAddress from 'component/address/AutoAddress';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 
-function Register({ fields, button, text, type, url, additionField}) {
+function Register({ fields, button, text, type, url, additionField, action}) {
   const { register, handleSubmit, errors} = useForm();
 
   const header = {
@@ -18,15 +19,26 @@ function Register({ fields, button, text, type, url, additionField}) {
    await axios.post(url, {...data},{header})
    .then(res => {
      if(res.data.success){
-       if(type === 'Đăng nhập'){
-        localStorage.setItem('user', JSON.stringify(res.data))
+       if(action == 'login'){
+        localStorage.setItem('user', JSON.stringify(res.data));
          history.push('/');
        }
-       else if(type === 'Đăng ký'){
+       else if(action === 'signup'){
+        alert('Đăng ký thành công');
         history.push('/login')
        }
      }
-   })
+     else{
+       
+     }
+   }).catch(errors => {
+     if(action === 'login'){
+       alert("Tên đăng nhập hoặc mật khẩu không đúng");
+     }
+     else if(action === 'signup'){
+       alert("Tên tài khoản đã tồn tại");
+     }
+   });
   };
   return (
     <div>
@@ -44,6 +56,7 @@ function Register({ fields, button, text, type, url, additionField}) {
               name={field.name}
               ref={register(field.registerObj)}
             />
+            {action === 'signup' && <AutoAddress />}
           </div>
         ))}
 

@@ -75,11 +75,12 @@ function RenterRegister() {
     <div className="RenterRegister">
       <Register
         fields={fields}
-        url={`${config}/users/signup`}
+        url='http://localhost:3001/users/signup'
         additionField='rental'
         button="Đăng ký"
         text="Bạn đã có tài khoản? "
         type="Đăng nhập"
+        action="signup"
       />
     </div>
   );

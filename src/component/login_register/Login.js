@@ -24,11 +24,12 @@ function Login() {
     <div className="Login">
       <Register
         fields={fields}
-        url={`${config}/users/login`}
+        url='http://localhost:3001/users/login'
         additionField="login"
         button="Đăng nhập"
         text="Bạn chưa có tài khoản? "
         type="Đăng ký"
+        action="login"
       />
     </div>
   );

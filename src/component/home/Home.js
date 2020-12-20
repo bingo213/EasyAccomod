@@ -9,15 +9,26 @@ import Pagination from 'component/Pagination';
 import Footer from 'component/Footer';
 
 function Home() {
-  const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem('user'));
-  };
-  // const [isLogin, setIsLogin] = useState(() => {
-  //   if(localStorage.getItem('user'))
-  //     return true;
-  //   else return false;
-  // });
-  const isLogin = true;
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if(localStorage.getItem('user'))
+      return true;
+    else return false;
+  });
+    const [username, setUsername] = useState('name')
+   useEffect(() => {
+      if(isLogin){
+        setUsername(user.username);
+      }
+   }, [])
+
+   const [role, setRole] = useState('')
+   useEffect(() => {
+    if(isLogin){
+      setRole(user.role);
+    }
+ }, [])
+  
   const [rentalUnit, setRentalUnit] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +54,7 @@ function Home() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <div className="Home" style={{ overflowX: 'hidden' }}>
-      <NavBar isLogin={isLogin}/>
+      <NavBar isLogin={isLogin} username={username} role={role}/>
       <div className="homeImage"></div>
       <SearchBar />
       <ListRentalUnit currentRentals={currentRentals} loading={loading} />
