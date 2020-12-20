@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { model } = require('./leaders');
 const Schema = mongoose.Schema;
 
 var favoriteSchema = new Schema({
@@ -7,12 +6,10 @@ var favoriteSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    dishes: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Dish'
-        }
-    ],
+    post:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }
   
 },{
     timestamps: true

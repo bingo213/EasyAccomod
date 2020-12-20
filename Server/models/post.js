@@ -1,118 +1,130 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const imageSchema = mongoose.Schema({
-    name: String
-})
+  name: String,
+});
 
-const postSchema = new Schema({
-    owner:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+const postSchema = new Schema(
+  {
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
-    address:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Address'
+    address: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Address',
     },
-    title:{
-        type: String,
-        require: true,
-
+    title: {
+      type: String,
+      required: true,
     },
     description: {
-        type: String
+      type: String,
     },
     typeOfRoom: {
-        type: String,
-        enum: ['phongtro', 'chungcu','nha_nguyencan','chungcu_nguyencan']
+      type: String,
+      required: true,
+      enum: ['phongtro', 'chungcu', 'nha_nguyencan', 'chungcu_nguyencan'],
     },
-    numberOfRoom:{
-        type: Number,
-        min: 1
+    numberOfRoom: {
+      type: Number,
+      min: 1,
+      required: true,
     },
     typeOfPrice: {
-        type: String,
-        enum: ['month','year', 'quarter']
+      type: String,
+      required: true,
+      enum: ['month', 'year', 'quarter'],
     },
-    price:{
-        type: Number,
-        min: 1
+    price: {
+      type: Number,
+      min: 1,
+      required: true,
     },
-    area:{
-        type: Number,
+    area: {
+      type: Number,
+      required: true,
     },
-    withOwner:{
-        type: Boolean
+    withOwner: {
+      type: Boolean,
     },
-    typeOfBadroom :{
-        type: String,
-        enum: ['public', 'private']
+    typeOfBathroom: {
+      type: String,
+      enum: ['public', 'private'],
+      required: true,
     },
-    hasHeater:{
-        type: Boolean
+    hasHeater: {
+      type: Boolean,
+      required: true,
     },
     typeOfKitchen: {
-        type: String,
-        enum:['public', 'private', 'no']
+      type: String,
+      enum: ['public', 'private', 'no'],
     },
-    hasAirCon :{
-        type: Boolean
+    hasAirCon: {
+      type: Boolean,
+      required: true,
     },
     hasBalcony: {
-        type: String
+      type: String,
+      required: true,
     },
     priceOfElect: {
-        type: Number,
-        min: 1
+      type: Number,
+      min: 1,
+      required: true,
     },
-    priceOfWater:{
-        type: Number,
-        min: 1
+    priceOfWater: {
+      type: Number,
+      min: 1,
+      required: true,
     },
-    services:{
-        type: String
+    services: {
+      type: String
     },
-    views:{
-        type: Number,
-        default: 0,
+    views: {
+      type: Number,
+      default: 0,
     },
     active: {
-        type: Number
+      type: Number,
     },
     activeDate: {
-        type: Date,
-        default: null
+      type: Date,
+      default: null,
     },
     hasRent: {
-        type: Boolean
+      type: Boolean,
     },
     typeOfTime: {
-        type: String,
-        enum: ['week','month','quarter', 'year']
+      type: String,
+      enum: ['week', 'month', 'quarter', 'year'],
+      required: true,
     },
     duration: {
-        type: Number,
-        min: 1
+      type: Number,
+      min: 1,
+      required: true,
     },
-    priceOfPost:{
-        type: Number,
-        min: 1
+    priceOfPost: {
+      type: Number,
+      min: 1,
+      required: true,
     },
     paid: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
     expireDate: {
-        type: Date,
-        default: null
+      type: Date,
+      default: null,
     },
-    images:[
-        imageSchema
-    ]
-     
-    }
-    ,{
-    timestamps: true
-});
+    images: [imageSchema],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 var Post = mongoose.model('Post', postSchema);
 module.exports = Post;

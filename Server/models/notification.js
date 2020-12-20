@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { model } = require('./leaders');
 const Schema = mongoose.Schema;
 
 var notificationSchema = new Schema({

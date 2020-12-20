@@ -3,19 +3,24 @@ const Schema = mongoose.Schema;
 
 var Address = new Schema({
     province:{
-        type: String
+        type: String,
+        required: true
     },
     district:{
-        type: String
+        type: String,
+        required: true
     },
     village:{
-        type: String
+        type: String,
+        required: true
     },
     street:{
-        type: String
+        type: String,
+        required: true
     },
     houseNumber:{
-        type: Number
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true

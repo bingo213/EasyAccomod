@@ -6,6 +6,8 @@ var passport = require('passport');
 const bodyParser = require('body-parser');
 var User = require('../models/user');
 var Profile = require('../models/profile');
+const Favorite = require('../models/favorite');
+const favorite = require('../models/favorite');
 
 router.use(bodyParser.json());
 
@@ -77,7 +79,7 @@ router.post('/login', (req, res, next) => {
       var token = authenticate.getToken({ _id: req.user._id });
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json({ success: true, role: user.user_type, token: token, userId: user._id });
+      res.json({ success: true, role: user.user_type, username: user.username, token: token, userId: user._id });
     });
   })(req, res, next);
 })
@@ -96,7 +98,7 @@ router.get('/logout', (req, res) => {
   }
 })
 
-
+//get profile of user
 router.route('/:userId/profile')
 .get(authenticate.verifyUser, (req, res, next) => {
   Profile.find({user: req.params.userId})
@@ -113,6 +115,7 @@ router.route('/:userId/profile')
   })
 })
 
+//change Active of user
 router.route('/:userId/changeActive')
 .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
   User.findById(req.params.userId)
@@ -139,20 +142,20 @@ router.route('/:userId/changeActive')
   }, (err) => next(err))
 
 })
-// router.route('/')
-//   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res) => {
-//     User.find({})
-//       .then((users) => {
-//         res.setStatus = 200;
-//         res.setHeader('Content-Type', 'application/json');
-//         res.json(users);
-//       })
-//       .catch((err) => {
-//         res.statusCode = 500;
-//         res.setHeader('Content-Type', 'application/json');
-//         res.json({ err: err });
-//       })
-//   })
+
+//get All Favorite of one user
+router.route('/favorites')
+.get(authenticate.verifyUser, (req, res, next) =>{
+  Favorite.find({user: req.user._id},'post')
+  .populate('post')
+  .then((favorites) => {
+    res.statusCode = 200;
+    res.setHeader('Content-type', 'application/json');
+    res.json({success: true, posts: favorites })
+  }, (err) => next(err))
+  .catch((err) => next(err))
+})
+
 router.get('/checkJWTToken', (req, res) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (err) return next(err);

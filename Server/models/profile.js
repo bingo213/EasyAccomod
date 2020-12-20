@@ -23,9 +23,6 @@ var Profile = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Address'
     },
-    active: {
-        type: Number
-    },
     update: {
         type: Boolean,
         default: false
