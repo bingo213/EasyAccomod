@@ -77,6 +77,7 @@ function Register({ fields, button, text, type, url, additionField, action }) {
             register={register}
             validation={validation}
             errors={errors}
+            extend={true}
           />
         )}
         <div className="bottom">

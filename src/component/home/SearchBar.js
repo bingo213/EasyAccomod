@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import 'assets/css/searchBar.css';
+import AutoAddress from 'component/address/AutoAddress';
 
 function SearchBar() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+  const validation = [{}, {}, {}, {}, {}];
   const onSubmit = data => console.log(data);
   return (
     <div className="SearchBar">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="Tỉnh/Thành phố" name="city" ref={register} />
-        <input
-          type="text"
-          placeholder="Quận/Huyện"
-          name="district"
-          ref={register}
-        />
-        <input
-          type="text"
-          placeholder="Xã/Phường"
-          name="village"
-          ref={register}
+        <AutoAddress
+          register={register}
+          errors={errors}
+          validation={validation}
+          extend={false}
         />
         <select name="typeRoom" id="type" ref={register}>
           <option value="t1">Phòng trọ</option>
@@ -42,7 +37,7 @@ function SearchBar() {
           <option value="area4">Từ 40 - 50 m²</option>
           <option value="area5">Trên 50 m²</option>
         </select>
-        <button>Tìm kiếm</button>
+        <div className="btn"><button type="submit">Tìm kiếm</button></div>
       </form>
     </div>
   );

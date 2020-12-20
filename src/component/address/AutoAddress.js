@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function AutoAddress({ register, validation, errors }) {
+function AutoAddress({ register, validation, errors, extend }) {
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
   const [ward, setWard] = useState([]);
@@ -72,9 +72,13 @@ function AutoAddress({ register, validation, errors }) {
         )}
         <select
           name="province"
+          defaultValue=""
           ref={register(validation[0])}
           onChange={handleProvinceChange}
         >
+          <option value="" hidden>
+            Chọn tỉnh/thành phố
+          </option>
           {province.map(p => (
             <option value={p.province_name} key={p.province_id}>
               {p.province_name}
@@ -89,9 +93,13 @@ function AutoAddress({ register, validation, errors }) {
         )}
         <select
           name="district"
+          defaultValue=""
           onChange={handleDistrictChange}
           ref={register(validation[1])}
         >
+          <option value="" hidden>
+           Chọn quận/huyện
+          </option>
           {district.map(d => (
             <option value={d.district_name} key={d.district_id}>
               {d.district_name}
@@ -102,7 +110,14 @@ function AutoAddress({ register, validation, errors }) {
       <label>
         <span>Xã/Phường</span>
         {errors.village && <p className="message">{errors.village.message}</p>}
-        <select name="village" ref={register(validation[2])}>
+        <select
+          name="village"
+          defaultValue=""
+          ref={register(validation[2])}
+        >
+          <option value="" hidden>
+            Chọn xã/phường
+          </option>
           {ward.map(w => (
             <option value={w.ward_name} key={w.ward_id}>
               {w.ward_name}
@@ -110,24 +125,28 @@ function AutoAddress({ register, validation, errors }) {
           ))}
         </select>
       </label>
-      <div className="street-houseNumber">
-        <label>
-          <span>Tên đường</span>
-          {errors.street && <p className="message">{errors.street.message}</p>}
-          <input type="text" name="street" ref={register(validation[3])} />
-        </label>
-        <label>
-          <span>Số nhà</span>
-          {errors.houseNumber && (
-            <p className="message">{errors.houseNumber.message}</p>
-          )}
-          <input
-            type="number"
-            name="houseNumber"
-            ref={register(validation[4])}
-          />
-        </label>
-      </div>
+      {extend && (
+        <div>
+          <label>
+            <span>Tên đường</span>
+            {errors.street && (
+              <p className="message">{errors.street.message}</p>
+            )}
+            <input type="text" name="street" ref={register(validation[3])} />
+          </label>
+          <label>
+            <span>Số nhà</span>
+            {errors.houseNumber && (
+              <p className="message">{errors.houseNumber.message}</p>
+            )}
+            <input
+              type="number"
+              name="houseNumber"
+              ref={register(validation[4])}
+            />
+          </label>
+        </div>
+      )}
     </div>
   );
 }

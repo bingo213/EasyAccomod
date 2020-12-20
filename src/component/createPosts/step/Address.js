@@ -37,6 +37,7 @@ function Address(props) {
           register={register}
           errors={errors}
           validation={validation}
+          extend={true}
         />
         <div className="createPostContainerButton">
           <button className="createPostButton" type="submit">
