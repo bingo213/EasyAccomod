@@ -32,7 +32,7 @@
 .NavBar .large-nav ul a{
   position: relative;
 }
-.NavBar .large-nav ul a::before {
+.NavBar .large-nav ul a::before{
   content: '';
   width: 0rem;
   border-top: 3px solid transparent;
@@ -41,9 +41,33 @@
   margin-left: -10%;
   transition: width 0.4s;
 }
+.NavBar .large-nav ul #btn::before{
+  content: none;
+}
 .NavBar .large-nav ul a:hover::before {
   width: 120%;
   border-top: 3px solid var(--main-color);
+}
+
+.NavBar .btn button{
+  padding: 0.6rem;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: var(--main-color);
+  color: #e9e9e9;
+  cursor: pointer;
+  transition: 0.4s
+}
+
+.NavBar .fa-plus-circle{
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.NavBar .btn button:hover{
+  background-color: #9e56f7;
+  transform: scale(1.1);
+  transition: 0.4s
 }
 
 .NavBar .small-nav, .scrolled {

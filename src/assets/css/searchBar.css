@@ -2,7 +2,7 @@
 
 .SearchBar {
   position: absolute;
-  bottom: 8rem;
+  bottom: 12rem;
   width: calc(100vw - 15px);
 }
 

@@ -52,7 +52,13 @@ function Register({ fields, button, text, type, url, additionField, action }) {
     {
       required: 'Bạn chưa nhập tên đường',
     },
-    { required: 'Bạn chưa nhập số nhà' },
+    {
+      required: 'Bạn chưa nhập số nhà',
+      min: {
+        value: 1,
+        message: 'Số nhà không hợp lệ',
+      },
+    },
   ];
   return (
     <div className="Register">

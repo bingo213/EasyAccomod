@@ -69,6 +69,13 @@ function NavBar({isLogin, username, role}) {
               <li>
                 <Link to='/'>Về chúng tôi</Link>
               </li>
+              {
+                role === 'owner' && <li className="btn">
+                  <Link to='/create_post' id="btn">
+                  <button><i className="fal fa-plus-circle"></i>Tạo bài viết</button>
+                  </Link>
+                </li>
+              }
               {isLogin ? (
                 <li>
                   <Account username={username} role={role}/>

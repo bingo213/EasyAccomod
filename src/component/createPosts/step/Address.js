@@ -21,7 +21,13 @@ function Address(props) {
     {
       required: 'Bạn chưa nhập tên đường',
     },
-    { required: 'Bạn chưa nhập số nhà' },
+    {
+      required: 'Bạn chưa nhập số nhà',
+      min: {
+        value: 1,
+        message: 'Số nhà không hợp lệ',
+      },
+    },
   ];
 
   const { action, state } = useStateMachine(updateAction);
@@ -40,6 +46,14 @@ function Address(props) {
           extend={true}
         />
         <div className="createPostContainerButton">
+          <button
+            className="createPostButtonCancel"
+            onClick={() => {
+              props.history.push('/');
+            }}
+          >
+            Huỷ
+          </button>
           <button className="createPostButton" type="submit">
             Tiếp theo
           </button>

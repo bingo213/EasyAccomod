@@ -21,22 +21,22 @@ function Facilities(props) {
           <div className="createPostRow">
             <label className="createPostLabel2">
               <p>Phòng tắm</p>
-              <select name="bathRoom" ref={register}>
-                <option value="">Khép kín</option>
-                <option value="">Không khép kín</option>
+              <select name="typeOfBathroom" ref={register}>
+                <option value="private">Khép kín</option>
+                <option value="public">Không khép kín</option>
               </select>
             </label>
             <label className="createPostLabel2">
               <p>Bếp</p>
-              <select name="kitchen" ref={register}>
-                <option value="k1">Bếp riêng</option>
-                <option value="k2">Bếp chung</option>
-                <option value="k3">Không nấu ăn</option>
+              <select name="typeOfKitchen" ref={register}>
+                <option value="public">Bếp riêng</option>
+                <option value="private">Bếp chung</option>
+                <option value="no">Không nấu ăn</option>
               </select>
             </label>
             <label className="createPostLabel2">
               <p>Điều hòa</p>
-              <select name="airCondition" ref={register}>
+              <select name="hasAirCon" ref={register}>
                 <option value="true">Có</option>
                 <option value="false">Không</option>
               </select>
@@ -45,57 +45,67 @@ function Facilities(props) {
           <div className="createPostRow">
             <label className="createPostLabel2">
               <p>Ban công</p>
-              <select name="bacony" ref={register}>
+              <select name="hasBalcony" ref={register}>
                 <option value="true">Có</option>
                 <option value="false">Không</option>
               </select>
             </label>
             <label className="createPostLabel2">
               <p>Điện (đồng/kWh)</p>
-              {errors.electricity && (
+              {errors.priceOfElect && (
                 <p className="createPostErrorMessage">
-                  {errors.electricity.message}
+                  {errors.priceOfElect.message}
                 </p>
               )}
               <input
-                name="electricity"
+                name="priceOfElect"
+                placeholder="0 - 10.000"
                 ref={register({
                   required: 'Bạn cần nhập tiền điện',
-                  min: { value: 1, message: 'Số tiền bạn nhập không hợp lệ' },
+                  min: { value: 0, message: 'Số tiền bạn nhập không hợp lệ' },
+                  max: { value: 10000, message: 'Số tiền bạn nhập không hợp lệ' }
                 })}
                 type="number"
-                defaultValue={0}
               />
             </label>
             <label className="createPostLabel2">
               <p>Nước (đồng/m3)</p>
-              {errors.water && (
-                <p className="createPostErrorMessage">{errors.water.message}</p>
+              {errors.priceOfWater && (
+                <p className="createPostErrorMessage">{errors.priceOfWater.message}</p>
               )}
               <input
-                name="water"
+                placeholder="0 - 50.000"
+                name="priceOfWater"
                 type="number"
                 ref={register({
                   required: 'Bạn cần nhập tiền nước',
-                  min: { value: 1, message: 'Số tiền bạn nhập không hợp lệ' },
+                  min: { value: 0, message: 'Số tiền bạn nhập không hợp lệ' },
+                  max: { value: 50000, message: 'Số tiền bạn nhập không hợp lệ' }
                 })}
-                defaultValue={0}
               />
             </label>
           </div>
         </div>
         <label className="createPostLabel labelSelect">
           <p>Bình nóng lạnh</p>
-          <select name="bacony" ref={register}>
+          <select name="hasHeater" ref={register}>
             <option value="true">Có</option>
             <option value="false">Không</option>
           </select>
         </label>
         <label className="createPostLabel">
           <p>Tiện ích khác</p>
-          <textarea name="other" ref={register} />
+          <textarea name="services" ref={register} placeholder="Máy giặt, tủ lạnh, giường tủ,..."/>
         </label>
         <div className="createPostContainerButton">
+          <button
+            className="createPostButtonCancel"
+            onClick={() => {
+              props.history.push('/');
+            }}
+          >
+            Huỷ
+          </button>
           <button className="createPostButton" type="submit">
             Tiếp theo
           </button>
