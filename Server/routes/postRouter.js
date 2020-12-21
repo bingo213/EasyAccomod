@@ -18,7 +18,6 @@ const profile = require('../models/profile');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log(file);
     cb(null, 'public/images');
   },
   filename: (req, file, cb) => {
@@ -79,13 +78,13 @@ postRouter
     authenticate.verifyUser,
     upload.array('postImages', 10),
     (req, res, next) => {
-        var arr = req.files;
-        if (req.files.length < 3) {
-          res.statusCode = 400;
-          res.setHeader('Content-Type', 'application/json');
-          res.json({ success: false, message: 'images must be greater than 3' });
-        }
-        var paths = arr.map(item => item.path);
+      var arr = req.files;
+      if (req.files.length < 3) {
+        res.statusCode = 400;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({ success: false, message: 'images must be greater than 3' });
+      }
+      var paths = arr.map(item => item.path);
       var user = req.user;
       var role = user.user_type;
       req.body.owner = user._id;
@@ -122,7 +121,6 @@ postRouter
                   if (post) {
                     for (i = 0; i < paths.length; i++) {
                       post.images.push({ name: paths[i] });
-                      console.log('post.images: ' + post.images);
                     }
                     post.save();
 
@@ -131,7 +129,7 @@ postRouter
                       .populate('address')
                       .then(post => {
                         res.statusCode = 200;
-                        res.setHeader('Constent-Type', 'application/json');
+                        // res.setHeader('Constent-Type', 'application/json');
                         res.json({ success: true, post: post });
                       });
                   }
@@ -140,7 +138,6 @@ postRouter
               )
               .catch(err => next(err));
           },
-          err => next(err),
           err => next(err)
         )
         .catch(err => next(err));
