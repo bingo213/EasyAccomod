@@ -1,0 +1,145 @@
+@import 'config.css';
+
+.postPageNav {
+  width: 100vw;
+  height: var(--navbar-height);
+  background-color: var(--navbar-dark-bgcolor);
+}
+
+.PostPage .navigation {
+  position: fixed;
+  top: var(--navbar-height);
+  width: var(--post-page-navigation-width);
+  height: 100%;
+  padding: 0 1rem;
+  background-color: var(--post-page-navigation-bgcolor);
+  color: #c7d3d4;
+}
+
+.PostPage .navigation .navigationButton {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(141, 141, 141, 0.658);
+}
+
+.PostPage .navigation .navigationButton {
+  cursor: pointer;
+}
+
+.PostPage .navigation .navigationButton:hover {
+  background-color: rgba(237, 119, 253, 0.445);
+}
+
+.PostPage .navigation i {
+  font-size: 1.8rem;
+  width: 3rem;
+}
+
+.PostPage .postPageContent {
+  margin-left: calc(var(--post-page-navigation-width) + 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.PostPage .postPageContent h2 {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.PostPage .postTag {
+  position: relative;
+}
+
+.PostPage .postTag i {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.8rem;
+  width: 1.8rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.PostPage .postTag i:hover {
+  background-color: rgba(56, 56, 56, 0.233);
+}
+
+.PostPage .postTag .option {
+  position: absolute;
+  right: 2rem;
+  top: 3.5rem;
+  background-color: #d7bde2;
+}
+
+.PostPage .postTag .option .op {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.PostPage .postTag .option .op:nth-child(1) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.PostPage .postTag .option .op:hover {
+  background-color: #aa86b8;
+}
+
+
+
+@media (max-width: 700px) {
+  .PostPage .postPageContent {
+    margin-left: var(--post-page-navigation-width-small);
+  }
+  .PostPage .navigation {
+    width: var(--post-page-navigation-width-small);
+    top: 35%;
+    background-color: white;
+    padding: 0;
+  }
+
+  .PostPage .navigation .navigationButton {
+    border: none;
+    background-color: var(--post-page-navigation-bgcolor);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .PostPage .navigation .tag {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 10rem;
+    background-color: var(--navbar-dark-bgcolor);
+    padding: 1rem 0.5rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    left: 5.5rem;
+    top: 0.3rem;
+  }
+
+  .PostPage .navigation .tag::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--navbar-dark-bgcolor);
+    left: -0.6rem;
+    top: 0.6rem;
+    transform: rotate(45deg);
+  }
+
+  .PostPage .navigation .navigationButton:hover .tag {
+    display: block;
+  }
+
+  .PostPage .navigation .navigationButton:hover {
+    transform: scale(1.2);
+    background-color: var(--post-page-navigation-bgcolor);
+    text-align: center;
+    transition: 0.3s;
+  }
+}

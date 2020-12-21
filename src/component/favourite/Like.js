@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'assets/css/like.css';
 
 function Like({ isLike }) {
-  console.log(isLike);
   const [heartState, setHeartState] = useState(isLike);
   return (
     <div className="Like">

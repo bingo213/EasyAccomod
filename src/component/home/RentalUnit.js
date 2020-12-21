@@ -3,12 +3,15 @@ import 'assets/css/rentalUnit.css';
 import roomImg from 'assets/img/blue-400x314.jpg';
 import Like from 'component/favourite/Like';
 import { Link } from 'react-router-dom';
+import concatAddress from 'helper/concatAddress';
 
 function RentalUnit({ rentalUnit }) {
   // const [heartState, setHeartState] = useState(false);
   const heart = false;
   const title = rentalUnit.title;
-  const id = rentalUnit.id;
+  const id = rentalUnit._id;
+  // const address = concatAddress({rentalUnit.address})
+  console.log(concatAddress(rentalUnit.address));
   return (
     <div className="RentalUnit">
       <Link to={`/detail/${id}`}>
@@ -16,28 +19,29 @@ function RentalUnit({ rentalUnit }) {
           <div className="image">
             <img src={roomImg} alt="Room Image" />
             <div className="cost">
-              2.5 triệu<p className="small"> /tháng</p>
+              {rentalUnit.price}
+              <p className="small"> /{rentalUnit.typeOfPrice}</p>
             </div>
           </div>
           <div className="description">
             <div className="title">{title}</div>
-            <div className="area">
-              <i className="far fa-home"></i>Chung cư nguyên căn - Diện tích:
-              50m²
-            </div>
             <div className="address">
-              <i className="fas fa-map-marker-alt"></i>Cau Giay District, Ha Noi
-              abceffffffffffffffffabc hdufa abc vbca sfajf jfashifj ajf jfja
-              jfahfl fa last jfaudf
+              <i className="fas fa-map-marker-alt"></i>
+              {concatAddress(rentalUnit.address)}
+            </div>{' '}
+            <div className="area">
+              <i className="far fa-home"></i>
+              {rentalUnit.typeOfRoom} - Diện tích:
+              {rentalUnit.area}m<sup>2</sup>
             </div>
             <div className="additionInfo">
               <div className="area">
                 <i className="fal fa-charging-station"></i>
-                <span>Điện:</span> 2000/kWh
+                <span>Điện:</span> {rentalUnit.priceOfElect}/kWh
               </div>
               <div className="area">
                 <i className="fal fa-hand-holding-water"></i>
-                <span>Nước:</span> 7000/m3
+                <span>Nước:</span> {rentalUnit.priceOfWater}/m<sup>3</sup>
               </div>
             </div>
             <p className="comment">12 bình luận</p>
@@ -45,6 +49,7 @@ function RentalUnit({ rentalUnit }) {
         </>
       </Link>
       <div className="heart">
+        <p>125</p>
         <Like isLike={heart} />
       </div>
     </div>

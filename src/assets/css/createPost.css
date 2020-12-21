@@ -16,8 +16,8 @@
   background-color: white;
   border-radius: 0.8rem;
   width: 90vw;
-  height: 45rem;
-  max-height: 90vh;
+  height: 40rem;
+  /* max-height: 90vh; */
   max-width: 40rem;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.4);
 }

@@ -37,7 +37,7 @@ function Home() {
   useEffect(() => {
     const fetchRentalUnitData = async () => {
       setLoading(true);
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const res = await axios.get('http://localhost:3001/post/getAllActive');
       setRentalUnit(res.data);
       setLoading(false);
     };

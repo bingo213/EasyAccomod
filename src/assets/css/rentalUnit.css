@@ -8,9 +8,17 @@
   margin-bottom: 2.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+.RentalUnit .image,
+.RentalUnit img {
+  width: 100%;
+  height: var(--rental-unit-image-height);
+  overflow: hidden;
+}
 .RentalUnit .image {
+  width: calc(100% - 1.2rem);
   position: relative;
+  border: 0.6rem solid white;
+  border-bottom: none;
 }
 
 .RentalUnit .image::before {
@@ -30,15 +38,9 @@
   height: 100%;
 }
 
-.RentalUnit .image,
-.RentalUnit img {
-  width: 100%;
-  height: var(--rental-unit-image-height);
-  overflow: hidden;
-}
-
 .RentalUnit img {
   object-fit: cover;
+  border-radius: 0.8rem;
 }
 
 .RentalUnit .cost {
@@ -93,6 +95,8 @@
 
 .RentalUnit .additionInfo {
   height: var(--rental-unit-addition-info-height);
+  display: flex;
+  justify-content: space-between;
 }
 
 .RentalUnit .area {
@@ -121,8 +125,16 @@
 
 .RentalUnit .heart {
   position: relative;
-  left: 20rem;
+  left: 17.7rem;
   bottom: 3.5rem;
+  display: flex;
+  align-items: center;
+}
+.RentalUnit .heart p {
+  width: 2.5rem;
+  text-align: right;
+  color: #9d50fc;
+  font-weight: bold;
 }
 
 @media (max-width: 692px) {
@@ -131,7 +143,7 @@
   }
 
   .RentalUnit .heart {
-    left: 28rem;
+    left: 26rem;
   }
 }
 

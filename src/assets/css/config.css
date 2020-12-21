@@ -1,45 +1,48 @@
-:root{
-    --main-color:  #b881fc;
-    --main-font-family: 'Roboto', sans-serif;
-    --second-font-family: 'Roboto Condensed', sans-serif;
+:root {
+  --main-color: #b881fc;
+  --hover-color: #984bf7;
+  --main-font-family: 'Roboto', sans-serif;
+  --second-font-family: 'Roboto Condensed', sans-serif;
 
-    /* Nav bar config */
-    --navbar-light-bgcolor:  #282d33a4;
-    --navbar-dark-bgcolor:  #282d33;
-    --navbar-height: 5.6rem;
+  /* Nav bar config */
+  --navbar-light-bgcolor: #282d33a4;
+  --navbar-dark-bgcolor: #282d33;
+  --navbar-height: 5.6rem;
 
-    /* RentalUnit config */
-    --rental-unit-width: 24rem;
-    --rental-unit-height: 37rem;
-    --rental-unit-image-height: 17rem;
-    --rental-unit-title-height: 5.4rem;
-    --rental-unit-description-height: 18rem;
-    --rental-unit-addition-info-height: 4.7rem;
-    --rental-unit-address-height: 2.3rem;
+  /* RentalUnit config */
+  --rental-unit-width: 24rem;
+  --rental-unit-height: 34rem;
+  --rental-unit-image-height: 18rem;
+  --rental-unit-title-height: 3.5rem;
+  --rental-unit-description-height: 13.5rem;
+  --rental-unit-addition-info-height: 1.7rem;
+  --rental-unit-address-height: 2.3rem;
 
-    /* Modal config */
-    --modal-bgcolor: white;
-    --modal-width: 90vw;
-    --modal-height: 90vh;
+  /* Modal config */
+  --modal-bgcolor: white;
+  --modal-width: 90vw;
+  --modal-height: 90vh;
 
-    /* Form report config */
-    --form-report-width: 85vw;
-    --form-report-height: 85vh;
+  /* Form report config */
+  --form-report-width: 85vw;
+  --form-report-height: 85vh;
 
-    /* imageSliderCrousel config */
-    --image-slider-max-width: 60rem;
-    --image-inner-carousel-max-width: 85vw;
-    --image-inner-carousel-max-height: 85vh;
+  /* imageSliderCrousel config */
+  --image-slider-max-width: 60rem;
+  --image-inner-carousel-max-width: 85vw;
+  --image-inner-carousel-max-height: 85vh;
 
-    /* Detail rental unit config */
-    --detail-rental-max-width: 70rem;
-    --detail-rental-width: 90vw;
+  /* Detail rental unit config */
+  --detail-rental-max-width: 70rem;
+  --detail-rental-width: 90vw;
 
-    /* displayImage component config */
-    --display-image-width: 90vw;
-    --display-image-max-width: 70rem;
-    --display-image-height: 35rem
+  /* displayImage component config */
+  --display-image-width: 90vw;
+  --display-image-max-width: 70rem;
+  --display-image-height: 35rem;
 
-
-
+  /* post page config */
+  --post-page-navigation-width: 15rem;
+  --post-page-navigation-width-small: 4rem;
+  --post-page-navigation-bgcolor: #603f83;
 }

@@ -1,12 +1,10 @@
 .Post {
   color: rgb(61, 61, 61);
-  /* border: 1px solid rgb(175, 175, 175); */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
   margin: 0.5rem;
   padding: 1rem;
   display: flex;
   align-items: center;
-  width: 35rem;
   height: 8rem;
 }
 
@@ -14,17 +12,39 @@
   width: 10rem;
   height: 8rem;
   object-fit: cover;
-  display: block;
+  /* display: block; */
   padding-right: 1rem;
 }
 
 .Post .rentalContent .title {
   font-size: 1.2rem;
   font-weight: 600;
+  padding: 0.5rem 0;
 }
 
 .Post .rentalContent .description {
     font-size: 0.9rem;
     color: rgb(71, 71, 71);
+}
+
+@media (max-width: 501px){
+  .Post{
+    flex-direction: column;
+    align-items: flex-start;
+    height: 20rem;
+  }
+
+  .Post img{
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    padding: 0;
+  }
+
+  .Post .rentalContent .description {
+    width: 90%;
+    text-align: left;
+    padding-bottom: 2rem;
+  }
 }
 
