@@ -20,12 +20,12 @@ var swaggerDefinition = {
   },
   host: 'localhost:3001',
   basePath: '/',
-}
+};
 
 var options = {
   swaggerDefinition: swaggerDefinition,
 
-  apis :['./routes/*.js']
+  apis: ['./routes/*.js'],
 };
 var swaggerSpec = swaggerJSDoc(options);
 
@@ -46,37 +46,46 @@ var ownerRouter = require('./routes/ownerRouter');
 var postRouter = require('./routes/postRouter');
 var adminRouter = require('./routes/adminRouter');
 var searchRouter = require('./routes/searchRouter');
-
-
+var uploadRouter = require('./routes/uploadRouter');
 
 const mongoose = require('mongoose');
 
 const url = config.mongoUrl;
-const connect = mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
+const connect = mongoose.connect(url, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
-connect.then((db) => {
-  console.log('Connected to server');
-  initial();
-}, (error) => { console.log(console.error) });
+connect.then(
+  db => {
+    console.log('Connected to server');
+    initial();
+  },
+  error => {
+    console.log(console.error);
+  }
+);
 
-function initial(){
+function initial() {
   User.countDocuments({ user_type: 'admin' }, function (err, count) {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
-    if(count < 1){
-      User.register(new User({ username: 'admin', user_type: 'admin',active: 1 }), 'adminpassword', (err, user) => {
-        if (err) {
-          console.log(err)
+    if (count < 1) {
+      User.register(
+        new User({ username: 'admin', user_type: 'admin', active: 1 }),
+        'adminpassword',
+        (err, user) => {
+          if (err) {
+            console.log(err);
+          } else {
+            passport.authenticate('local')(req, res, () => {});
+          }
         }
-        else {
-            passport.authenticate('local')(req, res, () => {
-            })
-          };
-        })
-      }
-    })
-};
+      );
+    }
+  });
+}
 
 var app = express();
 app.use(cors());
@@ -96,13 +105,15 @@ app.use(express.urlencoded({ extended: false }));
 // });
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(session({
-  name: 'session-id',
-  secret: 'cypher-ex',
-  saveUninitialized: false,
-  resave: false,
-  store: new FileStore()
-}));
+app.use(
+  session({
+    name: 'session-id',
+    secret: 'cypher-ex',
+    saveUninitialized: false,
+    resave: false,
+    store: new FileStore(),
+  })
+);
 
 app.use(passport.initialize());
 
@@ -119,7 +130,7 @@ app.use('/owner', ownerRouter);
 app.use('/post', postRouter);
 app.use('/admin', adminRouter);
 app.use('/search', searchRouter);
-
+app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

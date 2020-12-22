@@ -1,26 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const authenticate = require('../authenticate');
-const multer = require('multer');
+const Address = require('../models/address')
+
+
+var multer = require('multer');
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images');
-    },
-
-    filename: (req, file, cb) => {
-        cb(null, file.originalname)
-    }
+  destination: (req, file, cb) => {
+    cb(null, 'public/test');
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, Date.now() + file.originalname);
+  },
 });
 
 const imageFileFilter = (req, file, cb) => {
-    if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-        return cb(new Error('You can upload only image files!'), false);
-    }
-    cb(null, true);
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|JPG)$/)) {
+    return cb(new Error('You can upload only image files!'), false);
+  }
+  cb(null, true);
 };
 
-const upload = multer({ storage: storage, fileFilter: imageFileFilter});
+var upload = multer({ storage: storage, fileFilter: imageFileFilter });
 
 // const multer = require('multer');
 // const storage = multer.diskStorage({
@@ -43,7 +46,8 @@ uploadRouter.route('/')
     res.statusCode = 403;
     res.end('GET operation not supported on /imageUpload');
 })
-.post(authenticate.verifyUser, authenticate.verifyAdmin, upload.array('imageFile',5), (req, res) => {
+.post(authenticate.verifyUser, upload.array('image',5), (req, res) => {
+    Address.create({province: req.body.name});
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.json(req.file);
