@@ -16,7 +16,6 @@ var multer = require('multer');
 const { path, add } = require('../models/address');
 const profile = require('../models/profile');
 
-
 //create Multer for upload images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -230,14 +229,10 @@ postRouter
           ).then(post => {
             Address.findById(post.address).then(address => {
               console.log(address);
-              if (req.body.province)
-                address.province = req.body.province;
-              if (req.body.district)
-                address.district = req.body.district;
-              if (req.body.village)
-                address.village = req.body.village;
-              if (req.body.street)
-                address.street = req.body.street;
+              if (req.body.province) address.province = req.body.province;
+              if (req.body.district) address.district = req.body.district;
+              if (req.body.village) address.village = req.body.village;
+              if (req.body.street) address.street = req.body.street;
               if (req.body.houseNumber)
                 address.houseNumber = req.body.houseNumber;
               address.save();
@@ -278,40 +273,46 @@ postRouter
     }
   )
   .delete(authenticate.verifyUser, (req, res, next) => {
-    Post.findById(req.params.postId).then(
-      post => {
-        if (req.user.user_type == 'admin') {
-          if (post.active == 1 || post.active == 0) {
+    Post.findById(req.params.postId)
+      .then(post => {
+        if (post) {
+          // if (req.user.user_type == 'admin') {
+          //   if (post.active == 1 || post.active == 0) {
+          //     res.statusCode = 403;
+          //     res.setHeader('Content-Type', 'application/json');
+          //     res.json({
+          //       success: false,
+          //       message: 'Not permission on this post: ' + postId,
+          //     });
+          //   } else {
+          //     post.remove().then(resp => {
+          //       res.statusCode = 200;
+          //       res.setHeader('Content-Type', 'application/json');
+          //       res.json(resp);
+          //     });
+          //   }
+          // }
+          if (!post.owner.equals(req.user._id)) {
             res.statusCode = 403;
             res.setHeader('Content-Type', 'application/json');
             res.json({
               success: false,
-              message: 'Not permission on this post: ' + postId,
-            });
-          } else {
-            post.remove().then(resp => {
-              res.statusCode = 200;
-              res.setHeader('Content-Type', 'application/json');
-              res.json(resp);
+              message: 'You are not  author of this post: ' + req.params.postId,
             });
           }
-        }
-        if ( !post.owner.equals(req.user._id)) {
-          res.statusCode = 403;
-          res.setHeader('Content-Type', 'application/json');
-          res.json({
-            success: false,
-            message: 'You are not  author of this post: ' + req.params.postId,
+          post.remove().then(resp => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(resp);
           });
+        } else {
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'appication/json');
+          res.json({ message: ' post not found ', success: false });
         }
-        post.remove().then(resp => {
-          res.statusCode = 200;
-          res.setHeader('Content-Type', 'application/json');
-          res.json(resp);
-        });
-      },
-      err => next(err)
-    );
+        err => next(err);
+      })
+      .catch(err => next(err));
   });
 
 postRouter

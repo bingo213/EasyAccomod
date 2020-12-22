@@ -119,7 +119,7 @@ router.get('/logout', (req, res) => {
 router
   .route('/:userId/profile')
   .get(authenticate.verifyUser, (req, res, next) => {
-    Profile.find({ user: req.params.userId })
+    Profile.findone({ user: req.params.userId })
       .populate('address')
       .then(profile => {
         if (profile) {
