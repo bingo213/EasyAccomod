@@ -192,7 +192,7 @@ postRouter
             post.views += 1;
             post.save();
           }
-          Profile.find({ user: post.owner })
+          Profile.findOne({ user: post.owner })
             .populate('address')
             .then(profile => {
               res.statusCode = 200;

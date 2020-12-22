@@ -89,14 +89,17 @@ router.post('/login', (req, res, next) => {
       }
 
       var token = authenticate.getToken({ _id: req.user._id });
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.json({
-        success: true,
-        role: user.user_type,
-        username: user.username,
-        token: token,
-        userId: user._id,
+      Profile.findOne({ user: user._id }).then(profile => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({
+          success: true,
+          role: user.user_type,
+          username: user.username,
+          token: token,
+          userId: user._id,
+          avatar: profile.avatar,
+        });
       });
     });
   })(req, res, next);
@@ -119,7 +122,8 @@ router.get('/logout', (req, res) => {
 router
   .route('/:userId/profile')
   .get(authenticate.verifyUser, (req, res, next) => {
-    Profile.find({ user: req.params.userId })
+    Profile.findOne({ user: req.params.userId })
+      .populate('user')
       .populate('address')
       .then(profile => {
         if (profile) {

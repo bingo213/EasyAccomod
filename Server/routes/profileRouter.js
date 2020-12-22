@@ -104,12 +104,13 @@ profileRouter
     res.end('POST operation not supported on /profile/' + req.params.profileId);
   })
   .put(authenticate.verifyUser, upload.single('avatar'), (req, res, next) => {
+    console.log('Body is: ', req.body);
+    console.log(req.file);
     Profile.findById(req.params.profileId)
       .then(
         profile => {
           if (profile != null) {
             if (profile.update) {
-              let user = User.findById(req.user._id);
               if (!profile.user.equals(req.user._id)) {
                 var err = new Error(
                   'You are not authorized to update this profile!'
@@ -118,6 +119,7 @@ profileRouter
                 return next(err);
               }
 
+              //upload address
               Address.findById(profile.address).then(address => {
                 if (req.body.houseNumber)
                   address.houseNumber = req.body.houseNumber;
@@ -135,9 +137,11 @@ profileRouter
                 profile.phoneNumber = req.body.phoneNumber;
               if (req.body.identity) profile.identity = req.body.identity;
               if (req.body.email) profile.email = req.body.email;
-              if (req.user.user_type == 'owner') {
-                user.active = 0; // duyet lai
-                user.save();
+              if (req.user.user_type === 'owner') {
+                User.findById(req.user._id).then(user => {
+                  user.active = 0;
+                  user.save();
+                });
               }
               profile.update = true;
 
@@ -152,7 +156,10 @@ profileRouter
                 .populate('address')
                 .then(profile => {
                   res.statusCode = 200;
-                  res.json({ success: true, message: "Congralation! Bạn đã thay đổi thành công!" });
+                  res.json({
+                    success: true,
+                    message: 'Congralation! Bạn đã thay đổi thành công!',
+                  });
                 });
             } else {
               err = new Error('Not allow to update');
