@@ -102,8 +102,14 @@ router.get('/logout', (req, res) => {
 router.route('/:userId/profile')
 .get(authenticate.verifyUser, (req, res, next) => {
   Profile.find({user: req.params.userId})
+  .populate('address')
   .then((profile) => {
     if(profile){
+      if(!profile.user.equals(req.params.userId) ){
+        res.statusCode = 403;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({success: false, message: 'Not allow to get another profile! '});
+      }
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.json({success:true, profile: profile});

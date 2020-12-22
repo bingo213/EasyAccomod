@@ -9,14 +9,14 @@ const Favorite = require('../models/favorite');
 const Post = require('../models/post');
 
 favoriteRouter
-  .route('/checkFavorite')
-  .post(authenticate.verifyUser, (req, res, next) => {
-    Post.findById(req.body.post).then(post => {
+  .route('/checkFavorite/:postId')
+  .get(authenticate.verifyUser, (req, res, next) => {
+    Post.findById(req.params.postId).then(post => {
       if (post) {
-        Favorite.find({
-          $and: [{ user: req.user._id }, { post: req.body.post }],
+        Favorite.findOne({
+          $and: [{ user: req.user._id }, { post: req.params.postId }],
         }).then(favorite => {
-          if (favorite.length > 0) {
+          if (favorite) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json({ like: true, message: 'Ban da thich bai viet nay' });
@@ -56,7 +56,7 @@ favoriteRouter
                       .then(favorite => {
                         res.statusCode = 200;
                         res.setHeader('Content-Type', 'application/json');
-                        res.json({ success: true, favorite: favorite });
+                        res.json({ success: true, like: true });
                       });
                   })
                   .catch(err => {
@@ -66,7 +66,7 @@ favoriteRouter
                 Favorite.findOneAndDelete({
                   $and: [{ user: req.user._id }, { post: req.body.post }],
                 }).then(resp => {
-                  res.json(resp);
+                  res.json({ success: true, like: false });
                 });
               }
             });
