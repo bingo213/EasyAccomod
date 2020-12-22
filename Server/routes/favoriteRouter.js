@@ -9,14 +9,14 @@ const Favorite = require('../models/favorite');
 const Post = require('../models/post');
 
 favoriteRouter
-  .router('/checkFavorite')
+  .route('/checkFavorite')
   .post(authenticate.verifyUser, (req, res, next) => {
     Post.findById(req.body.post).then(post => {
       if (post) {
         Favorite.find({
           $and: [{ user: req.user._id }, { post: req.body.post }],
         }).then(favorite => {
-          if (favorite) {
+          if (favorite.length > 0) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json({ like: true, message: 'Ban da thich bai viet nay' });
@@ -47,7 +47,7 @@ favoriteRouter
             Favorite.find({
               $and: [{ user: req.user._id }, { post: req.body.post }],
             }).then(favorites => {
-              if (favorite.length == 0) {
+              if (favorites.length == 0) {
                 Favorite.create({ user: req.user._id, post: req.body.post })
                   .then(favorite => {
                     Favorite.findById(favorite._id)
@@ -65,14 +65,8 @@ favoriteRouter
               } else {
                 Favorite.findOneAndDelete({
                   $and: [{ user: req.user._id }, { post: req.body.post }],
-                });
-                then(resp => {
-                  res.statusCode = 200;
-                  res.setHeader('Content-Type', 'application/json');
-                  res.json({
-                    success: true,
-                    message: 'Ban da bo thich bai viet nay',
-                  });
+                }).then(resp => {
+                  res.json(resp);
                 });
               }
             });
