@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var reasonSchema = new Schema({
-    name: {
-        type: String
-    }
-})
 
 var reportSchema = new Schema({
     author: {
@@ -16,9 +11,18 @@ var reportSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
     },
-    reason:[
-        reasonSchema
-    ],
+    wrongAddress:{
+        type: Boolean
+    },
+    roomNotFound:{
+        type: Boolean
+    },
+    notAsDescribed:{
+        type: Boolean
+    },
+    other:{
+        type: Boolean
+    },
     description:{
         type: String
     }

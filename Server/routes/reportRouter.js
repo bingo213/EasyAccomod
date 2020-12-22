@@ -24,10 +24,8 @@ reportRouter.route('/')
     .post(authenticate.verifyUser, (req, res, next) => {
         if (req.body !== null) {
             req.body.author = req.user._id;
-            Report.create({author: req.user._id, description: req.body.description, post: req.body.post})
+            Report.create(req.body)
                 .then((report) => {
-                    for(i in req.body.reason)
-                     report.reason.push(i);
 
                     Report.findById(report._id)
                         .populate('author')
@@ -35,7 +33,7 @@ reportRouter.route('/')
                         .then((report) => {
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'application/json');
-                            res.json(report);
+                            res.json({success: true, report: report});
                         })
                 }, (err) => next(err))
                 .catch((err) => next(err));
