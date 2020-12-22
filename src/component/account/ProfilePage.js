@@ -1,4 +1,5 @@
 import NavBar from 'component/NavBar';
+import Profile from 'component/account/Profile'
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -68,8 +69,8 @@ function ProfilePage() {
           </div>
         </div>
 
-        {/* <div className="postPageContent">
-          {postList.length !== 0 ? (
+        <div className="postPageContent">
+          {/* {postList.length !== 0 ? (
             postList.map(post => (
               <div className="postTag">
                 <Post
@@ -95,8 +96,9 @@ function ProfilePage() {
             ))
           ) : (
             <h2>Không có bài đăng nào để hiển thị</h2>
-          )}
-        </div> */}
+          )}*/}
+          <Profile />
+        </div>
       </div>
     </div>
   );

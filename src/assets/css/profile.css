@@ -1,0 +1,96 @@
+@import 'config.css';
+
+.Profile {
+  padding: 1rem;
+}
+
+.Profile .infoTop {
+  display: flex;
+  align-items: center;
+}
+
+.Profile .infoTop .user-pw {
+  padding-left: 1rem;
+}
+
+.Profile .infoTop .user-pw h3 {
+  padding: 2rem 0;
+  padding-bottom: 0;
+}
+
+.Profile .infoTop .user-pw input {
+  border: none;
+  border-bottom: 1px solid rgb(197, 197, 197);
+}
+.Profile .imgPreview {
+  width: 15rem;
+  height: 15rem;
+  /* margin: auto; */
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Profile input[type='file'] {
+  display: none;
+}
+
+.Profile .deleteImg {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 50%;
+  background-color: var(--main-color);
+  color: rgb(238, 238, 238);
+}
+
+.Profile .deleteImg i {
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+
+.Profile .chooseImg {
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  font-size: 1.3rem;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.Profile .information input,
+.Profile .information select {
+  padding: 0.2rem 0;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.Profile .AutoAddress span,
+.Profile .information h3 {
+  display: block;
+  font-size: 1.17rem;
+  font-weight: bold;
+  padding: 2rem 0 0.5rem 0;
+}
+
+.Profile button[type='submit'] {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+}
+
+.Profile button[type='submit']:hover {
+  background-color: var(--hover-color);
+}
+
+.Profile .containerBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
