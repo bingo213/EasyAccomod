@@ -4,14 +4,13 @@ import roomImg from 'assets/img/blue-400x314.jpg';
 import Like from 'component/favourite/Like';
 import { Link } from 'react-router-dom';
 import concatAddress from 'helper/concatAddress';
+import axios from 'axios';
+import authHeader from 'helper/auth-header';
 
-function RentalUnit({ rentalUnit }) {
-  // const [heartState, setHeartState] = useState(false);
-  const heart = false;
+function RentalUnit({ rentalUnit, isLogin }) {
   const title = rentalUnit.title;
   const id = rentalUnit._id;
-  // const address = concatAddress({rentalUnit.address})
-  console.log(concatAddress(rentalUnit.address));
+
   return (
     <div className="RentalUnit">
       <Link to={`/detail/${id}`}>
@@ -50,7 +49,7 @@ function RentalUnit({ rentalUnit }) {
       </Link>
       <div className="heart">
         <p>125</p>
-        <Like isLike={heart} />
+        <Like postId={rentalUnit._id} isLogin={isLogin}/>
       </div>
     </div>
   );

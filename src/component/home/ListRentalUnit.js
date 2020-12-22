@@ -3,7 +3,7 @@ import RentalUnit from './RentalUnit';
 import 'assets/css/listRentalUnit.css';
 import { Link } from 'react-router-dom';
 
-function ListRentalUnit({ currentRentals, loading }) {
+function ListRentalUnit({ currentRentals, loading, isLogin }) {
   if (loading) {
     return <h1>Loading...</h1>;
   } else {
@@ -12,8 +12,9 @@ function ListRentalUnit({ currentRentals, loading }) {
         <div className="container">
           {currentRentals.map(unit => (
             <RentalUnit
-              key={unit.id}
+              key={unit._id}
               rentalUnit={unit}
+              isLogin={isLogin}
             />
           ))}
         </div>

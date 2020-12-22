@@ -15,6 +15,7 @@ import AdminPage from 'component/admin/AdminPage';
 import PostPage from 'component/account/PostPage';
 import ModifyPost from 'component/createPosts/ModifyPost';
 import TestUploadImage from 'component/TestUploadImage';
+import ProfilePage from 'component/account/ProfilePage';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route exact path="/admin" component={AdminPage} />
           <Route exact path="/posts_page" component={PostPage} />
+          <Route exact path="/profile" component={ProfilePage} />
           
       {/* <Router> */}
         <Route exact path="/create_post" component={ModifyPost} />

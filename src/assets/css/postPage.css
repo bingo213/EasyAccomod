@@ -34,6 +34,10 @@
   width: 3rem;
 }
 
+.PostPage .navigation .tag{
+  display: inline;
+}
+
 .PostPage .postPageContent {
   margin-left: calc(var(--post-page-navigation-width) + 2rem);
   display: flex;

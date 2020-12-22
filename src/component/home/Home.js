@@ -57,7 +57,7 @@ function Home() {
       <NavBar isLogin={isLogin} username={username} role={role}/>
       <div className="homeImage"></div>
       <SearchBar />
-      <ListRentalUnit currentRentals={currentRentals} loading={loading} />
+      <ListRentalUnit currentRentals={currentRentals} loading={loading} isLogin={isLogin} />
       <Pagination
         rentalUnitPerPage={rentalUnitPerPage}
         totalRentalUnit={rentalUnit.length}
