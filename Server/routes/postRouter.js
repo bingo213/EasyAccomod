@@ -16,6 +16,8 @@ var multer = require('multer');
 const { path, add } = require('../models/address');
 const profile = require('../models/profile');
 
+
+//create Multer for upload images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/images');
@@ -294,7 +296,7 @@ postRouter
             });
           }
         }
-        if (post.owner != req.user._id) {
+        if ( !post.owner.equals(req.user._id)) {
           res.statusCode = 403;
           res.setHeader('Content-Type', 'application/json');
           res.json({
@@ -428,7 +430,7 @@ postRouter.route('/:postId/comments').get((req, res, next) => {
     });
 });
 
-postRouter.route('/:postId/favorite').get((req, res, next) => {
+postRouter.route('/:postId/favorites').get((req, res, next) => {
   Favorite.find({ post: req.params.postId })
     .then(favorites => {
       res.statusCode = 200;

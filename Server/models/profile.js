@@ -23,6 +23,9 @@ var Profile = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Address'
     },
+    avatar:{
+        type: String
+    },
     update: {
         type: Boolean,
         default: false

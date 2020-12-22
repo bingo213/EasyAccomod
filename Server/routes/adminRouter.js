@@ -64,6 +64,13 @@ adminRouter.route('/changeOwnerStatus')
                 else {
                     user.active = active;
                     Notification.create({ type: 'account', active: user.active, receive: user._id, object: user._id });
+                    if(active == 1){
+                        Profile.findOne({user:owner})
+                        .then((profile) => {
+                            profile.update = false;
+                            profile.save();
+                        })
+                    }
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json({ success: true, owner: owner })
