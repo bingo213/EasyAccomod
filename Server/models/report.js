@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+var reasonSchema = new Schema({
+    name: {
+        type: String
+    }
+})
+
 var reportSchema = new Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -10,8 +16,11 @@ var reportSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
     },
-    reason:{
-        type: Strin
+    reason:[
+        reasonSchema
+    ],
+    description:{
+        type: String
     }
 }, {
     timestamps: true

@@ -47,8 +47,10 @@ var postRouter = require('./routes/postRouter');
 var adminRouter = require('./routes/adminRouter');
 var searchRouter = require('./routes/searchRouter');
 var uploadRouter = require('./routes/uploadRouter');
+var reportRouter = require('./routes/reportRouter');
 
 const mongoose = require('mongoose');
+const profile = require('./models/profile');
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
@@ -79,6 +81,7 @@ function initial() {
           if (err) {
             console.log(err);
           } else {
+            profile.create({ user: user._id });
             passport.authenticate('local')(req, res, () => {});
           }
         }
@@ -131,6 +134,7 @@ app.use('/post', postRouter);
 app.use('/admin', adminRouter);
 app.use('/search', searchRouter);
 app.use('/upload', uploadRouter);
+app.use('/report', reportRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
