@@ -5,9 +5,34 @@ import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import authHeader from '../../helper/auth-header';
 import NavBar from 'component/NavBar';
-import Footer from 'component/Footer';
 
 function PostPage() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  });
+
+  const history = useHistory();
+
+  if(!isLogin){
+    history.push('/login');
+  }
+
+  const [username, setUsername] = useState('name');
+  useEffect(() => {
+    if (isLogin) {
+      setUsername(user.username);
+    }
+  }, []);
+
+  const [role, setRole] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setRole(user.role);
+    }
+  }, []);
+
   const [postList, setPostList] = useState([]);
 
   const logOut = async () => {
@@ -22,8 +47,6 @@ function PostPage() {
       .catch(err => console.log(err));
   };
 
-  const history = useHistory();
-
   useEffect(() => {
     if (localStorage.getItem('user') === null) {
       history.push('/login');
@@ -32,7 +55,6 @@ function PostPage() {
     }
   }, []);
 
-  const user = JSON.parse(localStorage.getItem('user'));
   let expirePost = [];
   let watingPost = [];
   let rejectPost = [];
@@ -47,7 +69,6 @@ function PostPage() {
           .then(res => {
             if (res.data.success) {
               expirePost = res.data.posts;
-              console.log(res.data.posts);
             }
           });
       };
@@ -60,8 +81,6 @@ function PostPage() {
           .then(res => {
             if (res.data.success) {
               watingPost = res.data.posts;
-              console.log(res.data.posts);
-              console.log(postList);
             }
           });
       };
@@ -73,7 +92,6 @@ function PostPage() {
           .then(res => {
             if (res.data.success) {
               rejectPost = res.data.posts;
-              console.log(res.data.posts);
             }
           });
       };
@@ -107,7 +125,7 @@ function PostPage() {
     <>
       <div className="postPageNav">
         {' '}
-        <NavBar />
+        <NavBar isLogin={isLogin} username={username} role={role} />
       </div>
       <div className="PostPage">
         <div className="navigation">

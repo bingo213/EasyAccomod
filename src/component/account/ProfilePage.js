@@ -1,11 +1,38 @@
 import NavBar from 'component/NavBar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 function ProfilePage() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  });
+
+  const history = useHistory();
+
+  if (!isLogin) {
+    history.push('/login');
+  }
+
+  const [username, setUsername] = useState('name');
+  useEffect(() => {
+    if (isLogin) {
+      setUsername(user.username);
+    }
+  }, []);
+
+  const [role, setRole] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setRole(user.role);
+    }
+  }, []);
+
   return (
     <div className="ProfilePage">
       <div className="postPageNav">
-        <NavBar />
+        <NavBar isLogin={isLogin} role={role} username={username} />
       </div>
       <div className="PostPage">
         <div className="navigation">
@@ -21,7 +48,7 @@ function ProfilePage() {
               className="navigationButton"
               //   onClick={() => setPostList(watingPost)}
             >
-             <i className="fas fa-heart-circle"></i>
+              <i className="fas fa-heart-circle"></i>
               <div className="tag">Danh sách yêu thích</div>
             </div>
             {/* <div
