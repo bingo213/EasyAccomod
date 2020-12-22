@@ -2,6 +2,7 @@
 
 .Profile {
   padding: 1rem;
+  font-size: 1.1rem;
 }
 
 .Profile .infoTop {
@@ -22,14 +23,15 @@
   border: none;
   border-bottom: 1px solid rgb(197, 197, 197);
 }
-.Profile .imgPreview {
+.Profile .imgPreview ,.Profile .imgPreview .imgStyle{
   width: 15rem;
   height: 15rem;
   /* margin: auto; */
   border-radius: 50%;
   position: relative;
+  z-index: -1;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .Profile input[type='file'] {
@@ -39,7 +41,7 @@
 .Profile .deleteImg {
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: -5rem;
   border: 1px solid rgb(207, 207, 207);
   border-radius: 50%;
   background-color: var(--main-color);

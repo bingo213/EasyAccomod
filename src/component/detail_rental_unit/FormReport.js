@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import 'assets/css/report.css';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
-function FormReport() {
+function FormReport({postId}) {
   const { register, handleSubmit} = useForm();
   const [err, setErr] = useState('');
   const onSubmitReport = data => {
@@ -16,6 +17,10 @@ function FormReport() {
       alert(JSON.stringify(data));
     } else {
       setErr('Bạn cần chọn ít nhất một lý do');
+    }
+
+    const postFormReport = async () => {
+      await axios.post(`http://localhost:3001/${postId}`)
     }
   };
   return (

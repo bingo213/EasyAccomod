@@ -6,7 +6,7 @@ import Account from './account/Account';
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
 
-function NavBar({isLogin, username, role}) {
+function NavBar({isLogin, username, role, avatar}) {
   const [nav, setNav] = useState(() => {
     if (window.innerWidth < 900) {
       return 'small-nav';
@@ -78,7 +78,7 @@ function NavBar({isLogin, username, role}) {
               }
               {isLogin ? (
                 <li>
-                  <Account username={username} role={role}/>
+                  <Account username={username} role={role} avatar={avatar}/>
                 </li>
               ) : (
                 <>

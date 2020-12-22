@@ -34,7 +34,7 @@
   width: 3rem;
 }
 
-.PostPage .navigation .tag{
+.PostPage .navigation .tag {
   display: inline;
 }
 
@@ -91,8 +91,6 @@
   background-color: #aa86b8;
 }
 
-
-
 @media (max-width: 700px) {
   .PostPage .postPageContent {
     margin-left: var(--post-page-navigation-width-small);
@@ -109,12 +107,13 @@
     background-color: var(--post-page-navigation-bgcolor);
     margin-bottom: 1rem;
     position: relative;
+    z-index: 5;
   }
 
   .PostPage .navigation .tag {
     display: none;
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     width: 10rem;
     background-color: var(--navbar-dark-bgcolor);
     padding: 1rem 0.5rem;
@@ -127,6 +126,7 @@
   .PostPage .navigation .tag::before {
     content: '';
     position: absolute;
+    z-index: 5;
     z-index: -1;
     width: 2rem;
     height: 2rem;

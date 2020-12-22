@@ -1,5 +1,5 @@
 import NavBar from 'component/NavBar';
-import Profile from 'component/account/Profile'
+import Profile from 'component/account/Profile';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -16,6 +16,8 @@ function ProfilePage() {
     history.push('/login');
   }
 
+  const userId = isLogin ? user.userId : 0;
+
   const [username, setUsername] = useState('name');
   useEffect(() => {
     if (isLogin) {
@@ -30,10 +32,17 @@ function ProfilePage() {
     }
   }, []);
 
+  const [avatar, setAvatar] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setAvatar(user.avatar);
+    }
+  }, []);
+
   return (
     <div className="ProfilePage">
       <div className="postPageNav">
-        <NavBar isLogin={isLogin} role={role} username={username} />
+        <NavBar isLogin={isLogin} role={role} username={username} avatar={avatar} />
       </div>
       <div className="PostPage">
         <div className="navigation">
@@ -97,7 +106,7 @@ function ProfilePage() {
           ) : (
             <h2>Không có bài đăng nào để hiển thị</h2>
           )}*/}
-          <Profile />
+          <Profile userId={userId} />
         </div>
       </div>
     </div>

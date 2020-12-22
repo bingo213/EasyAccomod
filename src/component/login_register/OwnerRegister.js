@@ -7,7 +7,7 @@ function OwnerRegister() {
       key: 1,
       label: 'Họ tên',
       type: 'text',
-      name: 'name',
+      name: 'fullname',
       registerObj: {
         required: 'Bạn cần nhập họ tên',
       },
@@ -16,7 +16,7 @@ function OwnerRegister() {
       key: 2,
       label: 'Số căn cước',
       type: 'text',
-      name: 'ID',
+      name: 'identity',
       registerObj: { required: 'Bạn cần nhập số căn cước' },
     },
     {

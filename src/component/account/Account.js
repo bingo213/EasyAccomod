@@ -4,7 +4,7 @@ import girlImg from 'assets/img/girl.jpg';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function Account({username, role}) {
+function Account({username, role, avatar}) {
     const [toggle, setToggle] = useState(false);
     const logOut = async () =>{
       await axios.get('http://localhost:3001/users/logout')
@@ -19,7 +19,7 @@ function Account({username, role}) {
     
   return (
     <div className="Account" onClick={()=>setToggle(!toggle)}>
-      <img src={girlImg} alt="" />
+      <img src={avatar ? `http://localhost:3001/${avatar}` : girlImg} alt="" />
       <div className="userName">
         {username}<i className="fas fa-sort-down"></i>
       </div>

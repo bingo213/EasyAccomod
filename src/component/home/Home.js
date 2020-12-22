@@ -28,6 +28,13 @@ function Home() {
       setRole(user.role);
     }
  }, [])
+
+ const [avatar, setAvatar] = useState('')
+ useEffect(() => {
+  if(isLogin){
+    setAvatar(user.avatar);
+  }
+}, [])
   
   const [rentalUnit, setRentalUnit] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -54,7 +61,7 @@ function Home() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <div className="Home" style={{ overflowX: 'hidden' }}>
-      <NavBar isLogin={isLogin} username={username} role={role}/>
+      <NavBar isLogin={isLogin} username={username} role={role} avatar={avatar}/>
       <div className="homeImage"></div>
       <SearchBar />
       <ListRentalUnit currentRentals={currentRentals} loading={loading} isLogin={isLogin} />

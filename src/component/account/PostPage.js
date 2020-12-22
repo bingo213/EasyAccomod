@@ -33,6 +33,13 @@ function PostPage() {
     }
   }, []);
 
+  const [avatar, setAvatar] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setAvatar(user.avatar);
+    }
+  }, []);
+
   const [postList, setPostList] = useState([]);
 
   const logOut = async () => {
@@ -125,7 +132,7 @@ function PostPage() {
     <>
       <div className="postPageNav">
         {' '}
-        <NavBar isLogin={isLogin} username={username} role={role} />
+        <NavBar isLogin={isLogin} username={username} role={role} avatar={avatar} />
       </div>
       <div className="PostPage">
         <div className="navigation">

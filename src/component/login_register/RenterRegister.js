@@ -8,7 +8,7 @@ function RenterRegister() {
       key: 1,
       label: 'Họ tên',
       type: 'text',
-      name: 'name',
+      name: 'fullname',
       registerObj: {
         required: 'Bạn cần nhập họ tên',
       },

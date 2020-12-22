@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function AutoAddress({ register, validation, errors, extend, defaultValue }) {
-
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
   const [ward, setWard] = useState([]);
@@ -78,7 +77,9 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
           defaultValue=""
         >
           <option value="" hidden>
-            {defaultValue ? defaultValue.province : 'Chọn tỉnh/thành phố'}
+            {defaultValue && defaultValue.province
+              ? defaultValue.province
+              : 'Chọn tỉnh/thành phố'}
           </option>
           {province.map(p => (
             <option value={p.province_name} key={p.province_id}>
@@ -94,12 +95,14 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
         )}
         <select
           name="district"
-          // defaultValue=""
+          defaultValue=""
           onChange={handleDistrictChange}
           ref={register(validation[1])}
         >
           <option value="" hidden>
-            {defaultValue ? defaultValue.district : ' Chọn quận/huyện'}
+            {defaultValue && defaultValue.district
+              ? defaultValue.district
+              : 'Chọn quận/huyện'}
           </option>
           {district.map(d => (
             <option value={d.district_name} key={d.district_id}>
@@ -111,12 +114,11 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
       <label>
         <span>Xã/Phường</span>
         {errors.village && <p className="message">{errors.village.message}</p>}
-        <select
-          name="village"
-          ref={register(validation[2])}
-        >
+        <select name="village" ref={register(validation[2])}>
           <option value="" hidden>
-          {defaultValue ? defaultValue.village : 'Chọn xã/phường'}
+            {defaultValue && defaultValue.village
+              ? defaultValue.village
+              : 'Chọn xã/phường'}
           </option>
           {ward.map(w => (
             <option value={w.ward_name} key={w.ward_id}>
@@ -136,7 +138,9 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
               type="text"
               name="street"
               ref={register(validation[3])}
-              defaultValue={defaultValue ? defaultValue.street : ''}
+              defaultValue={
+                defaultValue && defaultValue.street ? defaultValue.street : ''
+              }
             />
           </label>
           <label>
@@ -147,7 +151,11 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
             <input
               type="number"
               name="houseNumber"
-              defaultValue={defaultValue ? defaultValue.houseNumber : ''}
+              defaultValue={
+                defaultValue && defaultValue.houseNumber
+                  ? defaultValue.houseNumber
+                  : ''
+              }
               ref={register(validation[4])}
             />
           </label>

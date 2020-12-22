@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
 import 'assets/css/detailRentalUnit.css';
@@ -18,17 +18,39 @@ import CommentAlreadyExist from './CommentAlreadyExist';
 import Star from 'component/favourite/Star';
 import StarRating from 'component/favourite/StarRating';
 import Comment from './Comment';
-import PlacesAutocomplete from 'react-places-autocomplete';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
-  // const product = this.props.products.find((p) => {
-  //   return p.id === id;
-  // });
-  const {id} = useParams();
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  });
 
-  const slides = [image1, image2, image3, image4, image5];
+  const { id } = useParams();
+  const [rentalUnit, setRentalUnit] = useState({});
+  const [author, setAuthor] = useState({});
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const getRentalUnit = async () => {
+      await axios
+        .get(`http://localhost:3001/post/${id}`)
+        .then(res => {
+          setRentalUnit(res.data.post);
+          setAuthor(res.data.author);
+          setLoading(false);
+          console.log(res.data);
+        })
+        .catch(err => console.log(err));
+    };
+    getRentalUnit();
+  }, []);
+
+  const slides = loading
+    ? []
+    : rentalUnit.images.map(item => `http://localhost:3001/${item.name}`);
   const [imageModalIsOpden, setImageModelIsOpen] = useState(false);
   const [reportIsOpen, setReportIsOpen] = useState(false);
 
@@ -79,22 +101,22 @@ function DetailRentalUnit() {
       >
         <i className="fal fa-times" onClick={() => setReportIsOpen(false)}></i>
         <div className="reportModal">
-          <FormReport />
+          <FormReport postId={id} />
         </div>
       </Modal>
       <div className="main">
         <DisplayImage images={slides} handleClickImage={handleClickImage} />
         <div className="title">
-          Modern Villa with Pool
+          {loading ? '' : rentalUnit.title}
           <div className="heartIcon">
-            <Like />
+            <Like postId={id} isLogin={isLogin} />
           </div>
         </div>
         <div className="date-report">
           <div className="date">
             <span>Ngày đăng</span>
             <br />
-            14/12/2020
+            {loading ? '' : rentalUnit.activeDate}
           </div>
           <div className="report" onClick={() => setReportIsOpen(true)}>
             Báo cáo
@@ -104,38 +126,46 @@ function DetailRentalUnit() {
         <div className="description">
           <div className="generalInfo pad">
             <div className="pad">
-              <i className="fal fa-home-alt"></i>Chung cư nguyên căn - Không
-              chung chủ
+              <i className="fal fa-home-alt"></i>
+              {loading ? '' : rentalUnit.typeOfRoom} -
+              {loading ? '' : String(rentalUnit.withOwner)}
             </div>
             <div className="pad">
               <i className="fal fa-warehouse-alt"></i>
-              <span>Số lượng phòng:</span> 1
+              <span>Số lượng phòng:</span>
+              {loading ? '' : rentalUnit.numberOfRoom}
             </div>
             <div className="pad">
               <i className="fal fa-draw-square"></i>
-              <span>Diện tích:</span> 50 m²
+              <span>Diện tích:</span> {loading ? '' : rentalUnit.area} m
+              <sup>2</sup>
             </div>
             <div className="pad">
               <i className="fal fa-usd-circle"></i>
-              <span>Giá:</span> 2.5 triệu/tháng
+              <span>Giá:</span> {loading ? '' : rentalUnit.price / 1000000}{' '}
+              triệu/tháng
             </div>
           </div>
           <div className="roomAddress">
             <h3>Địa chỉ</h3>
             <div className="pad">
-              <span>Tỉnh/Thành phố:</span> Hà Nội
+              <span>Tỉnh/Thành phố:</span>{' '}
+              {loading ? '' : rentalUnit.address.province}
             </div>
             <div className="pad">
-              <span>Quận/Huyện:</span> Cầu Giấy
+              <span>Quận/Huyện:</span>{' '}
+              {loading ? '' : rentalUnit.address.district}
             </div>
             <div className="pad">
-              <span>Xã/Phường:</span> Dịch Vọng
+              <span>Xã/Phường:</span>{' '}
+              {loading ? '' : rentalUnit.address.village}
             </div>
             <div className="pad">
-              <span>Đường:</span> Xuân Thủy
+              <span>Đường:</span> {loading ? '' : rentalUnit.address.street}
             </div>
             <div className="pad">
-              <span>Số nhà:</span> 213
+              <span>Số nhà:</span>{' '}
+              {loading ? '' : rentalUnit.address.houseNumber}
             </div>
           </div>
           <div className="roomFeature">
@@ -181,14 +211,21 @@ function DetailRentalUnit() {
             </div>
           </div>
         </div>
+        <div className="contact">
+          <h2>Liên hệ chủ trọ</h2>
+          <div className="contactElement"><span>Chủ trọ:</span>Trần Thị Hoa Hiên</div>
+          <div className="contactElement"><span>Địa chỉ:</span>Cầu Giấy, Hà Nội</div>
+          <div className="contactElement"><span>Email:</span>cassiopeiahien@gmail.com</div>
+          <div className="contactElement"><span>Số điện thoại:</span>0866982293</div>
+        </div>
         <div className="comment">
           <h2>Bình luận</h2>
-          <CommentAlreadyExist rating={5}/>
+          <CommentAlreadyExist rating={5} />
           <CommentAlreadyExist rating={4} />
           <Comment />
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
