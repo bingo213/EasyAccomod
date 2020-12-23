@@ -57,15 +57,18 @@ function Like({ postId, isLogin }) {
   const handleClick = () => {
     if (isLogin) {
       postLikeState();
-      if(heartState){
-        setNumberOfLike(numberOfLike - 1)
-      }
-      else{
-        setNumberOfLike(numberOfLike + 1)
+      if (heartState) {
+        setNumberOfLike(numberOfLike - 1);
+      } else {
+        setNumberOfLike(numberOfLike + 1);
       }
     } else {
-      alert('Bạn cần đăng nhập để sử dụng tính năng này')
-      // history.push('/login');
+      const cf = window.confirm(
+        'Bạn cần đăng nhập để sử dụng tính năng này. Đăng nhập ngay ?'
+      );
+      if (cf == true) {
+        history.push('/login');
+      }
     }
   };
 

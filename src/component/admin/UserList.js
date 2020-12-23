@@ -5,10 +5,10 @@ function UserList(props) {
   return (
     <List {...props}>
       <Datagrid rowClick="edit">
-        <TextField source="name" />
+        <TextField source="fullname" />
         <TextField source="username" />
         <EmailField source="email" />
-        <TextField source="phone" />
+        <TextField source="phoneNumber" />
         <EditButton />
       </Datagrid>
     </List>

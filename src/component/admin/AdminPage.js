@@ -1,19 +1,20 @@
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
+import restProvider from 'ra-data-simple-rest';
 
 import React from 'react';
 import UserList from './UserList';
 import UserEdit from './UserEdit';
 
 function AdminPage() {
-  const dataProvider = jsonServerProvider(
-    'https://jsonplaceholder.typicode.com'
+  const dataProvider = restProvider(
+    'http://localhost:3001'
   );
   return (
     <Admin
-      dataProvider={jsonServerProvider('http://jsonplaceholder.typicode.com')}
+      dataProvider={dataProvider}
     >
-         <Resource name="users" list={UserList} edit={UserEdit}/>
+         <Resource name="admin/getWatingOwner" list={UserList} edit={UserEdit}/>
     </Admin>
   );
 }

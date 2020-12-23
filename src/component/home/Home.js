@@ -38,12 +38,16 @@ function Home() {
   );
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const rentalUnitSearch = (searchList) => {
+    setRentalUnit(searchList);
+  } 
   return (
     <div className="Home" style={{ overflowX: 'hidden' }}>
       <NavBar />
       <div className="homeImage"></div>
 
-      <SearchBar />
+      <SearchBar rentalUnitSearch={rentalUnitSearch}  />
       <ListRentalUnit
         currentRentals={currentRentals}
         loading={loading}
