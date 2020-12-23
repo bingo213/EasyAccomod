@@ -96,7 +96,7 @@ function ModifyPost() {
         .catch(err => console.log(err));
     });
     const putData = await (() => {
-      console.log("put:...", data);
+      console.log('put:...', data);
       axios
         .put(`http://localhost:3001/post/${post._id}`, formData, {
           headers: authHeader(),
@@ -121,9 +121,9 @@ function ModifyPost() {
               validation={[
                 { required: false },
                 { required: false },
-                {required: false},
-                {required: false},
-                {required: false},
+                { required: false },
+                { required: false },
+                { required: false },
               ]}
               errors={errors}
               extend={true}
@@ -138,13 +138,22 @@ function ModifyPost() {
               defaultValue={defaultAddress}
             />
           )}
-          <label>
-            Mô tả
+          {/* <label>
+            <p>Mô tả</p>
             <input
               type="text"
               ref={register}
               name="description"
               defaultValue={checkPost ? post.description : ''}
+            />
+          </label> */}
+          <label className="createPostLabel">
+            <p>Mô tả thêm thông tin</p>
+            <textarea
+              name="services"
+              ref={register}
+              defaultValue={checkPost ? post.services : ''}
+              placeholder="Gần những địa điểm công cộng nào (trường học, bện viện, chợ,...)"
             />
           </label>
         </div>
@@ -370,9 +379,10 @@ function ModifyPost() {
             />
           </label>
         </div>
-        <div>
+        <div className="uploadImg">
+          <h2>Ảnh phòng trọ</h2>
           <label className="createPostLabel">
-            Tiêu đề
+            <p>Tiêu đề</p>
             <input
               type="text"
               name="title"
@@ -387,7 +397,7 @@ function ModifyPost() {
               })}
             />
           </label>
-          <label className="createPostLabel">
+          {/* <label className="createPostLabel">
             Mô tả thêm thông tin
             <textarea
               name="description"
@@ -395,7 +405,7 @@ function ModifyPost() {
               defaultValue={checkPost ? post.description : ''}
               ref={register}
             ></textarea>
-          </label>
+          </label> */}
           <label className="createPostLabel">
             <p>Ảnh phòng trọ</p>
             {errors.postImages && (

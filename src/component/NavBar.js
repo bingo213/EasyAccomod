@@ -6,7 +6,7 @@ import Account from './account/Account';
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
 
-function NavBar({isLogin, username, role, avatar}) {
+function NavBar() {
   const [nav, setNav] = useState(() => {
     if (window.innerWidth < 900) {
       return 'small-nav';
@@ -46,6 +46,32 @@ function NavBar({isLogin, username, role, avatar}) {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return(()=>window.removeEventListener('scroll', handleScroll));
+  }, []);
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  });
+  const [username, setUsername] = useState('name');
+  useEffect(() => {
+    if (isLogin) {
+      setUsername(user.username);
+    }
+  }, []);
+
+  const [role, setRole] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setRole(user.role);
+    }
+  }, []);
+
+  const [avatar, setAvatar] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setAvatar(user.avatar);
+    }
   }, []);
 
   return (

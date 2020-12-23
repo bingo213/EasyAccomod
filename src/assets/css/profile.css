@@ -48,6 +48,7 @@
   color: rgb(238, 238, 238);
 }
 
+
 .Profile .deleteImg i {
   padding: 0.5rem;
   font-size: 2rem;
@@ -55,11 +56,15 @@
 
 .Profile .chooseImg {
   position: absolute;
-  top: 45%;
-  left: 30%;
+  bottom: 0;
+  left: 10%;
   font-size: 1.3rem;
-  color: var(--main-color);
+  color: rgb(139, 49, 135);
+  background-color: rgba(255, 255, 255, 0.575);
   font-weight: bold;
+  width: 8rem;
+  padding: 0.2rem 2rem 1rem 3rem;
+  margin: 0;
 }
 
 .Profile .information input,

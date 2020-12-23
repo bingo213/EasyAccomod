@@ -70,11 +70,17 @@ function Profile({ userId }) {
   const onSubmit = data => {
     const formData = new FormData();
     for (let i in data) {
+      if(i !== "avatar")
       formData.append(i, data[i]);
     }
+    formData.append("avatar", data.avatar[0]);
     const updateProfile = async () => {
       await axios
-        .put(`http://localhost:3001/profile/${profile._id}`, formData, {headers: authHeader()})
+        .put(
+          `http://localhost:3001/profile/${profile._id}`,
+          formData,
+          { headers: authHeader() }
+        )
         .then(res => {
           if (res.data.success) {
             alert('Thay đổi thông tin thành công');
@@ -113,7 +119,8 @@ function Profile({ userId }) {
               //     ? `url("${imgPreview}") no-repeat center/cover`
               //     : `url("${avt}") no-repeat center/cover`,
               // }}>
-            ><img src={imgPreview ? imgPreview : avt} className="imgStyle" /> 
+            >
+              <img src={imgPreview ? imgPreview : avt} className="imgStyle" />
               {!imgPreview && <p className="chooseImg">Chọn ảnh</p>}
               <input
                 type="file"

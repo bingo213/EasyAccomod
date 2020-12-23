@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import 'assets/css/report.css';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import authHeader from 'helper/auth-header';
 
-function FormReport({postId}) {
-  const { register, handleSubmit} = useForm();
+function FormReport({ postId }) {
+  const { register, handleSubmit } = useForm();
   const [err, setErr] = useState('');
   const onSubmitReport = data => {
     if (
@@ -18,16 +19,23 @@ function FormReport({postId}) {
     } else {
       setErr('Bạn cần chọn ít nhất một lý do');
     }
+    console.log(data);
 
     const postFormReport = async () => {
-      await axios.post(`http://localhost:3001/${postId}`)
-    }
+      await axios.post(
+        `http://localhost:3001/report`,
+        { ...data, post: postId  },
+        { headers: authHeader() }
+      );
+    };
+
+    postFormReport();
   };
   return (
     <div className="FormReport">
       <form action="" onSubmit={handleSubmit(onSubmitReport)}>
-        <label>Tại sao bạn muốn báo cáo bài đăng này?</label>
-        <div style={{color: 'red', marginBottom: '1rem'}}>{err}</div>
+        <label >Tại sao bạn muốn báo cáo bài đăng này?</label>
+        <div style={{ color: 'red', marginBottom: '1rem' }}>{err}</div>
         <div className="option">
           <input type="checkbox" name="wrongAddress" ref={register} />
           Sai địa chỉ
@@ -52,7 +60,9 @@ function FormReport({postId}) {
             placeholder="Thêm mô tả của bạn tại đây"
           />
         </div>
-        <div className="btnCenter"><button type="submit">Gửi</button></div>
+        <div className="btnCenter">
+          <button type="submit">Gửi</button>
+        </div>
       </form>
     </div>
   );

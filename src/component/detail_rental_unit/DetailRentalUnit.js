@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
 import 'assets/css/detailRentalUnit.css';
-import image1 from 'assets/img/1.jpg';
-import image2 from 'assets/img/2.jpg';
-import image3 from 'assets/img/3.jpg';
-import image4 from 'assets/img/4.jpg';
-import image5 from 'assets/img/5.jpg';
 
 import NavBar from 'component/NavBar';
 import DisplayImage from './DisplayImage';
@@ -20,6 +15,13 @@ import StarRating from 'component/favourite/StarRating';
 import Comment from './Comment';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+// import concatAddress from 'helper/concatAddress';
+import formatDate from 'helper/formatDate';
+import returnType from 'helper/returnType';
+import typeOfBath from 'helper/typeOfBath';
+import typeOfKitch from 'helper/typeOfKitch';
+import returnWithOwner from 'helper/withOwner';
+import typeOfRoom from 'helper/typeRoom';
 
 Modal.setAppElement('#root');
 function DetailRentalUnit() {
@@ -33,19 +35,44 @@ function DetailRentalUnit() {
   const [rentalUnit, setRentalUnit] = useState({});
   const [author, setAuthor] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const [numberOfLike, setNumberOfLike] = useState(0);
+
+  const [loadCmt, setLoadCmt] = useState(true);
+  const [comments, setComments] = useState([]);
+
   useEffect(() => {
     const getRentalUnit = async () => {
+      setLoading(true);
       await axios
         .get(`http://localhost:3001/post/${id}`)
         .then(res => {
           setRentalUnit(res.data.post);
           setAuthor(res.data.author);
+          setNumberOfLike(res.data.number);
           setLoading(false);
           console.log(res.data);
         })
         .catch(err => console.log(err));
     };
+
     getRentalUnit();
+  }, []);
+
+  useEffect(() => {
+    const getComment = async () => {
+      setLoadCmt(true);
+      await axios
+        .get(`http://localhost:3001/post/${id}/comments`)
+        .then(res => {
+          setComments(res.data.comments);
+          setLoadCmt(false);
+          console.log('comments: ', res.data);
+        })
+        .catch(err => console.log(err));
+    };
+
+    getComment();
   }, []);
 
   const slides = loading
@@ -106,8 +133,14 @@ function DetailRentalUnit() {
       </Modal>
       <div className="main">
         <DisplayImage images={slides} handleClickImage={handleClickImage} />
-        <div className="title">
-          {loading ? '' : rentalUnit.title}
+        <div className="title">{loading ? '' : rentalUnit.title}</div>
+        <div className="icon">
+          <div className="view">
+            <span className="numberOfView">
+              {loading ? 0 : rentalUnit.views}
+            </span>
+            <i className="fas fa-eye"></i>
+          </div>
           <div className="heartIcon">
             <Like postId={id} isLogin={isLogin} />
           </div>
@@ -116,7 +149,7 @@ function DetailRentalUnit() {
           <div className="date">
             <span>Ngày đăng</span>
             <br />
-            {loading ? '' : rentalUnit.activeDate}
+            {loading ? '' : formatDate(new Date(rentalUnit.activeDate))}
           </div>
           <div className="report" onClick={() => setReportIsOpen(true)}>
             Báo cáo
@@ -127,8 +160,8 @@ function DetailRentalUnit() {
           <div className="generalInfo pad">
             <div className="pad">
               <i className="fal fa-home-alt"></i>
-              {loading ? '' : rentalUnit.typeOfRoom} -
-              {loading ? '' : String(rentalUnit.withOwner)}
+              {loading ? '' : typeOfRoom(rentalUnit.typeOfRoom)} {` - `}
+              {loading ? '' : returnWithOwner(rentalUnit.withOwner)}
             </div>
             <div className="pad">
               <i className="fal fa-warehouse-alt"></i>
@@ -174,55 +207,77 @@ function DetailRentalUnit() {
               <div className="col">
                 <div className="pad">
                   <i className="fal fa-shower"></i>
-                  <span>Phòng tắm:</span> Khép kín
+                  <span>Phòng tắm:</span>{' '}
+                  {loading ? '' : typeOfBath(rentalUnit.typeOfBathroom)}
                 </div>
                 <div className="pad">
                   <i className="fal fa-columns"></i>
-                  <span>Ban công:</span> có
+                  <span>Ban công:</span>{' '}
+                  {loading ? '' : returnType(rentalUnit.hasBalcony)}
                 </div>
                 <div className="pad">
                   <i className="far fa-dewpoint"></i>
-                  <span>Bình nóng lạnh:</span> có
+                  <span>Bình nóng lạnh:</span>{' '}
+                  {loading ? '' : returnType(rentalUnit.hasHeater)}
                 </div>
 
                 <div className="pad">
                   <i className="far fa-wind"></i>
-                  <span>Điều hòa:</span> có
+                  <span>Điều hòa:</span>{' '}
+                  {loading ? '' : returnType(rentalUnit.hasAirCon)}
                 </div>
               </div>
               <div className="col">
                 <div className="pad">
                   <i className="fal fa-hat-chef"></i>
-                  <span>Bếp:</span> bếp riêng
+                  <span>Bếp:</span>{' '}
+                  {loading ? '' : typeOfKitch(rentalUnit.typeOfKitchen)}
                 </div>
 
                 <div className="pad">
                   <i className="fal fa-charging-station"></i>
-                  <span>Điện:</span> 4000/kWh
+                  <span>Điện:</span>
+                  {loading ? '' : rentalUnit.priceOfElect}/kWh
                 </div>
                 <div className="pad">
                   <i className="fal fa-hand-holding-water"></i>
-                  <span>Nước:</span> 7000/m3
+                  <span>Nước:</span> {loading ? '' : rentalUnit.priceOfWater}/m3
                 </div>
               </div>
             </div>
             <div className="pad">
-              <span>Tiện ích khác:</span> Có tủ lạnh, máy giặt
+              <span>Tiện ích khác:</span> {loading ? '' : rentalUnit.services}
             </div>
           </div>
         </div>
         <div className="contact">
           <h2>Liên hệ chủ trọ</h2>
-          <div className="contactElement"><span>Chủ trọ:</span>Trần Thị Hoa Hiên</div>
-          <div className="contactElement"><span>Địa chỉ:</span>Cầu Giấy, Hà Nội</div>
-          <div className="contactElement"><span>Email:</span>cassiopeiahien@gmail.com</div>
-          <div className="contactElement"><span>Số điện thoại:</span>0866982293</div>
+          <div className="contactElement">
+            <span>Chủ trọ:</span>
+            {author ? author.fullname : ''}
+          </div>
+          <div className="contactElement">
+            <span>Email:</span>
+            {author ? author.email : ''}
+          </div>
+          <div className="contactElement">
+            <span>Số điện thoại:</span>
+            {author ? author.phoneNumber : ''}
+          </div>
         </div>
         <div className="comment">
           <h2>Bình luận</h2>
-          <CommentAlreadyExist rating={5} />
-          <CommentAlreadyExist rating={4} />
-          <Comment />
+          {!loadCmt &&
+            comments.length > 0 &&
+            comments.map((comment, index) => (
+              <CommentAlreadyExist
+                key={index}
+                cmt={comment}
+                loading={loadCmt}
+                // avatar={avatar}
+              />
+            ))}
+          <Comment postId={id} />
         </div>
       </div>
 

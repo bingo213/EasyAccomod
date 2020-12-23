@@ -15,30 +15,9 @@ function PostPage() {
 
   const history = useHistory();
 
-  if(!isLogin){
+  if (!isLogin) {
     history.push('/login');
   }
-
-  const [username, setUsername] = useState('name');
-  useEffect(() => {
-    if (isLogin) {
-      setUsername(user.username);
-    }
-  }, []);
-
-  const [role, setRole] = useState('');
-  useEffect(() => {
-    if (isLogin) {
-      setRole(user.role);
-    }
-  }, []);
-
-  const [avatar, setAvatar] = useState('');
-  useEffect(() => {
-    if (isLogin) {
-      setAvatar(user.avatar);
-    }
-  }, []);
 
   const [postList, setPostList] = useState([]);
 
@@ -130,10 +109,8 @@ function PostPage() {
 
   return (
     <>
-      <div className="postPageNav">
-        {' '}
-        <NavBar isLogin={isLogin} username={username} role={role} avatar={avatar} />
-      </div>
+      <NavBar />
+      <div className="postPageNav"></div>
       <div className="PostPage">
         <div className="navigation">
           <div className="navContent">

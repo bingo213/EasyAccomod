@@ -25,8 +25,8 @@ function Account({username, role, avatar}) {
       </div>
       {toggle && <ul id="item">
         <Link to="/profile"><li><i className="fas fa-address-card"></i>Hồ sơ</li></Link>
-        <a href=""><li><i className="fas fa-heart"></i>Yêu thích</li></a>
-        {(role ==='owner') && (<a href="/account"><li><i className="fal fa-newspaper"></i>Bài đăng</li></a>)}
+        <Link to="/favorite_list"><li><i className="fas fa-heart"></i>Yêu thích</li></Link>
+        {(role ==='owner') && (<Link to="/posts_page"><li><i className="fal fa-newspaper"></i>Bài đăng</li></Link>)}
         <a onClick={logOut}><li><i className="fas fa-sign-out"></i>Đăng xuất</li></a>
       </ul>}
     </div>

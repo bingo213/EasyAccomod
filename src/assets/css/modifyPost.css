@@ -1,5 +1,6 @@
 .ModifyPost {
   display: flex;
+  padding-top: 5rem;
   justify-content: center;
   background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 }
@@ -8,13 +9,23 @@
   padding: 1rem;
 }
 
+.ModifyPost label p, .ModifyPost .AutoAddress span{
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+}
+
+.ModifyPost .AutoAddress span {
+  display: block;
+}
+
 .ModifyPost .address,
 .ModifyPost .facilities,
-.ModifyPost .general {
+.ModifyPost .general,
+.ModifyPost .uploadImg {
   width: 90vw;
   max-width: 40rem;
   margin-top: 4rem;
-  box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.27);
+  box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.27);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,6 +45,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
 .ModifyPost .button button {
@@ -56,7 +68,7 @@
 .ModifyPost textarea {
   width: 90vw;
   max-width: 30rem;
-  height: 1.5rem;
+  height: 2rem;
   border: 1px solid rgb(209, 209, 209);
   border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 0.842);
@@ -64,4 +76,10 @@
 
 .ModifyPost textarea {
   height: 8rem;
+}
+
+.ModifyPost input:focus,
+.ModifyPost select:focus,
+.ModifyPost textarea:focus {
+  box-shadow: 0px 0px 12px 0px rgba(184, 129, 252, 0.7);
 }

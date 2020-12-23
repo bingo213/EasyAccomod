@@ -1,6 +1,6 @@
 import React from 'react';
 import 'assets/css/post.css';
-// import img from 'C:/Users/Admin/Desktop/web/New folder (2)/backend/EasyAccomod/Server';
+import formatDate from 'helper/formatDate';
 
 function Post({image, title, price, address, createDate}) {
   return (
@@ -11,12 +11,11 @@ function Post({image, title, price, address, createDate}) {
         <div className='description'>
             <div className="price">{price/1000000} triệu/tháng</div>
             <div className="address">{address}</div>
-            <div className="dateCreate">Ngày tạo: {createDate}</div>
+            <div className="dateCreate">Ngày tạo: {formatDate(new Date(createDate))}</div>
         </div>
       </div>
     </div>
   );
 }
-// 'C:/Users/Admin/Desktop/web/New folder (2)/backend/EasyAccomod/Server/' + image.replace('\\','/'))
 
 export default Post;

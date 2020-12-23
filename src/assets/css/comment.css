@@ -1,0 +1,30 @@
+@import 'config.css';
+
+.Comment .choose span {
+    font-weight: bold;
+}
+.Comment .choose select{
+    padding: 0.3rem;
+    margin: 0 2rem;
+}
+.Comment textarea {
+  width: 70vw;
+  max-width: 50rem;
+  height: 5rem;
+  margin-top: 1rem;
+  border: 1px solid rgb(201, 201, 201);
+}
+
+.Comment .choose button {
+  padding: 0.5rem 1rem;
+  float: right;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  color: white;
+}
+
+.Comment .choose button:hover{
+background-color: var(--hover-color);
+}
