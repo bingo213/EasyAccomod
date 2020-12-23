@@ -9,6 +9,7 @@ var Profile = require('../models/profile');
 const Favorite = require('../models/favorite');
 const favorite = require('../models/favorite');
 const Address = require('../models/address');
+const Post = require('../models/post');
 
 router.use(bodyParser.json());
 
@@ -139,7 +140,7 @@ router
           res.setHeader('Content-Type', 'application/json');
           res.json({ success: true, profile: profile });
         } else {
-          res.statusCode = 200;
+          res.statusCode = 404;
           res.setHeader('Content-Type', 'application/json');
           res.json({
             success: false,
@@ -149,6 +150,25 @@ router
         }
       });
   });
+
+//get Avatar
+router.route('/:userId/getAvatar').get((req, res, next) => {
+  Profile.findOne({ user: req.params.userId }).then(profile => {
+    if (profile) {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({ success: true, avatar: profile.avatar });
+    } else {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({
+        success: false,
+        message: 'Not found Profile',
+        profile: profile,
+      });
+    }
+  });
+});
 
 //change Active of user
 router
@@ -183,19 +203,41 @@ router
   });
 
 //get All Favorite of one user
-router.route('/favorites').get(authenticate.verifyUser, (req, res, next) => {
-  Favorite.find({ user: req.user._id }, 'post')
-    .populate('post')
-    .then(
-      favorites => {
-        res.statusCode = 200;
-        res.setHeader('Content-type', 'application/json');
-        res.json({ success: true, posts: favorites });
-      },
-      err => next(err)
-    )
-    .catch(err => next(err));
-});
+router
+  .route('/:userId/favorites')
+  .get(authenticate.verifyUser, (req, res, next) => {
+    if (!req.user._id.equals(req.params.userId)) {
+      res.statusCode = 403;
+      res.setHeader('Content-type', 'application/json');
+      res.json({
+        success: false,
+        message: ' Not allow to get another favorite',
+      });
+    }
+    Favorite.find({ user: req.params.userId })
+      .populate('post')
+      .populate('post.address')
+      .then(
+        favorites => {
+          var posts = [];
+          for (let i = favorites.length - 1; i >= 0; i--) {
+            Post.findById(favorites[i].post)
+              .populate('address')
+              .then(post => {
+               posts.push(post);
+               if(i == 0){
+                res.statusCode = 200;
+                res.setHeader('Content-type', 'application/json');
+                res.json({ success: true, posts: posts });
+               }
+              });
+          }
+          
+        },
+        err => next(err)
+      )
+      .catch(err => next(err));
+  });
 
 router.get('/checkJWTToken', (req, res) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {

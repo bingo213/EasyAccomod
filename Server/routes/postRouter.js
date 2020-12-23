@@ -187,16 +187,27 @@ postRouter
       .populate('address')
       .then(
         post => {
-          if (req.user && req.use.user_type == 'rental') {
+          if (
+            req.user &&
+            !req.user._id.equals(post.owner) &&
+            req.user.user_type !== 'admin'
+          ) {
             post.views += 1;
             post.save();
           }
+
           Profile.findOne({ user: post.owner })
             .populate('address')
             .then(profile => {
-              res.statusCode = 200;
-              res.setHeader('Content-Type', 'application/json');
-              res.json({ post: post, author: profile });
+              Favorite.find({ post: req.params.postId }).then(favorites => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json({
+                  post: post,
+                  author: profile,
+                  number: favorites.length,
+                });
+              });
             });
         },
         err => next(err)
@@ -418,12 +429,44 @@ postRouter
   });
 
 postRouter.route('/:postId/comments').get((req, res, next) => {
+
+
+  // await  Comments.find({ $and: [{ post: req.params.postId }, { active: 1 }] }).exec();
+  //   Comments.aggregate([{
+  //     $lookup: {
+  //         from: "profiles",
+  //         localField: 'author',
+  //         foreignField: "user",
+  //         as: "profile"
+  //     }
+  // }]).exec(function(err, comments) {
+  //     // students contain WorksnapsTimeEntries
+  //     console.log('Commets: ', comments)
+  // });
+  // Comments.aggregate([
+  //   {
+  //     $lookup: {
+  //       from: 'profiles',
+  //       localField: 'author',
+  //       foreignField: 'user',
+  //       as: 'profile',
+  //     },
+  //   },
+  // ])
+  //   .then(comments => {
+  //     res.statusCode = 200;
+  //     res.setHeader('Content-Type', 'application/json');
+  //     res.json({ success: true, comments: comments });
+  //   });
+
   Comments.find({ $and: [{ post: req.params.postId }, { active: 1 }] })
+  .populate('author')
     .then(comments => {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.json({ success: true, comments: comments });
-    })
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json({ success: true, comments: comments });
+          }
+        )
     .catch(err => {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'application/json');
@@ -436,7 +479,11 @@ postRouter.route('/:postId/favorites').get((req, res, next) => {
     .then(favorites => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json({ success: true, favorites: favorites });
+      res.json({
+        success: true,
+        favorites: favorites,
+        number: favorites.length,
+      });
     })
     .catch(err => {
       res.statusCode = 404;
