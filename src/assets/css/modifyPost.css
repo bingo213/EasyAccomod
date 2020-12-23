@@ -9,6 +9,10 @@
   padding: 1rem;
 }
 
+.createPostErrorMessage{
+  color: red;
+}
+
 .ModifyPost label p, .ModifyPost .AutoAddress span{
   font-weight: bold;
   color: rgb(65, 65, 65);

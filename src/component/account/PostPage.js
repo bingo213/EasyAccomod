@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import authHeader from '../../helper/auth-header';
 import NavBar from 'component/NavBar';
+import Modal from 'react-modal';
 
 function PostPage() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -125,6 +126,31 @@ function PostPage() {
         }
       });
   };
+
+  const handleDeletePost = id => {
+    const deletePost = async () => {
+      await axios
+        .delete(`http://localhost:3001/post/${id}`, { headers: authHeader() })
+        .then(res => {
+          if (res.data.success) {
+            alert('Xóa thành công bài viết!');
+          }
+        })
+        .catch(err => console.log(err));
+    };
+
+    const cf = window.confirm('Bạn có chắc chắn muốn xóa bài viết này?');
+    if (cf == true) {
+      deletePost();
+      window.location.reload();
+    }
+  };
+
+  const extendDate = id => {
+    // await
+  };
+
+  const [modalIsOpden, setModelIsOpen] = useState(false);
   return (
     <>
       <NavBar />
@@ -215,15 +241,46 @@ function PostPage() {
                         Cập nhật đã thuê
                       </div>
                     )}
-                    {active === 2 && (
+                    {(active === 2 || active === 3) && (
                       <div>
                         {' '}
-                        <Link to={`/modify_post/${post._id}`}><div className="op">Chỉnh sửa</div></Link>
-                        <div className="op">Xóa</div>
+                        <Link to={`/modify_post/${post._id}`}>
+                          <div className="op">Chỉnh sửa</div>
+                        </Link>
+                        <div
+                          className="op"
+                          onClick={() => handleDeletePost(post._id)}
+                        >
+                          Xóa
+                        </div>
+                      </div>
+                    )}
+                    {active === 4 && (
+                      <div>
+                        <div
+                          className="op"
+                          onClick={() => extendDate(post._id)}
+                        >
+                          Gia hạn bài đăng
+                        </div>
+                        <div
+                          className="op"
+                          onClick={() => handleDeletePost(post._id)}
+                        >
+                          Xóa
+                        </div>
                       </div>
                     )}
                   </div>
                 )}
+                <Modal
+                  isOpen={modalIsOpden}
+                  onRequestClose={() => setModelIsOpen(false)}
+                  // style={modalStyle}
+                  className="modal"
+                >
+
+                </Modal>
               </div>
             ))
           ) : (

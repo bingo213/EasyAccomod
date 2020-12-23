@@ -39,7 +39,7 @@ function RentalUnit({ rentalUnit, isLogin }) {
           <div className="image">
             <img src={roomImg} alt="Room Image" />
             <div className="cost">
-              {rentalUnit.price}
+              {rentalUnit.price/1000000} triệu
               <p className="small"> /{typeOfTime(rentalUnit.typeOfPrice)}</p>
             </div>
           </div>

@@ -9,6 +9,32 @@ import PreviewImage from './PreviewImage';
 import { useParams } from 'react-router-dom';
 
 function ModifyPost() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isLogin, setIsLogin] = useState(() => {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  });
+  const [username, setUsername] = useState('name');
+  useEffect(() => {
+    if (isLogin) {
+      setUsername(user.username);
+    }
+  }, []);
+
+  const [role, setRole] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setRole(user.role);
+    }
+  }, []);
+
+  const [avatar, setAvatar] = useState('');
+  useEffect(() => {
+    if (isLogin) {
+      setAvatar(user.avatar);
+    }
+  }, []);
+
   const { register, handleSubmit, errors } = useForm();
 
   const { id } = useParams();

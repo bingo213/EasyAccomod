@@ -15,6 +15,13 @@ function Home() {
     else return false;
   });
 
+  // const [avatar, setAvatar] = useState('');
+  // useEffect(() => {
+  //   if (isLogin) {
+  //     setAvatar(user.avatar);
+  //   }
+  // }, []);
+
   const [rentalUnit, setRentalUnit] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,15 +46,15 @@ function Home() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const rentalUnitSearch = (searchList) => {
+  const rentalUnitSearch = searchList => {
     setRentalUnit(searchList);
-  } 
+  };
   return (
     <div className="Home" style={{ overflowX: 'hidden' }}>
       <NavBar />
       <div className="homeImage"></div>
 
-      <SearchBar rentalUnitSearch={rentalUnitSearch}  />
+      <SearchBar rentalUnitSearch={rentalUnitSearch} />
       <ListRentalUnit
         currentRentals={currentRentals}
         loading={loading}

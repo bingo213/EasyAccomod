@@ -68,11 +68,12 @@
   text-align: center;
   padding: 0.5rem;
   border-radius: 50%;
+  background-color: white;
   cursor: pointer;
 }
 
 .PostPage .postTag i:hover {
-  background-color: rgba(56, 56, 56, 0.233);
+  background-color: rgb(187, 187, 187);
 }
 
 .PostPage .postTag .option {

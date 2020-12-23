@@ -69,6 +69,7 @@ function Profile({ userId }) {
 
   const onSubmit = data => {
     const formData = new FormData();
+    console.log(data.avatar[0]);
     for (let i in data) {
       if(i !== "avatar")
       formData.append(i, data[i]);
@@ -84,7 +85,9 @@ function Profile({ userId }) {
         .then(res => {
           if (res.data.success) {
             alert('Thay đổi thông tin thành công');
-            window.location.reload();
+            let user = JSON.parse(localStorage.getItem('user'));
+            localStorage.setItem('user',JSON.stringify({...user, avatar: `\\public\\avatar\\${data.avatar[0].name}`}) )
+            // window.location.reload();
           }
         })
         .catch(err => {

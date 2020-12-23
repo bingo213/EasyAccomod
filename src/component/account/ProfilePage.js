@@ -35,7 +35,6 @@ function ProfilePage({ defaultType }) {
         })
         .then(res => {
           if (res.data.success) {
-            console.log(res.data);
             setFavoriteList(res.data.posts);
           }
         });
@@ -43,7 +42,7 @@ function ProfilePage({ defaultType }) {
     setLoadList(false);
 
     if (isLogin) getFavoriteList();
-  });
+  },[]);
 
   return (
     <div className="ProfilePage">
