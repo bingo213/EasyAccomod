@@ -18,7 +18,7 @@ const adminRouter = express.Router();
 
 adminRouter.use(bodyParser.json());
 
-adminRouter.route('/getOwner')
+adminRouter.route('/getWaitingOwner')
     .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Profile.find()
             .populate({ path: 'user', match: { user_type: 'owner', active: 0 } })

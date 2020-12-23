@@ -85,13 +85,18 @@ postRouter
         res.setHeader('Content-Type', 'application/json');
         res.json({ success: false, message: 'images must be greater than 3' });
       }
-      var paths = arr.map(item => item.path);
-      var user = req.user;
-      var role = user.user_type;
-      req.body.owner = user._id;
-      req.body.hasRent = false;
-      req.body.paid = false;
-      if (role === 'admin') {
+      if (req.user.user_type === 'rental') {
+        res.statusCode = 403;
+        res.setHeader('Content-Type', 'application/json');
+        res.send({ success: false, message: 'You are not owner or admin' });
+      }
+      if (req.user.user_type === 'owner' && req.user.active !== 1) {
+        res.statusCode = 403;
+        res.setHeader('Content-Type', 'application/json');
+        res.send({ success: false, message: 'Your account not active' });
+      }
+
+      if (req.user.user_type === 'admin') {
         req.body.active = 1;
         req.body.activeDate = new Date();
         req.body.expireDate = getExpireDate(
@@ -99,19 +104,14 @@ postRouter
           req.body.typeOfTime,
           req.body.duration
         );
-      } else if (role === 'owner') {
-        if (user.active !== 1) {
-          res.statusCode = 403;
-          res.setHeader('Content-Type', 'application/json');
-          res.send({ success: false, message: 'Your account not active' });
-        } else {
-          req.body.active = 0;
-        }
       } else {
-        res.statusCode = 403;
-        res.setHeader('Content-Type', 'application/json');
-        res.send({ success: false, message: 'You are not owner or admin' });
+        req.body.active = 0;
       }
+      var paths = arr.map(item => item.path);
+
+      req.body.owner = req.user._id;
+      req.body.hasRent = false;
+      req.body.paid = false;
       Address.create(req.body)
         .then(
           address => {
@@ -429,8 +429,6 @@ postRouter
   });
 
 postRouter.route('/:postId/comments').get((req, res, next) => {
-
-
   // await  Comments.find({ $and: [{ post: req.params.postId }, { active: 1 }] }).exec();
   //   Comments.aggregate([{
   //     $lookup: {
@@ -460,13 +458,12 @@ postRouter.route('/:postId/comments').get((req, res, next) => {
   //   });
 
   Comments.find({ $and: [{ post: req.params.postId }, { active: 1 }] })
-  .populate('author')
+    .populate('author')
     .then(comments => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ success: true, comments: comments });
-          }
-        )
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({ success: true, comments: comments });
+    })
     .catch(err => {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'application/json');
