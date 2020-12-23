@@ -1,0 +1,87 @@
+@import 'config.css';
+
+.ApprovalOwner .ApprovalRow {
+  display: flex;
+}
+
+.ApprovalOwner .ApprovalRow img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.ApprovalOwner .ApprovalRow {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ApprovalOwner .ApprovalRow .field {
+  padding: 0 0.5rem;
+  border-right: 1px solid rgb(197, 197, 197);
+}
+.ApprovalOwner .ApprovalRow .fullname {
+  flex: 1;
+}
+
+.ApprovalOwner .ApprovalRow .email {
+  flex: 0.3;
+}
+.ApprovalOwner .ApprovalRow .phoneNumber {
+  flex: 0.25;
+}
+
+.ApprovalOwner .ApprovalRow .address {
+  flex: 1;
+}
+.ApprovalOwner .ApprovalRow .username {
+  flex: 0.3;
+}
+
+.ApprovalOwner .ApprovalRow .comment{
+    flex: 1;
+}
+
+.ApprovalOwner .ApprovalRow .img {
+  flex: 0.15;
+}
+
+.ApprovalOwner .ApprovalRow .icon {
+  flex: 0.2;
+  font-size: 2rem;
+}
+.ApprovalOwner .ApprovalRow .icon .fa-check-circle {
+  color: rgb(1, 105, 1);
+  cursor: pointer;
+  padding-left: 0.5rem;
+}
+
+.ApprovalOwner .ApprovalRow .fa-trash-alt {
+  color: red;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+.ApprovalOwner .ApprovalRow .fa-check{
+  color: rgb(0, 153, 0);
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.ApprovalOwner .ApprovalRow .fa-times{
+  color: red;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.ApprovalOwner .ApprovalRow .fa-info-circle {
+  color: rgb(226, 156, 3);
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+.ApprovalOwner .ApprovalRow .roomImg img {
+  border-radius: 0;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+}

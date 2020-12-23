@@ -6,6 +6,8 @@ import { Link, useHistory } from 'react-router-dom';
 import authHeader from '../../helper/auth-header';
 import NavBar from 'component/NavBar';
 import Modal from 'react-modal';
+import caculatePrice from 'helper/caculatePrice';
+import { useForm } from 'react-hook-form';
 
 function PostPage() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -18,6 +20,10 @@ function PostPage() {
 
   if (!isLogin) {
     history.push('/login');
+  }
+
+  if(user.role === 'admin'){
+    history.push('/404')
   }
 
   const [postList, setPostList] = useState([]);
@@ -34,13 +40,11 @@ function PostPage() {
       .catch(err => console.log(err));
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('user') === null) {
-      history.push('/login');
-    } else if (JSON.parse(localStorage.getItem('user')).role === 'rental') {
-      history.push('/404');
-    }
-  }, []);
+  if (localStorage.getItem('user') === null) {
+    history.push('/login');
+  } else if (JSON.parse(localStorage.getItem('user')).role === 'rental') {
+    history.push('/404');
+  }
 
   let expirePost = [];
   let watingPost = [];
@@ -104,6 +108,42 @@ function PostPage() {
 
   const [displayOption, setDisplayOption] = useState(false);
 
+  const [time, setTime] = useState(0);
+  const [typeOfTime, setTypeOfTime] = useState('');
+  const [price, setPrice] = useState(0);
+  const handleChangeTime = e => {
+    setTime(e.target.value);
+  };
+
+  const handleChangeTypeOfTime = e => {
+    setTypeOfTime(e.target.value);
+  };
+
+  useEffect(() => {
+    setPrice(caculatePrice({ time: time, typeOfTime: typeOfTime }));
+  }, [time, typeOfTime]);
+
+  const [idExtend, setIdExtend] = useState(0);
+
+  const modalStyle = {
+    overlay: {
+      backgroundColor: '#262525ad',
+      zIndex: 10,
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    content: {
+      width: '90vw',
+      maxWidth: '60rem',
+      maxHeight: '100vh',
+      margin: 'auto',
+      borderRadius: '4px',
+    },
+  };
+
   const handleDisplayOption = () => {
     setDisplayOption(!displayOption);
   };
@@ -146,8 +186,23 @@ function PostPage() {
     }
   };
 
-  const extendDate = id => {
-    // await
+  const { register, handleSubmit, errors } = useForm();
+
+  const onSubmit = data => {
+    const extendDate = async () => {
+      axios
+        .post(`http://localhost:3001/post/${idExtend}/extends`, data, {
+          headers: authHeader(),
+        })
+        .then(res => {
+          if (res.data.success) {
+            alert('Yêu cầu gia hạn sẽ được gửi đến cho admin phê duyệt');
+            setModelIsOpen(false);
+          }
+        });
+    };
+
+    extendDate();
   };
 
   const [modalIsOpden, setModelIsOpen] = useState(false);
@@ -213,13 +268,13 @@ function PostPage() {
           {postList.length !== 0 ? (
             postList.map(post => (
               <div
+                key={post.id}
                 className="postTag"
                 style={{
                   backgroundColor: post.hasRent && '#FADBD8',
                 }}
               >
                 <Post
-                  key={post.id}
                   id={post._id}
                   image={post.images[0].name}
                   title={post.title}
@@ -259,7 +314,10 @@ function PostPage() {
                       <div>
                         <div
                           className="op"
-                          onClick={() => extendDate(post._id)}
+                          onClick={() => {
+                            setModelIsOpen(true);
+                            setIdExtend(post._id);
+                          }}
                         >
                           Gia hạn bài đăng
                         </div>
@@ -276,10 +334,107 @@ function PostPage() {
                 <Modal
                   isOpen={modalIsOpden}
                   onRequestClose={() => setModelIsOpen(false)}
-                  // style={modalStyle}
+                  style={modalStyle}
                   className="modal"
                 >
-
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    {' '}
+                    <label style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                      Thời gian gia hạn
+                    </label>
+                    {errors.duration && (
+                      <p style={{ color: 'red' }}>{errors.duration.message}</p>
+                    )}
+                    <input
+                      style={{
+                        width: '50%',
+                        height: '3rem',
+                        fontSize: '1.2rem',
+                      }}
+                      name="duration"
+                      type="number"
+                      placeholder="1 - 100000000000"
+                      ref={register({
+                        required: 'Bạn cần nhập vào giá tiền',
+                        min: {
+                          value: 1,
+                          message: 'Thời gian hiển thị không hợp lệ',
+                        },
+                        max: {
+                          value: 100000000000,
+                          message: 'Thời gian hiển thị không hợp lệ',
+                        },
+                      })}
+                      onChange={handleChangeTime}
+                    />
+                    <label>
+                      <p
+                        style={{
+                          paddingTop: '2rem',
+                          fontSize: '1.2rem',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        Đơn vị
+                      </p>
+                      {errors.typeOfTime && (
+                        <p style={{ color: 'red' }}>
+                          {errors.typeOfTime.message}
+                        </p>
+                      )}
+                      <select
+                        style={{
+                          height: '3rem',
+                          fontSize: '1.2rem',
+                        }}
+                        name="typeOfTime"
+                        ref={register({ required: 'Chọn đơn vị' })}
+                        onChange={handleChangeTypeOfTime}
+                      >
+                        <option value="" hidden>
+                          Đơn vị
+                        </option>
+                        <option value="month">Tháng</option>
+                        <option value="quarter">Quý</option>
+                        <option value="year">Năm</option>
+                      </select>
+                    </label>
+                    <div
+                      style={{
+                        padding: '2rem 0rem',
+                        fontSize: '1.2rem',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      Số tiền phải thanh toán: {price}
+                    </div>
+                    <button
+                      type="submit"
+                      style={{
+                        border: 'none',
+                        padding: '0.5rem 1rem',
+                        color: 'white',
+                        cursor: 'pointer',
+                        backgroundColor: '#b881fc',
+                      }}
+                    >
+                      Gian hạn
+                    </button>
+                  </form>
+                  <i
+                    className="fal fa-times"
+                    onClick={() => setModelIsOpen(false)}
+                  ></i>
                 </Modal>
               </div>
             ))

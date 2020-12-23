@@ -19,6 +19,10 @@ function ProfilePage({ defaultType }) {
     history.push('/login');
   }
 
+  if(user.role === 'admin'){
+    history.push('/404');
+  }
+
   const userId = isLogin ? user.userId : 0;
 
   const [type, setType] = useState(defaultType);

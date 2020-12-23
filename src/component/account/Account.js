@@ -24,8 +24,8 @@ function Account({username, role, avatar}) {
         {username}<i className="fas fa-sort-down"></i>
       </div>
       {toggle && <ul id="item">
-        <Link to="/profile"><li><i className="fas fa-address-card"></i>Hồ sơ</li></Link>
-        <Link to="/favorite_list"><li><i className="fas fa-heart"></i>Yêu thích</li></Link>
+        {role !== 'admin' && <Link to="/profile"><li><i className="fas fa-address-card"></i>Hồ sơ</li></Link>}
+        {role !== 'admin' && <Link to="/favorite_list"><li><i className="fas fa-heart"></i>Yêu thích</li></Link>}
         {(role ==='owner') && (<Link to="/posts_page"><li><i className="fal fa-newspaper"></i>Bài đăng</li></Link>)}
         <a onClick={logOut}><li><i className="fas fa-sign-out"></i>Đăng xuất</li></a>
       </ul>}

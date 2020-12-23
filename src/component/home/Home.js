@@ -65,7 +65,7 @@ function Home() {
         totalRentalUnit={rentalUnit.length}
         paginate={paginate}
       />
-      <Footer />
+      <div id="footer"><Footer /></div>
     </div>
   );
 }

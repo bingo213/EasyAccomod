@@ -70,6 +70,8 @@ function App() {
         <Route exact path="/create_post" component={ModifyPost} />
         <Route exact path="/modify_post/:id" component={ModifyPost} />
 
+        <Route exact path="/admin" component={AdminPage} />
+
         <Route exact path="/profile">
           <ProfilePage defaultType="account" />
         </Route>
