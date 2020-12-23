@@ -314,7 +314,7 @@ postRouter
           post.remove().then(resp => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(resp);
+            res.json({success: true});
           });
         } else {
           res.statusCode = 404;
