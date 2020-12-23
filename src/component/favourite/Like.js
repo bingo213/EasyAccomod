@@ -64,7 +64,8 @@ function Like({ postId, isLogin }) {
         setNumberOfLike(numberOfLike + 1)
       }
     } else {
-      history.push('/');
+      alert('Bạn cần đăng nhập để sử dụng tính năng này')
+      // history.push('/login');
     }
   };
 

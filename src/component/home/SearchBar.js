@@ -6,7 +6,11 @@ import AutoAddress from 'component/address/AutoAddress';
 function SearchBar() {
   const { register, handleSubmit, errors } = useForm();
   const validation = [{}, {}, {}, {}, {}];
-  const onSubmit = data => console.log(data);
+  const onSubmit = data =>{
+    const postSearchData = async () =>{
+
+    }
+  };
   return (
     <div className="SearchBar">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -20,20 +24,20 @@ function SearchBar() {
           <div className="second">
             <select name="typeOfRoom" ref={register}>
               <option value="" hidden>Loại phòng</option>
-              <option value="t1">Phòng trọ</option>
-              <option value="t2">Chung cư mini</option>
-              <option value="t3">Nhà nguyên căn</option>
-              <option value="t4">Chung cư nguyên căn</option>
+              <option value="phongtro">Phòng trọ</option>
+              <option value="chungcu">Chung cư mini</option>
+              <option value="nha_nguyencan">Nhà nguyên căn</option>
+              <option value="chungcu_nguyencan">Chung cư nguyên căn</option>
             </select>
             <div className="money">
               <select name="price" ref={register} className="price">
                 <option value="" hidden>Giá tiền</option>
-                <option value="cost1">Dưới 1 triệu</option>
-                <option value="cost2">Từ 1 - 1.5 triệu</option>
-                <option value="cost3">Từ 1.5 - 2 triệu</option>
-                <option value="cost4">Từ 2 - 2.5 triệu</option>
-                <option value="cost5">Từ 2.5 - 3 triệu</option>
-                <option value="cost6">Trên 3 triệu</option>
+                <option value="0-999999">Dưới 1 triệu</option>
+                <option value="1000000-1499999">Từ 1 - 1.5 triệu</option>
+                <option value="1500000-1999999">Từ 1.5 - 2 triệu</option>
+                <option value="2000000-2499999">Từ 2 - 2.5 triệu</option>
+                <option value="2500000-2999999">Từ 2.5 - 3 triệu</option>
+                <option value="3000000-100000000">Trên 3 triệu</option>
               </select>
               <select name="typeOfTime" className="time">
                 <option value="" hidden>Tính theo</option>
