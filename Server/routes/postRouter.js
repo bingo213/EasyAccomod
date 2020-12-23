@@ -411,10 +411,10 @@ postRouter
   });
 
 postRouter
-  .route('/:postId/rent')
+  .route('/:postId/changeRentStatus')
   .put(authenticate.verifyUser, (req, res, next) => {
     Post.findById(req.params.postId).then(post => {
-      if (req.user._id != post.owner) {
+      if ( !post.owner.equals(req.user._id)) {
         res.statusCode = 403;
         res.setHeader('Content-Type', 'application/json');
         res.json({ success: false, message: 'Not author of this post' });

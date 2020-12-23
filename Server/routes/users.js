@@ -100,6 +100,7 @@ router.post('/login', (req, res, next) => {
           token: token,
           userId: user._id,
           avatar: profile.avatar,
+          active: user.active
         });
       });
     });
