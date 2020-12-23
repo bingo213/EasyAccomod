@@ -6,7 +6,7 @@ import axios from 'axios';
 import ListLike from 'component/favourite/ListLike';
 import authHeader from 'helper/auth-header';
 
-function ProfilePage({defaultType}) {
+function ProfilePage({ defaultType }) {
   const user = JSON.parse(localStorage.getItem('user'));
   const [isLogin, setIsLogin] = useState(() => {
     if (localStorage.getItem('user')) return true;
@@ -21,7 +21,7 @@ function ProfilePage({defaultType}) {
 
   const userId = isLogin ? user.userId : 0;
 
-  // const [type, setType] = useState(defaultType);
+  const [type, setType] = useState(defaultType);
 
   const [favoriteList, setFavoriteList] = useState([]);
   const [loadList, setLoadList] = useState(true);
@@ -30,7 +30,9 @@ function ProfilePage({defaultType}) {
     setLoadList(true);
     const getFavoriteList = async () => {
       await axios
-        .get(`http://localhost:3001/users/${userId}/favorites`, {headers: authHeader()})
+        .get(`http://localhost:3001/users/${userId}/favorites`, {
+          headers: authHeader(),
+        })
         .then(res => {
           if (res.data.success) {
             console.log(res.data);
@@ -40,7 +42,7 @@ function ProfilePage({defaultType}) {
     };
     setLoadList(false);
 
-    if(isLogin) getFavoriteList();
+    if (isLogin) getFavoriteList();
   });
 
   return (
@@ -51,14 +53,22 @@ function ProfilePage({defaultType}) {
         <div className="navigation">
           <div className="navContent">
             <div
-              className="navigationButton"
+              className={
+                defaultType === 'account'
+                  ? 'navigationButton activeNav'
+                  : 'navigationButton'
+              }
               onClick={() => history.push('/profile')}
             >
               <i className="far fa-id-card"></i>
               <div className="tag">Thông tin tài khoản</div>
             </div>
             <div
-              className="navigationButton"
+              className={
+                defaultType === 'listLike'
+                  ? 'navigationButton activeNav'
+                  : 'navigationButton'
+              }
               onClick={() => history.push('/favorite_list')}
             >
               <i className="fas fa-heart-circle"></i>

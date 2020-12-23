@@ -107,6 +107,24 @@ function PostPage() {
     setDisplayOption(!displayOption);
   };
 
+  const [active, setActive] = useState(0);
+
+  const handleChangeRentStatus = async id => {
+    await axios
+      .put(
+        `http://localhost:3001/post/${id}/changeRentStatus`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(res => {
+        if (res.data.success) {
+          alert('Cập nhật trạng thái thành công!');
+          window.location.reload();
+        }
+      });
+  };
   return (
     <>
       <NavBar />
@@ -115,29 +133,49 @@ function PostPage() {
         <div className="navigation">
           <div className="navContent">
             <div
-              className="navigationButton"
-              onClick={() => setPostList(activePost)}
+              className={
+                active === 1 ? 'navigationButton activeNav' : 'navigationButton'
+              }
+              onClick={() => {
+                setPostList(activePost);
+                setActive(1);
+              }}
             >
               <i className="far fa-clipboard-check"></i>
               <div className="tag">Bài đăng đã duyệt</div>
             </div>
             <div
-              className="navigationButton"
-              onClick={() => setPostList(watingPost)}
+              className={
+                active === 2 ? 'navigationButton activeNav' : 'navigationButton'
+              }
+              onClick={() => {
+                setPostList(watingPost);
+                setActive(2);
+              }}
             >
               <i className="far fa-user-edit"></i>
               <div className="tag">Bài đăng chờ duyệt</div>
             </div>
             <div
-              className="navigationButton"
-              onClick={() => setPostList(rejectPost)}
+              className={
+                active === 3 ? 'navigationButton activeNav' : 'navigationButton'
+              }
+              onClick={() => {
+                setPostList(rejectPost);
+                setActive(3);
+              }}
             >
               <i className="far fa-file-times"></i>
               <div className="tag">Bài đăng bị từ chối</div>
             </div>
             <div
-              className="navigationButton"
-              onClick={() => setPostList(expirePost)}
+              className={
+                active === 4 ? 'navigationButton activeNav' : 'navigationButton'
+              }
+              onClick={() => {
+                setPostList(expirePost);
+                setActive(4);
+              }}
             >
               <i className="fas fa-file-exclamation"></i>
               <div className="tag">Bài đăng hết hạn</div>
@@ -148,7 +186,12 @@ function PostPage() {
         <div className="postPageContent">
           {postList.length !== 0 ? (
             postList.map(post => (
-              <div className="postTag">
+              <div
+                className="postTag"
+                style={{
+                  backgroundColor: post.hasRent && '#FADBD8',
+                }}
+              >
                 <Post
                   key={post.id}
                   id={post._id}
@@ -164,8 +207,21 @@ function PostPage() {
                 ></i>
                 {displayOption && (
                   <div className="option">
-                    <div className="op">Chỉnh sửa</div>
-                    <div className="op">Xóa</div>
+                    {active === 1 && (
+                      <div
+                        className="op"
+                        onClick={() => handleChangeRentStatus(post._id)}
+                      >
+                        Cập nhật đã thuê
+                      </div>
+                    )}
+                    {active === 2 && (
+                      <div>
+                        {' '}
+                        <Link to={`/modify_post/${post._id}`}><div className="op">Chỉnh sửa</div></Link>
+                        <div className="op">Xóa</div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

@@ -1,6 +1,6 @@
 export default function typeOfBath(type){
-    if (type == 'public')
+    if (type === 'public')
         return "Khép kín";
-    else if (type == 'private')
+    else if (type === 'private')
         return "Không khép kín";
 }

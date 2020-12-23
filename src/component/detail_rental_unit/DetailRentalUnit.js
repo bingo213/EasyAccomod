@@ -103,6 +103,8 @@ function DetailRentalUnit() {
   const handleClickImage = () => {
     setImageModelIsOpen(true);
   };
+  let term = loading
+  
   return (
     <div className="DetailRentalUnit">
       <NavBar />

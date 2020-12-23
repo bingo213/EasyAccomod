@@ -26,7 +26,11 @@
 }
 
 .PostPage .navigation .navigationButton:hover {
-  background-color: rgba(237, 119, 253, 0.445);
+  background-color: var(--nav-Active-color-hover);
+}
+
+.ProfilePage .navContent .activeNav {
+  background-color: var(--nav-Active-color);
 }
 
 .PostPage .navigation i {
@@ -110,6 +114,11 @@
     z-index: 5;
   }
 
+  .PostPage .navigation .activeNav {
+    background-color: var(--nav-small-Active-color);
+    transform: scale(1.2);
+  }
+
   .PostPage .navigation .tag {
     display: none;
     position: absolute;
@@ -145,5 +154,6 @@
     background-color: var(--post-page-navigation-bgcolor);
     text-align: center;
     transition: 0.3s;
+    background-color: var(--nav-small-Active-color-hover);
   }
 }

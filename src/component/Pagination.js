@@ -9,15 +9,22 @@ function Pagination({ rentalUnitPerPage, totalRentalUnit, paginate }) {
     pageNumber.push(i);
   }
 
+  const [activePage, setActivePage] = useState(1);
+
   return (
     <div className="Pagination">
       <ul className="pageNumberContainer">
         {pageNumber.map(number => (
           <li key={number}>
             <a
-              onClick={() => {paginate(number)}}
+              onClick={() => {
+                paginate(number);
+                setActivePage(number);
+              }}
               href="#ListRentalUnit"
-              className="pageLink"
+              className={
+                number === activePage ? 'pageLink activePage' : 'pageLink'
+              }
             >
               {number}
             </a>

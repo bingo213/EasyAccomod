@@ -72,7 +72,8 @@ function SearchBar({rentalUnitSearch}) {
           </div>
         </div>
         <div className="btn">
-          <button type="submit" onClick={() => handleSubmit()}>Tìm kiếm</button>
+          <button className="searchBtn" type="submit" onClick={() => handleSubmit()}>Tìm kiếm</button>
+          <button className="resetSearchBar" onClick={() => window.location.reload()}>Làm mới thanh tìm kiếm</button>
         </div>
       </form>
     </div>

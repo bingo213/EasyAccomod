@@ -45,4 +45,10 @@
   --post-page-navigation-width: 15rem;
   --post-page-navigation-width-small: 4rem;
   --post-page-navigation-bgcolor: #603f83;
+
+  /* profile - favorite page config */
+  --nav-Active-color: rgba(237, 119, 253, 0.445);
+  --nav-Active-color-hover: rgba(233, 169, 241, 0.233);
+  --nav-small-Active-color: #ac68ff;
+  --nav-small-Active-color-hover: #ac68ff;
 }

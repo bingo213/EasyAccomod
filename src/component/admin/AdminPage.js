@@ -1,20 +1,21 @@
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
-import restProvider from 'ra-data-simple-rest';
+import simpleRestProvider  from 'ra-data-simple-rest';
+// import { simpleRestClient, Admin, Resource } from 'admin-on-rest'
 
 import React from 'react';
 import UserList from './UserList';
 import UserEdit from './UserEdit';
 
 function AdminPage() {
-  const dataProvider = restProvider(
-    'http://localhost:3001'
+  const dataProvider = simpleRestProvider (
+    'http://localhost:3001/'
   );
   return (
-    <Admin
+    <Admin 
       dataProvider={dataProvider}
     >
-         <Resource name="admin/getWatingOwner" list={UserList} edit={UserEdit}/>
+         <Resource name="admin/getWatingOwner" list={ListGuesser}/>
     </Admin>
   );
 }
