@@ -51,7 +51,6 @@ function DetailRentalUnit() {
           setAuthor(res.data.author);
           setNumberOfLike(res.data.number);
           setLoading(false);
-          console.log(res.data);
         })
         .catch(err => console.log(err));
     };
@@ -67,7 +66,6 @@ function DetailRentalUnit() {
         .then(res => {
           setComments(res.data.comments);
           setLoadCmt(false);
-          console.log('comments: ', res.data);
         })
         .catch(err => console.log(err));
     };
@@ -104,6 +102,10 @@ function DetailRentalUnit() {
     setImageModelIsOpen(true);
   };
   let term = loading
+
+  const handleSubmit = ()=>{
+    setReportIsOpen(false);
+  }
   
   return (
     <div className="DetailRentalUnit">
@@ -130,7 +132,7 @@ function DetailRentalUnit() {
       >
         <i className="fal fa-times" onClick={() => setReportIsOpen(false)}></i>
         <div className="reportModal">
-          <FormReport postId={id} />
+          <FormReport postId={id} handleSubmitForm={handleSubmit} />
         </div>
       </Modal>
       <div className="main">

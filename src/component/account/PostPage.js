@@ -148,7 +148,7 @@ function PostPage() {
     setDisplayOption(!displayOption);
   };
 
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
   const handleChangeRentStatus = async id => {
     await axios
@@ -206,6 +206,7 @@ function PostPage() {
   };
 
   const [modalIsOpden, setModelIsOpen] = useState(false);
+
   return (
     <>
       <NavBar />

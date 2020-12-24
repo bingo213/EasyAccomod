@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import authHeader from 'helper/auth-header';
 
-function FormReport({ postId }) {
+function FormReport({ postId, handleSubmitForm }) {
   const { register, handleSubmit } = useForm();
   const [err, setErr] = useState('');
   const onSubmitReport = data => {
@@ -15,7 +15,8 @@ function FormReport({ postId }) {
       data.other
     ) {
       setErr('');
-      alert(JSON.stringify(data));
+      alert("Báo cáo của bạn đã được chuyển tới admin");
+      handleSubmitForm();
     } else {
       setErr('Bạn cần chọn ít nhất một lý do');
     }

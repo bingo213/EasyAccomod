@@ -68,7 +68,9 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
       <label>
         <span>Tỉnh/Thành phố</span>
         {errors.province && (
-          <p className="message">{errors.province.message}</p>
+          <p className="message" style={{ color: 'red' }}>
+            {errors.province.message}
+          </p>
         )}
         <select
           name="province"
@@ -91,7 +93,7 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
       <label>
         <span>Quận/Huyện</span>
         {errors.district && (
-          <p className="message">{errors.district.message}</p>
+          <p className="message" style={{ color: 'red' }}>{errors.district.message}</p>
         )}
         <select
           name="district"
@@ -132,7 +134,7 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
           <label>
             <span>Tên đường</span>
             {errors.street && (
-              <p className="message">{errors.street.message}</p>
+              <p className="message" style={{ color: 'red' }}>{errors.street.message}</p>
             )}
             <input
               type="text"
@@ -146,7 +148,7 @@ function AutoAddress({ register, validation, errors, extend, defaultValue }) {
           <label>
             <span>Số nhà</span>
             {errors.houseNumber && (
-              <p className="message">{errors.houseNumber.message}</p>
+              <p className="message" style={{ color: 'red' }}>{errors.houseNumber.message}</p>
             )}
             <input
               type="number"

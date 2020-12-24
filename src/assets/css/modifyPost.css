@@ -9,11 +9,12 @@
   padding: 1rem;
 }
 
-.createPostErrorMessage{
+.createPostErrorMessage {
   color: red;
 }
 
-.ModifyPost label p, .ModifyPost .AutoAddress span{
+.ModifyPost label p,
+.ModifyPost .AutoAddress span {
   font-weight: bold;
   color: rgb(65, 65, 65);
 }
@@ -65,6 +66,10 @@
 
 .ModifyPost .button button:hover {
   background-color: #9c5fe6;
+}
+
+.createPostErrorMessage {
+  color: red;
 }
 
 .ModifyPost input,

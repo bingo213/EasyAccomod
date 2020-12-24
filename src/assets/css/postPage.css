@@ -29,7 +29,7 @@
   background-color: var(--nav-Active-color-hover);
 }
 
-.ProfilePage .navContent .activeNav {
+.ProfilePage .navContent .activeNav,.PostPage .navContent .activeNav {
   background-color: var(--nav-Active-color);
 }
 

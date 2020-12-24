@@ -18,6 +18,7 @@ import TestUploadImage from 'component/TestUploadImage';
 import ProfilePage from 'component/account/ProfilePage';
 import NavBar from 'component/NavBar';
 import Footer from 'component/Footer';
+import AboutUs from 'component/AboutUs/AboutUs';
 
 function App() {
   // const user = JSON.parse(localStorage.getItem('user'));
@@ -78,6 +79,8 @@ function App() {
         <Route exact path="/favorite_list">
           <ProfilePage defaultType="listLike" />
         </Route>
+
+        <Route exact path="/about_us" component={AboutUs} />
 
         <Route exact path="/404" component={NotFound} />
         <Route>

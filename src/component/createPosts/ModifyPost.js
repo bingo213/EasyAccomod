@@ -72,7 +72,7 @@ function ModifyPost() {
       required: 'Bạn chưa chọn quận/huyện',
     },
     {
-      required: 'Bạn chưa chọn xã/phường',
+      required: false,
     },
     {
       required: 'Bạn chưa nhập tên đường',
@@ -124,16 +124,21 @@ function ModifyPost() {
     const postData = await (() => {
       axios
         .post('http://localhost:3001/post', formData, { headers: authHeader() })
-        .then(res => console.log(res))
+        .then(res => {
+          alert("Tạo bài viết thành công")
+          history.push('/')
+        })
         .catch(err => console.log(err));
     });
     const putData = await (() => {
-      console.log('put:...', data);
       axios
         .put(`http://localhost:3001/post/${post._id}`, formData, {
           headers: authHeader(),
         })
-        .then(res => console.log(res))
+        .then(res => {
+          alert("Sửa bài viết thành công")
+          history.push('/')
+        })
         .catch(err => console.log(err));
     });
 
@@ -173,7 +178,7 @@ function ModifyPost() {
               />
             )}
             <label>
-              Mô tả
+              <p>Mô tả</p>
               <input
                 type="text"
                 ref={register}
@@ -201,7 +206,7 @@ function ModifyPost() {
             <label className="createPostLabel">
               <p>Số lượng phòng</p>
               {errors.numberOfRoom && (
-                <p className="createPostErrorMessage">
+                <p style={{color: 'red'}}>
                   {errors.numberOfRoom.message}
                 </p>
               )}
@@ -227,7 +232,7 @@ function ModifyPost() {
               <label className="createPostLabel flexLabel">
                 <p>Giá phòng</p>
                 {errors.price && (
-                  <p className="createPostErrorMessage">
+                  <p style={{color: 'red'}}>
                     {errors.price.message}
                   </p>
                 )}
@@ -342,7 +347,7 @@ function ModifyPost() {
                 <label className="createPostLabel2">
                   <p>Điện (đồng/kWh)</p>
                   {errors.priceOfElect && (
-                    <p className="createPostErrorMessage">
+                    <p style={{color: 'red'}}>
                       {errors.priceOfElect.message}
                     </p>
                   )}
@@ -367,7 +372,7 @@ function ModifyPost() {
                 <label className="createPostLabel2">
                   <p>Nước (đồng/m3)</p>
                   {errors.priceOfWater && (
-                    <p className="createPostErrorMessage">
+                    <p style={{color: 'red'}}>
                       {errors.priceOfWater.message}
                     </p>
                   )}
@@ -412,9 +417,15 @@ function ModifyPost() {
               />
             </label>
           </div>
-          <div>
+          <div className="facilities">
+            <h2>Ảnh phòng trọ và thanh toán</h2>
             <label className="createPostLabel">
-              Tiêu đề
+              <p>Tiêu đề</p>
+              {errors.title && (
+                <p style={{color: 'red'}}>
+                  {errors.title.message}
+                </p>
+              )}
               <input
                 type="text"
                 name="title"
@@ -430,18 +441,9 @@ function ModifyPost() {
               />
             </label>
             <label className="createPostLabel">
-              Mô tả thêm thông tin
-              <textarea
-                name="description"
-                placeholder="Gần những địa điểm công cộng nào? ..."
-                defaultValue={checkPost ? post.description : ''}
-                ref={register}
-              ></textarea>
-            </label>
-            <label className="createPostLabel">
               <p>Ảnh phòng trọ</p>
               {errors.postImages && (
-                <p className="createPostErrorMessage">
+                <p style={{color: 'red'}}>
                   {errors.postImages.message}
                 </p>
               )}
@@ -475,7 +477,7 @@ function ModifyPost() {
               <label className="createPostLabel flexLabel">
                 <p>Thời gian hiển thị bài đăng</p>
                 {errors.duration && (
-                  <p className="createPostErrorMessage">
+                  <p style={{color: 'red'}}>
                     {errors.duration.message}
                   </p>
                 )}
@@ -502,7 +504,7 @@ function ModifyPost() {
                 <label>
                   <p>Đơn vị</p>
                   {errors.typeOfTime && (
-                    <p className="createPostErrorMessage">
+                    <p style={{color: 'red'}}>
                       {errors.typeOfTime.message}
                     </p>
                   )}
@@ -515,6 +517,7 @@ function ModifyPost() {
                     <option value="" hidden>
                       Đơn vị
                     </option>
+                    <option value="week">Tuần</option>
                     <option value="month">Tháng</option>
                     <option value="quarter">Quý</option>
                     <option value="year">Năm</option>
@@ -523,7 +526,7 @@ function ModifyPost() {
               </div>
             </div>
 
-            <label>Số tiền phải thanh toán: {price}</label>
+            <label><p>Số tiền phải thanh toán: {price}</p></label>
           </div>
           <div className="button">
             <button type="submit">Hoàn thành</button>
