@@ -52,7 +52,9 @@ function Home() {
   return (
     <div className="Home" style={{ overflowX: 'hidden' }}>
       <NavBar />
-      <div className="homeImage"></div>
+      <div className="homeImage">
+        <div className="textTitle"><span>Easy</span>Accomod<p>Thuê trọ dễ dàng với EasyAccomod</p></div>
+      </div>
 
       <SearchBar rentalUnitSearch={rentalUnitSearch} />
       <ListRentalUnit
@@ -65,7 +67,9 @@ function Home() {
         totalRentalUnit={rentalUnit.length}
         paginate={paginate}
       />
-      <div id="footer"><Footer /></div>
+      <div id="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

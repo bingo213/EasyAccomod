@@ -39,7 +39,7 @@ function Comment({ postId }) {
           { headers: authHeader() }
         )
         .then(res => {
-          alert(res.data);
+          alert('Bình luận cần được phê duyệt trước khi hiển thị');
           window.location.reload();
         })
         .catch(err => console.log(err));

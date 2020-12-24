@@ -50,7 +50,7 @@ function SearchBar({rentalUnitSearch}) {
                 <option value="2500000-2999999">Từ 2.5 - 3 triệu</option>
                 <option value="3000000-100000000">Trên 3 triệu</option>
               </select>
-              <select name="typeOfTime" className="time">
+              <select name="typeOfPrice" className="time" ref={register}>
                 <option value="" hidden>
                   Tính theo
                 </option>

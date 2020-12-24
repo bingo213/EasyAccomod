@@ -22,7 +22,10 @@ function Register({ fields, button, text, type, url, additionField, action }) {
         if (res.data.success) {
           if (action === 'login') {
             localStorage.setItem('user', JSON.stringify(res.data));
-            history.push('/');
+            if(res.data.role === 'admin'){
+              history.push('/admin')
+            }
+            else history.push('/');
           } else if (action === 'signup') {
             alert('Đăng ký thành công');
             history.push('/login');
@@ -47,7 +50,7 @@ function Register({ fields, button, text, type, url, additionField, action }) {
       required: 'Bạn chưa chọn quận/huyện',
     },
     {
-      required: 'Bạn chưa chọn xã/phường',
+      required: false,
     },
     {
       required: 'Bạn chưa nhập tên đường',

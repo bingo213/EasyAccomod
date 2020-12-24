@@ -93,7 +93,7 @@ function NavBar() {
                 <Link to='/'>Liên hệ</Link>
               </li>
               <li>
-                <Link to='/'>Về chúng tôi</Link>
+                <Link to='/about_us'>Về chúng tôi</Link>
               </li>
               {
                 role === 'owner' && <li className="btn">

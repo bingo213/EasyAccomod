@@ -60,13 +60,13 @@ function OwnerRegister() {
       name: 'password',
       registerObj: { required: 'Bạn cần nhập mật khẩu' },
     },
-    {
-      key: 7,
-      label: 'Nhập lại mật khẩu',
-      type: 'password',
-      name: 'rePassword',
-      registerObj: { required: 'Bạn cần nhập lại mật khẩu' },
-    },
+    // {
+    //   key: 7,
+    //   label: 'Nhập lại mật khẩu',
+    //   type: 'password',
+    //   name: 'rePassword',
+    //   registerObj: { required: 'Bạn cần nhập lại mật khẩu' },
+    // },
   ];
   return (
     <div className="OwnerRegister">

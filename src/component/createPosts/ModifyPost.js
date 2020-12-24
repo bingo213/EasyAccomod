@@ -61,6 +61,10 @@ function ModifyPost() {
   if(role === 'rental' || !isLogin){
     history.push('/404')
   }
+
+  if(user.active !== 1) {
+    history.push('/404')
+  }
   const checkPost = JSON.stringify(post) !== JSON.stringify({});
   const defaultAddress = checkPost ? post.address : '';
 

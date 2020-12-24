@@ -37,7 +37,7 @@ function RentalUnit({ rentalUnit, isLogin }) {
       <Link to={`/detail/${id}`}>
         <>
           <div className="image">
-            <img src={roomImg} alt="Room Image" />
+            <img src={`http://localhost:3001/${rentalUnit.images[1].name}`} alt="Room Image" />
             <div className="cost">
               {rentalUnit.price/1000000} triệu
               <p className="small"> /{typeOfTime(rentalUnit.typeOfPrice)}</p>

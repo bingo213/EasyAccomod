@@ -25,6 +25,7 @@ function ApprovalOwner({ loading, listItem }) {
           }
 
           setOwnerArr(ownerArr.filter(item => item.user._id !== id));
+          window.location.reload()
         }
       });
   };

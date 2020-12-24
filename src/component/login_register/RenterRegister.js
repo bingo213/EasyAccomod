@@ -57,19 +57,19 @@ function RenterRegister() {
         },
       },
     },
-    {
-      key: 5,
-      label: 'Nhập lại mật khẩu',
-      type: 'password',
-      name: 'rePassword',
-      registerObj: {
-        required: 'Bạn cần nhập lại mật khẩu',
-        // validate: {
-        //   rePass: value =>
-        //     value === getValues().password || 'Mật khẩu nhập lại không khớp',
-        // },
-      },
-    },
+    // {
+    //   key: 5,
+    //   label: 'Nhập lại mật khẩu',
+    //   type: 'password',
+    //   name: 'rePassword',
+    //   registerObj: {
+    //     required: 'Bạn cần nhập lại mật khẩu',
+    //     // validate: {
+    //     //   rePass: value =>
+    //     //     value === getValues().password || 'Mật khẩu nhập lại không khớp',
+    //     // },
+    //   },
+    // },
   ];
   return (
     <div className="RenterRegister">
