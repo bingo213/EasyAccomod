@@ -131,7 +131,7 @@ commentRouter
 
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json(comment);
+      res.json({success: true, message:'ban da cap nhat thanh cong'});
     });
   });
 module.exports = commentRouter;

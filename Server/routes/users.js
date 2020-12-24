@@ -173,7 +173,7 @@ router.route('/:userId/getAvatar').get((req, res, next) => {
 
 //change Active of user
 router
-  .route('/:userId/changeActive')
+  .route('/:userId/changeStatus')
   .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     User.findById(req.params.userId).then(
       user => {

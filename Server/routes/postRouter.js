@@ -187,15 +187,8 @@ postRouter
       .populate('address')
       .then(
         post => {
-          if (
-            req.user &&
-            !req.user._id.equals(post.owner) &&
-            req.user.user_type !== 'admin'
-          ) {
-            post.views += 1;
-            post.save();
-          }
-
+          post.views += 1;
+          post.save();
           Profile.findOne({ user: post.owner })
             .populate('address')
             .then(profile => {
@@ -314,7 +307,7 @@ postRouter
           post.remove().then(resp => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json({success: true});
+            res.json({ success: true });
           });
         } else {
           res.statusCode = 404;
@@ -352,7 +345,13 @@ postRouter
               post.typeOfTime,
               post.duration
             );
+          } else {
+            postexpireDate = null;
+            post.active = 0;
+            post.activeDate = null;
           }
+
+          post.priceOfPost = req.body.priceOfPost;
           post.paid = false;
           post.save();
 
@@ -414,7 +413,7 @@ postRouter
   .route('/:postId/changeRentStatus')
   .put(authenticate.verifyUser, (req, res, next) => {
     Post.findById(req.params.postId).then(post => {
-      if ( !post.owner.equals(req.user._id)) {
+      if (!post.owner.equals(req.user._id)) {
         res.statusCode = 403;
         res.setHeader('Content-Type', 'application/json');
         res.json({ success: false, message: 'Not author of this post' });
