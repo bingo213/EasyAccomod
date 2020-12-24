@@ -41,8 +41,12 @@ searchRouter.route('/findRoom').post((req, res, next) => {
     addressArray.push({ village: req.body.village });
   }
 
-  if(req.body.typeOfRoom){
-    postArray.push({typeOfRoom: req.body.typeOfRoom  });
+  if (req.body.typeOfRoom) {
+    postArray.push({ typeOfRoom: req.body.typeOfRoom });
+  }
+
+  if (req.body.typeOfPrice) {
+    postArray.push({ typeOfPrice: req.body.typeOfPrice });
   }
   if (req.body.price) {
     var arr = req.body.price.split('-');

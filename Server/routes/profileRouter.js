@@ -154,11 +154,13 @@ profileRouter
 
               Profile.findById(profile._id)
                 .populate('address')
+                .populate('user')
                 .then(profile => {
                   res.statusCode = 200;
                   res.json({
                     success: true,
                     message: 'Congralation! Bạn đã thay đổi thành công!',
+                    avatar : profile.avatar
                   });
                 });
             } else {
