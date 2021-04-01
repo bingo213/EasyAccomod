@@ -14,7 +14,9 @@ $git checkout phuong
 ==> install dependencies: npm install
 
 
-==> run the backend: npm start
+==> run the backend: 
+  #cd Server
+  #npm start
 
 
 server will run at port 3001
