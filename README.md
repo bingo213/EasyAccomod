@@ -15,7 +15,9 @@ $git checkout phuong
 
 
 ==> run the backend: 
+
   #cd Server
+  
   #npm start
 
 
