@@ -38,3 +38,5 @@ $git checkout frontend
 
 
 frontend will run at port 3000
+
+#### Admin: account: admin, password: adminpassword
